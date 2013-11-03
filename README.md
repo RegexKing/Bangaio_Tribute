@@ -1,0 +1,1 @@
+Multidirectional shooter Flash game heavily inspired by Bangai-O.
