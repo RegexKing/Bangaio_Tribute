@@ -6,7 +6,6 @@ package
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FX.StarfieldFX;
 	import units.Player;
-	import units.Target;
 	import util.BulletTrailsContainer;
 	import util.ZoomCamera;
 	import weapons.BounceBullet;
@@ -57,10 +56,7 @@ package
 			// TODO: LevelMap takes an int argument to decide which level data to load
 			map = new LevelMap();
 			
-			FlxG.worldBounds.x = 0;
-			FlxG.worldBounds.y = 0;
-			FlxG.worldBounds.width = FlxG.width + (FlxG.width / 2);
-			FlxG.worldBounds.height = FlxG.height + (FlxG.height / 2);
+			FlxG.worldBounds = map.getBounds();
 			
 			createBackgroundObjects();
 			
@@ -105,8 +101,6 @@ package
 			//debug
 			if (FlxG.keys.justPressed("R")) FlxG.switchState(new PlayState);
 			
-			updateWorldBounds();
-			
 			FlxG.collide(player, targets);
 			FlxG.collide(mapCollideable, map);
 			
@@ -142,15 +136,10 @@ package
          }
 		 
 		 public function zoomCamera():void
-		 {
-			 zoomCam.zoom = 4;
-		 }
-		 
-		 private function updateWorldBounds():void
-		 {
-			FlxDisplay.screenCenterFlxRect(FlxG.worldBounds);
-		 }
-		 
+		{
+			zoomCam.zoom = 4;
+		}
+
 		private function createBackgroundObjects():void
 		{
 			starField = FlxSpecialFX.starfield();

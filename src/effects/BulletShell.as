@@ -21,6 +21,8 @@ package effects
 		
 		override public function update():void
 		{
+			super.update();
+			
 			if (justTouched(FLOOR)) kill();
 		}
 		

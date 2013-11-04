@@ -5,9 +5,8 @@ package maps
 	 * @author Frank Fazio
 	 */
 	
-	import org.flixel.FlxGroup;
-	import org.flixel.FlxSprite;
-	import org.flixel.FlxTilemap;
+	import org.flixel.*;
+	import units.Block;
 	import units.Blue;
 	import units.Player;
 	import util.BulletTrailsContainer;
@@ -48,7 +47,8 @@ package maps
 			// ^^ this function will parse the spritemapdata, will create/position game objects
 			
 			player.x = 1 * TILE_SIZE;
-			player.y = 5 * TILE_SIZE;
+			player.y = 6 * TILE_SIZE;
+			
 			
 			var enemy:FlxSprite = new FlxSprite(200, 200);
 			enemy.makeGraphic(35, 35);
@@ -59,7 +59,7 @@ package maps
 			var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails);
 			enemy2.x = 800;
 			enemy2.y = 200;
-			targets.add(enemy2);	
+			targets.add(enemy2);
 		}
 		
 		

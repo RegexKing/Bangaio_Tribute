@@ -9,30 +9,20 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Blue extends Target
+	public class Blue extends Enemy
 	{
-		public var aim:int = 0;
-		protected var speed:int = 0;
-		
-		private var player:Player;
-		private var map:LevelMap;
-		
-		private var directionAngle:Number = 0;
-		private var inSight:Boolean = false;
 		private var aware:Boolean = false;
 		private var myPath:FlxPath;
 		
-		private var gun:FlxWeaponExt;
-		
-		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer) 
+		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
 		{
-			super();
-			
-			player = _player;
-			map = _map;
+			super(_enemyBullets, _player, _map, _bulletTrails, _bulletType);
 			
 			health = 100;
 			speed = 150;
+			
+			bulletSpeed = 250;
+			fireRate = 1000;
 			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);
 			addAnimation("down", [1], 60);
@@ -44,31 +34,16 @@ package units
 			this.offset.x = 10;
 			width = 15;
 			
-			
-			// Guns
-			gun = new FlxWeaponExt(E_HomingBullet, "gun", _bulletTrails, this, player);
-			gun.setBulletBounds(FlxG.worldBounds);
-			gun.setBulletSpeed(250);
-			gun.setFireRate(1000);
-			//gun.setBulletLifeSpan(2800);
-			//gun.setPostFireCallback(null, AssetsRegistry.BOUNCEGUN_MP3);
-			
-			_enemyBullets.add(gun.group);
 		}
 		
 		override public function update():void
 		{
 			
-			if (inSight) gun.fireFromAngle(aim);
+			super.update();
 			
 			move();
 			
-			// find the angle between enemy and player
-			directionAngle = FlxVelocity.angleBetween(this, player, true);
-			// find which way enemy should face
-			this.facing = GameUtil.findFacing(directionAngle);
-			// find where the enemy should aim
-			aim = GameUtil.findDirection(directionAngle);
+			if (inSight && aware && onScreen()) gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
@@ -90,8 +65,6 @@ package units
 		
 		protected function move():void
 		{	
-			inSight = map.ray(this.getMidpoint(), player.getMidpoint(), null, 1);
-			
 			if (aware)
 			{
 				if ((FlxVelocity.distanceBetween(this, player) <= FlxG.height) && inSight)
@@ -139,6 +112,8 @@ package units
 		{
 			super.kill();
 			
+			aware = false;
+			
 			stopPathfinding();
 		}
 		
@@ -150,7 +125,6 @@ package units
 			}
 			
 			super.destroy();
-			gun = null;
 		}
 		
 	}

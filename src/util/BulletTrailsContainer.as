@@ -54,8 +54,6 @@ package util
 			var newEndX:int = endX - (y * CON_SIZE);
 			var newEndY:int = endY - (x * CON_SIZE);
 			
-			trace(index + "  " + this.members[index]);
-			
           	(this.members[index] as FlxSprite).drawLine(newStartX, newStartY, newEndX, newEndY, trailColor);
 			
 			return new Line(newStartX, newStartY, newEndX, newEndY, index);

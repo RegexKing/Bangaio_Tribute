@@ -374,16 +374,9 @@ package org.flixel
 			touching = NONE;
 		}
 		
-		override public function update():void
+		public function updateObject():void
 		{
-			super.update();
 			
-			if (FlxMath.pointInFlxRect(this.x, this.y, FlxG.worldBounds))
-			{
-				this.active = true;
-			}
-			
-			else this.active = false;
 		}
 		
 		/**

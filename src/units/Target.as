@@ -10,7 +10,7 @@ package units
 		
 		public function Target() 
 		{
-			super();
+			
 		}
 		
 	}
