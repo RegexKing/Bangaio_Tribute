@@ -13,7 +13,7 @@ package units
 		{
 			super();
 			
-			makeGraphic(50, 50);	
+			makeGraphic(32, 32);	
 			
 			immovable = true;
 		}

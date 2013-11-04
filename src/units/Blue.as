@@ -29,7 +29,9 @@ package units
 			addAnimation("up", [5], 60);
 			
 			this.offset.x = 10;
+			this.offset.y = 1;
 			width = 15;
+			height = 48;
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);

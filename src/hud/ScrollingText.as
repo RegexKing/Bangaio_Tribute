@@ -11,7 +11,7 @@ package hud
 		
 		private var timer:Number = 0;
 		private var timerOn:Boolean = false;
-		public var lifespan:Number = 0.7;
+		public var lifespan:Number = 0.8;
 		public var speed:Number = 50;
 		
 		public function ScrollingText() 

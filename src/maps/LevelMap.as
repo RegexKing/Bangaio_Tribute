@@ -51,19 +51,12 @@ package maps
 			player.x = 1 * TILE_SIZE;
 			player.y = 6 * TILE_SIZE;
 			
-			
-			var enemy:FlxSprite = new FlxSprite(200, 200);
-			enemy.makeGraphic(35, 35);
-			enemy.health = 500;
-			targets.add(enemy);
-			
-			
 			var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, "homing");
 			enemy2.x = 800;
 			enemy2.y = 200;
 			targets.add(enemy2);
 			
-			var enemy3:Sentry = new Sentry(enemyBullets, player, this, bulletTrails, "homing");
+			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, "normal");
 			enemy3.x = 900;
 			enemy3.y = 300;
 			targets.add(enemy3);
