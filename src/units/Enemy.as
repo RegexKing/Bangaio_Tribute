@@ -17,8 +17,6 @@ package units
 		
 		public var aim:int = 0;
 		protected var speed:int = 0;
-		protected var bulletSpeed:uint = 250;
-		protected var fireRate:uint = 1000;
 		
 		protected var player:Player;
 		protected var map:LevelMap;
@@ -42,8 +40,6 @@ package units
 			else throw new Error("invalid bullet type");
 			
 			gun.setBulletBounds(FlxG.worldBounds);
-			gun.setBulletSpeed(bulletSpeed);
-			gun.setFireRate(fireRate);
 			
 			_enemyBullets.add(gun.group);
 			

@@ -11,16 +11,42 @@ package units
 	import util.BulletTrailsContainer;
 	import weapons.*; 
 	 
-	public class Shrapnel extends FlxSprite
+	public class Shrapnel extends Enemy
 	{
+		private var timer:Number = 0;
 		
-		
-		
-		public function Shrapnel() 
+		public function Shrapnel(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
 		{
-			super();
+			super(_enemyBullets, _player, _map, _bulletTrails, _bulletType);
 			
+			health = 100;
 			
+			makeGraphic(32, 32);
+			
+			gun.setBulletSpeed(250);
+			gun.setFireRate(0);
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			
+			timer += FlxG.elapsed;
+			if (timer >= 3)
+			{
+				if (inSight && onScreen())
+				{
+					gun.missleOverdrive(20);
+					timer = 0;
+				}
+			}
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			timer = 0;
 		}
 		
 	}

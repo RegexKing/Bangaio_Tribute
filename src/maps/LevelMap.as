@@ -9,6 +9,8 @@ package maps
 	import units.Block;
 	import units.Blue;
 	import units.Player;
+	import units.Sentry;
+	import units.Shrapnel;
 	import util.BulletTrailsContainer;
 	import util.FlxTilemapExt;
 	 
@@ -56,10 +58,16 @@ package maps
 			targets.add(enemy);
 			
 			
-			var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails);
+			var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, "homing");
 			enemy2.x = 800;
 			enemy2.y = 200;
 			targets.add(enemy2);
+			
+			var enemy3:Sentry = new Sentry(enemyBullets, player, this, bulletTrails, "homing");
+			enemy3.x = 900;
+			enemy3.y = 300;
+			targets.add(enemy3);
+			
 		}
 		
 		

@@ -21,9 +21,6 @@ package units
 			health = 100;
 			speed = 150;
 			
-			bulletSpeed = 250;
-			fireRate = 1000;
-			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);
 			addAnimation("down", [1], 60);
 			addAnimation("downward", [2], 60);
@@ -33,6 +30,9 @@ package units
 			
 			this.offset.x = 10;
 			width = 15;
+			
+			gun.setBulletSpeed(250);
+			gun.setFireRate(1000);
 			
 		}
 		

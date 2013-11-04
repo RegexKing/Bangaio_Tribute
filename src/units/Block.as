@@ -15,15 +15,7 @@ package units
 			
 			makeGraphic(50, 50);	
 			
-			maxVelocity.y = 200;
-		}
-		
-		override public function update():void
-		{
-			super.update();
-			
-			acceleration.y = 100;
-			
+			immovable = true;
 		}
 		
 	}
