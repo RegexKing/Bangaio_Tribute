@@ -2,6 +2,7 @@ package units
 {
 	import maps.LevelMap;
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import util.BulletTrailsContainer;
 	import weapons.*;
@@ -11,8 +12,10 @@ package units
 	 */
 	public class Blue extends Enemy
 	{
+		private var moving:Boolean = false;
+		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
-		private var myPath:FlxPath;
+		
 		
 		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
 		{
@@ -28,13 +31,14 @@ package units
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
 			
-			this.offset.x = 10;
-			this.offset.y = 1;
-			width = 15;
-			height = 48;
+			immovable = true;
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);
+			
+			shotDelay = new FlxDelay(3000);
+			shotDelay.callback = move;
+			shotDelay.start();
 			
 		}
 		
@@ -43,9 +47,7 @@ package units
 			
 			super.update();
 			
-			move();
-			
-			if (inSight && aware && onScreen()) gun.fireFromAngle(aim);
+			if (inSight && onScreen()) gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
@@ -63,45 +65,42 @@ package units
 			else
 				play("straight");
 				
+			if (moving && this.pathSpeed == 0)
+			{
+				stopPathfinding();
+					
+				moving = false;
+			}	
 		}
 		
 		protected function move():void
 		{	
 			if (aware)
 			{
-				if ((FlxVelocity.distanceBetween(this, player) <= FlxG.height) && inSight)
-				{
-					stopPathfinding();
-				}
-				
-				else if ((myPath == null || this.pathSpeed == 0) && player.alive) 
-				{
-					stopPathfinding();
-					
-					myPath = calculatePath(this.getMidpoint(),  player.getMidpoint());
-					this.followPath(myPath, speed);
-				}
-				
-				else
-				{
-					if (this.path != null)
-					{
-						this.path.destroy();
-					}
-					
-					this.path = map.findPath(this.getMidpoint(),  player.getMidpoint());
-				}
+				followPlayer();
 			}
 			
-			else if (!aware && inSight && this.onScreen())
+			else if (!aware && onScreen() && inSight)
 			{
 				aware = true;
+				followPlayer();
 			}
+			
+			shotDelay.start();
 		}
 		
-		protected function calculatePath(start:FlxPoint, end:FlxPoint):FlxPath
+		protected function followPlayer():void
 		{
-			return map.findPath(start, end)
+			
+			if (this.path != null)
+			{
+				this.path.destroy();
+			}
+					
+			this.path = map.findPath(this.getMidpoint(),  player.getMidpoint());
+			this.followPath(this.path, speed);
+				
+			moving = true;
 		}
 		
 		protected function stopPathfinding():void
@@ -114,9 +113,10 @@ package units
 		{
 			super.kill();
 			
-			aware = false;
-			
 			stopPathfinding();
+			shotDelay.abort();
+			
+			aware = false;
 		}
 		
 		override public function destroy():void
@@ -127,6 +127,12 @@ package units
 			}
 			
 			super.destroy();
+			
+			if (shotDelay != null)
+			{
+				shotDelay.abort();
+				shotDelay = null;
+			}
 		}
 		
 	}

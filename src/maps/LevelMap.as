@@ -51,10 +51,13 @@ package maps
 			player.x = 1 * TILE_SIZE;
 			player.y = 6 * TILE_SIZE;
 			
-			var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, "homing");
-			enemy2.x = 800;
-			enemy2.y = 200;
-			targets.add(enemy2);
+			//for (var i:int = 0; i < 50; i++)
+			//{
+					var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, "homing");
+				enemy2.x = 800;
+				enemy2.y = 200;
+				targets.add(enemy2);
+			//}
 			
 			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, "normal");
 			enemy3.x = 900;

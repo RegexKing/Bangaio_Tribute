@@ -18,6 +18,8 @@ package units
 			
 			makeGraphic(32, 32);
 			
+			this.immovable = true;
+			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);
 		}
