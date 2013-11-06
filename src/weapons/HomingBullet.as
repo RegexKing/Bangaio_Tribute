@@ -25,6 +25,11 @@ package weapons
 
 			// Makes rendering rotations perform better, 200 rotations for 200 directions
 			loadRotatedGraphic(AssetsRegistry.misslePNG, 200);
+			
+			offset.x = 14;
+			width = 10;
+			offset.y = 14;
+			height = 10;
 		}
 		
 		override public function getBullet(_weapon:FlxWeaponExt, _aimAngle:int, _bulletTrails:BulletTrailsContainer, _player:Player = null):BulletExt
