@@ -46,7 +46,7 @@ package
                 FlxG.addPlugin(new FlxSpecialFX);
             }
 			
-			mapCollideable = new FlxGroup(5);
+			mapCollideable = new FlxGroup(6);
 			explosionVictims = new FlxGroup(2);
 			playerBullets = new FlxGroup(2);
 			hud = new FlxGroup();
@@ -118,14 +118,15 @@ package
 			//debug
 			if (FlxG.keys.justPressed("R")) FlxG.switchState(new PlayState);
 			
-			FlxG.collide(explosionVictims, explosionVictims);
-			FlxG.collide(mapCollideable, map);
-			
 			FlxG.overlap(obstacles, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
 			FlxG.overlap(enemyBullets, playerBullets, damageObject);
 			//FlxG.overlap(explosionVictims, explosionAreas, );
 			FlxG.overlap(player, items, pickupItem);
+			
+			FlxG.collide(explosionVictims, explosionVictims);
+			FlxG.collide(mapCollideable, map);
+			//FlxG.collide(playerBullets, obstacles, check green_blue_Box);
 		}
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
