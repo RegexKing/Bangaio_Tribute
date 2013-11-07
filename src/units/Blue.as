@@ -21,8 +21,8 @@ package units
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
-			health = 100;
-			points = 100
+			health = 40;
+			points = 200;
 			speed = 150;
 			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);

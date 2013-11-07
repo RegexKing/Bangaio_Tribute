@@ -14,7 +14,8 @@ package units
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
-			health = 100;
+			health = 40;
+			points = 100;
 			
 			makeGraphic(32, 32);
 			

@@ -19,7 +19,8 @@ package units
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
-			health = 100;
+			health = 160;
+			points = 500;
 			
 			makeGraphic(32, 32);
 			
@@ -38,7 +39,7 @@ package units
 			{
 				if (inSight && onScreen())
 				{
-					gun.missleOverdrive(20);
+					gun.missleOverdrive(40);
 					timer = 0;
 				}
 			}

@@ -18,6 +18,8 @@ package units
 			map = _map;
 			index = _index;
 			
+			health = 10;
+			
 			makeGraphic(16, 16);
 			
 			//TODO, set to invisible, collideable tile
