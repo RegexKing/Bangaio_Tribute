@@ -6,10 +6,10 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Block extends Target
+	public class BrownBlock extends Target
 	{
 		
-		public function Block(_textGroup:FlxGroup) 
+		public function BrownBlock(_textGroup:FlxGroup) 
 		{
 			super(_textGroup);
 			
@@ -17,8 +17,14 @@ package units
 			points = 100;
 			
 			makeGraphic(32, 32);
+		}
+		
+		override public function update():void
+		{
+			super.update();
 			
-			immovable = true;
+			acceleration.y = 400;
+			velocity.x = 0;
 		}
 		
 	}

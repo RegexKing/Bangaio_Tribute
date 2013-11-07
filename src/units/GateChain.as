@@ -4,7 +4,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public interface Gate 
+	public interface GateChain 
 	{
 		function activateGate():void;
 	}

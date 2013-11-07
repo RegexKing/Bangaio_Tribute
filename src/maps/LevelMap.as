@@ -6,11 +6,7 @@ package maps
 	 */
 	
 	import org.flixel.*;
-	import units.Block;
-	import units.Blue;
-	import units.Player;
-	import units.Sentry;
-	import units.Shrapnel;
+	import units.*;
 	import util.BulletTrailsContainer;
 	import util.FlxTilemapExt;
 	 
@@ -18,14 +14,30 @@ package maps
 	{
 		public static const TILE_SIZE:int = 16;
 		
+		private var obstacles:FlxGroup;
 		private var targets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var bulletTrails:BulletTrailsContainer;
 		private var items:FlxGroup;
-		private var textGroup:FlxGroup;
 		private var player:Player;
+		private var textGroup:FlxGroup;
 		
-		private var spriteMap:String;
+		//recycleable flxgroups
+		private var singleLives:FlxGroup;
+		private var oranges:FlxGroup;
+		private var apples:FlxGroup;
+		private var bananas:FlxGroup;
+		private var pineapples:FlxGroup;
+		private var watermelons:FlxGroup;
+		private var brownBlocks:FlxGroup;
+		private var redRobots:FlxGroup;
+		private var redExplosions:FlxGroup;
+		private var blueExplosions:FlxGroup;
+		private var smallExplosionAreas:FlxGroup;
+		private var largeExplosionAreas:FlxGroup;
+		
+		private var spriteMap:String = "";
+		private var gateChains:Array;
 		
 		public function LevelMap(_level:uint = 1) 
 		{
@@ -38,14 +50,49 @@ package maps
 			}
 		}
 		
-		public function InitializeLevel(_player:Player, _targets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _items:FlxGroup):void
+		public function InitializeLevel(_player:Player, _obstacles:FlxGroup, _targets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _items:FlxGroup, _explosions:FlxGroup, _explosionAreas:FlxGroup):void
 		{
 			bulletTrails = _bulletTrails;
 			player = _player;
+			obstacles = _obstacles;
 			targets = _targets;
 			enemyBullets = _enemyBullets;
 			textGroup = _textGroup;
 			items = _items;
+			
+			//recycleable groups//=====
+			//items
+			singleLives = new FlxGroup();
+			oranges = new FlxGroup();
+			apples = new FlxGroup();
+			bananas = new FlxGroup();
+			pineapples = new FlxGroup();
+			watermelons = new FlxGroup();
+			//generators
+			brownBlocks = new FlxGroup();
+			redRobots = new FlxGroup();
+			//explosion animations
+			redExplosions = new FlxGroup();
+			blueExplosions = new FlxGroup();
+			//explosion areas
+			smallExplosionAreas = new FlxGroup();
+			largeExplosionAreas = new FlxGroup();
+			//==========================
+			
+			//aggregate flxgroups
+			
+			items.add(singleLives);
+			items.add(oranges);
+			items.add(apples);
+			items.add(bananas);
+			items.add(pineapples);
+			items.add(watermelons);
+			
+			_explosions.add(blueExplosions);
+			_explosions.add(redExplosions);
+			
+			_explosionAreas.add(smallExplosionAreas);
+			_explosionAreas.add(largeExplosionAreas);
 			
 			// parseSpriteMap();
 			// ^^ this function will parse the spritemapdata, will create/position game objects
@@ -71,7 +118,17 @@ package maps
 		
 		private function parseSpriteMap():void
 		{
+			gateChains = new Array();
 			
+		}
+		
+		override public function destroy():void
+		{
+			redRobots.destroy();
+			
+			super.destroy();
+			
+			if (gateChains) gateChains = null;
 		}
 		
 	}

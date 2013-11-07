@@ -13,14 +13,17 @@ package
 	public class PlayState extends FlxState
 	{
 		private var mapCollideable:FlxGroup;
+		private var explosionVictims:FlxGroup;
 		private var playerBullets:FlxGroup;
+		private var obstacles:FlxGroup;
 		private var targets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var items:FlxGroup;
 		private var hud:FlxGroup;
+		private var textGroup:FlxGroup;
 		private var particleEmitters:FlxGroup;
 		private var explosions:FlxGroup;
-		private var textGroup:FlxGroup;
+		private var explosionAreas:FlxGroup;
 		
 		private var zoomCam:ZoomCamera;
 		private var map:LevelMap;
@@ -44,14 +47,18 @@ package
             }
 			
 			mapCollideable = new FlxGroup(5);
-			hud = new FlxGroup();
+			explosionVictims = new FlxGroup(2);
 			playerBullets = new FlxGroup(2);
+			hud = new FlxGroup();
+			obstacles = new FlxGroup();
 			targets = new FlxGroup();
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
 			particleEmitters = new FlxGroup();
-			explosions = new FlxGroup();
 			textGroup = new FlxGroup();
+			explosions = new FlxGroup();
+			explosionAreas = new FlxGroup();
+			
 			
 			// TODO: LevelMap takes an int argument to decide which level data to load
 			map = new LevelMap();
@@ -61,7 +68,8 @@ package
 			createBackgroundObjects();
 			
 			player = new Player(map, zoomCamera, playerBullets, enemyBullets, bulletTrails, targets, textGroup, particleEmitters);
-			map.InitializeLevel(player, targets, enemyBullets, bulletTrails, textGroup, items);
+			
+			map.InitializeLevel(player, obstacles, targets, enemyBullets, bulletTrails, textGroup, items, explosions, explosionAreas);
 			
 			zoomCam = new ZoomCamera(0, 0, FlxG.width, FlxG.height);
 			FlxG.resetCameras(zoomCam);
@@ -70,6 +78,12 @@ package
 			zoomCam.targetZoom = 1;
 			zoomCam.zSpeed = 15;
 			
+			hud.add(textGroup);
+			hud.add(player.lifeBar);
+			
+			obstacles.add(targets);
+			
+			//add to state
 			add(bulletTrails);
 			add(bg);
 			add(map);
@@ -77,19 +91,21 @@ package
 			add(items);
 			add(player);
 			add(particleEmitters);
-			add(targets);
+			add(obstacles);
+			add(explosionAreas);
 			add(enemyBullets);
 			add(playerBullets);
 			add(hud);
 			
+			//aggregate map collideables
 			mapCollideable.add(particleEmitters);
 			mapCollideable.add(player);
 			mapCollideable.add(targets);
 			mapCollideable.add(playerBullets);
 			mapCollideable.add(enemyBullets);
 			
-			hud.add(textGroup);
-			hud.add(player.lifeBar);
+			explosionVictims.add(player);
+			explosionVictims.add(obstacles);
 			
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 		}
@@ -101,12 +117,13 @@ package
 			//debug
 			if (FlxG.keys.justPressed("R")) FlxG.switchState(new PlayState);
 			
-			FlxG.collide(player, targets);
+			FlxG.collide(explosionVictims, explosionVictims);
 			FlxG.collide(mapCollideable, map);
 			
-			FlxG.overlap(targets, playerBullets, damageObject);
+			FlxG.overlap(obstacles, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
 			FlxG.overlap(enemyBullets, playerBullets, damageObject);
+			//FlxG.overlap(explosionVictims, explosionAreas, );
 			FlxG.overlap(player, items, pickupItem);
 		}
 		
@@ -129,6 +146,7 @@ package
             FlxSpecialFX.clear();
 			
             mapCollideable.destroy();
+			explosionVictims.destroy();
 			starField.destroy();
 			
             super.destroy();

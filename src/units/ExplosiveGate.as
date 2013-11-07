@@ -7,7 +7,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class ExplosiveGate extends Target implements Gate
+	public class ExplosiveGate extends FlxSprite implements GateChain
 	{
 		
 		private var above:Gate;
@@ -36,14 +36,14 @@ package units
 			explodeDelay.start();
 		}
 		
-		public function setGate(gates:Array):void
+		public function setGate(gateChains:Array):void
 		{
 			for each (var gate:FlxSprite in gates)
 			{
-				if (gate.x == this.x - 16) left = (gate as Gate);
-				else if (gate.x == this.x + 16) right = (gate as Gate);
-				else if (gate.y == this.y - 16) above = (gate as Gate);
-				else if (gate.y == this.y + 16) below = (gate as Gate);
+				if (gate.x == this.x - 16) left = (gate as GateChain);
+				else if (gate.x == this.x + 16) right = (gate as GateChain);
+				else if (gate.y == this.y - 16) above = (gate as GateChain);
+				else if (gate.y == this.y + 16) below = (gate as GateChain);
 			}
 		}
 		
