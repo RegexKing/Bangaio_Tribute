@@ -17,11 +17,12 @@ package units
 		private var aware:Boolean = false;
 		
 		
-		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
+		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
-			super(_enemyBullets, _player, _map, _bulletTrails, _bulletType);
+			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
 			health = 100;
+			points = 100
 			speed = 150;
 			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);

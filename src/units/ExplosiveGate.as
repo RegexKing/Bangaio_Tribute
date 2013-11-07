@@ -17,9 +17,12 @@ package units
 		
 		private var explodeDelay:FlxDelay;
 		
-		public function ExplosiveGate() 
+		public function ExplosiveGate(_textGroup:FlxGroup) 
 		{
-			super();
+			super(_textGroup);
+			
+			health = 10;
+			points = 20;
 			
 			makeGraphic(16, 16);
 			

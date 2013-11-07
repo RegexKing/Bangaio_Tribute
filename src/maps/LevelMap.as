@@ -22,6 +22,7 @@ package maps
 		private var enemyBullets:FlxGroup;
 		private var bulletTrails:BulletTrailsContainer;
 		private var items:FlxGroup;
+		private var textGroup:FlxGroup;
 		private var player:Player;
 		
 		private var spriteMap:String;
@@ -37,12 +38,13 @@ package maps
 			}
 		}
 		
-		public function InitializeLevel(_player:Player, _targets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _items:FlxGroup):void
+		public function InitializeLevel(_player:Player, _targets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _items:FlxGroup):void
 		{
 			bulletTrails = _bulletTrails;
 			player = _player;
 			targets = _targets;
 			enemyBullets = _enemyBullets;
+			textGroup = _textGroup;
 			items = _items;
 			
 			// parseSpriteMap();
@@ -53,13 +55,13 @@ package maps
 			
 			//for (var i:int = 0; i < 50; i++)
 			//{
-					var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, "homing");
+				var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, textGroup, "homing");
 				enemy2.x = 800;
 				enemy2.y = 200;
 				targets.add(enemy2);
 			//}
 			
-			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, "normal");
+			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, textGroup, "normal");
 			enemy3.x = 900;
 			enemy3.y = 300;
 			targets.add(enemy3);

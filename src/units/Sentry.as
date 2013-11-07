@@ -10,9 +10,9 @@ package units
 	public class Sentry extends Enemy
 	{
 		
-		public function Sentry(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
+		public function Sentry(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
-			super(_enemyBullets, _player, _map, _bulletTrails, _bulletType);
+			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
 			health = 100;
 			

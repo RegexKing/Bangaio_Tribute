@@ -61,7 +61,7 @@ package
 			createBackgroundObjects();
 			
 			player = new Player(map, zoomCamera, playerBullets, enemyBullets, bulletTrails, targets, textGroup, particleEmitters);
-			map.InitializeLevel(player, targets, enemyBullets, bulletTrails, items);
+			map.InitializeLevel(player, targets, enemyBullets, bulletTrails, textGroup, items);
 			
 			zoomCam = new ZoomCamera(0, 0, FlxG.width, FlxG.height);
 			FlxG.resetCameras(zoomCam);
@@ -91,7 +91,7 @@ package
 			hud.add(textGroup);
 			hud.add(player.lifeBar);
 			
-			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 		}
 		
 		override public function update():void

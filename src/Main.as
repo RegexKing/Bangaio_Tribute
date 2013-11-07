@@ -32,8 +32,8 @@ package
 			stage.removeEventListener(Event.ACTIVATE, onFocus);
 			
 			var medalPopup:MedalPopup = new MedalPopup();
-            medalPopup.x = 240 / 2 - medalPopup.width / 2;
-			medalPopup.y = 160 - medalPopup.height;
+            medalPopup.x = FlxG.width / 2 - medalPopup.width / 2;
+			medalPopup.y = FlxG.height - medalPopup.height;
             stage.addChild(medalPopup);
 		}
 		

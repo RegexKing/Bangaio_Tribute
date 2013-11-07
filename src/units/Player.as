@@ -37,14 +37,14 @@ package units
 		// hud objects
 		public var lifeBar:FlxBar;
 		
+		//charges availible for missle overdrive. cant use if not at least 50
+		public var overdriveCharges:uint = 200;
+		
 		public var aim:int = 0;
 		private var directionAngle:Number;
 		private var directionFacing:uint;
 		private var overdriveTimer:Number = 0.2;
 		private var overdriveCounter:ScrollingText;
-		
-		//charges availible for missle overdrive. cant use if not at 1
-		public var overdriveCharges:Number = 5;
 		
 		//Gun Vars
 		protected var bounceGun:FlxWeaponExt;
@@ -154,7 +154,7 @@ package units
 			}
 			
 			//Attack controls
-			if (FlxG.keys.justPressed("SPACE") && overdriveCharges >= 1)
+			if (FlxG.keys.justPressed("SPACE") && overdriveCharges >= 50)
 			{
 				FlxControl.player1.enabled = false;
 				velocity.x = velocity.y = 0;
@@ -165,7 +165,7 @@ package units
 				overdriveCounter.y = this.y - overdriveCounter.height;
 			}
 			
-			else if (FlxG.keys.pressed("SPACE") && overdriveCharges >= 1)
+			else if (FlxG.keys.pressed("SPACE") && overdriveCharges >= 50)
 			{		
 				overdriveTimer += FlxG.elapsed;
 					
@@ -179,7 +179,7 @@ package units
 				
 			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= 1)
 			{
-				overdriveCharges--;
+				overdriveCharges -= 50;
 					
 				if (uint(weaponType) == HOMING)
 				{

@@ -27,9 +27,9 @@ package units
 		
 		protected var gun:FlxWeaponExt;
 		
-		public function Enemy(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _bulletType:String = "normal") 
+		public function Enemy(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
-			super();
+			super(_textGroup);
 			
 			player = _player;
 			map = _map;

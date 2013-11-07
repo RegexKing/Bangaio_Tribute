@@ -9,11 +9,14 @@ package units
 	public class Block extends Target
 	{
 		
-		public function Block() 
+		public function Block(_textGroup:FlxGroup) 
 		{
-			super();
+			super(_textGroup);
 			
-			makeGraphic(32, 32);	
+			health = 10;
+			points = 100;
+			
+			makeGraphic(32, 32);
 			
 			immovable = true;
 		}
