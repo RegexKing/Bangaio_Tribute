@@ -1,10 +1,11 @@
 package units 
 {
+	import org.flixel.FlxSprite;
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class IndestructibleBlock extends BrownBlock
+	public class IndestructibleBlock extends FlxSprite
 	{
 		
 		public function IndestructibleBlock() 

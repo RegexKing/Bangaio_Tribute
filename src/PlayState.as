@@ -101,6 +101,7 @@ package
 			mapCollideable.add(particleEmitters);
 			mapCollideable.add(player);
 			mapCollideable.add(targets);
+			mapCollideable.add(map.indestructibleBlocks);
 			mapCollideable.add(playerBullets);
 			mapCollideable.add(enemyBullets);
 			

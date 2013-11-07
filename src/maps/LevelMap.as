@@ -13,6 +13,7 @@ package maps
 	public class LevelMap extends FlxTilemapExt
 	{
 		public static const TILE_SIZE:int = 16;
+		public var indestructibleBlocks:FlxGroup;
 		
 		private var obstacles:FlxGroup;
 		private var targets:FlxGroup;
@@ -23,14 +24,11 @@ package maps
 		private var textGroup:FlxGroup;
 		
 		//recycleable flxgroups
-		private var singleLives:FlxGroup;
 		private var oranges:FlxGroup;
 		private var apples:FlxGroup;
 		private var bananas:FlxGroup;
 		private var pineapples:FlxGroup;
 		private var watermelons:FlxGroup;
-		private var brownBlocks:FlxGroup;
-		private var redRobots:FlxGroup;
 		private var redExplosions:FlxGroup;
 		private var blueExplosions:FlxGroup;
 		private var smallExplosionAreas:FlxGroup;
@@ -60,17 +58,16 @@ package maps
 			textGroup = _textGroup;
 			items = _items;
 			
+			// group to add inde blocks to
+			indestructibleBlocks = new FlxGroup();
+			
 			//recycleable groups//=====
 			//items
-			singleLives = new FlxGroup();
 			oranges = new FlxGroup();
 			apples = new FlxGroup();
 			bananas = new FlxGroup();
 			pineapples = new FlxGroup();
 			watermelons = new FlxGroup();
-			//generators
-			brownBlocks = new FlxGroup();
-			redRobots = new FlxGroup();
 			//explosion animations
 			redExplosions = new FlxGroup();
 			blueExplosions = new FlxGroup();
@@ -80,8 +77,6 @@ package maps
 			//==========================
 			
 			//aggregate flxgroups
-			
-			items.add(singleLives);
 			items.add(oranges);
 			items.add(apples);
 			items.add(bananas);
@@ -123,9 +118,7 @@ package maps
 		}
 		
 		override public function destroy():void
-		{
-			redRobots.destroy();
-			
+		{	
 			super.destroy();
 			
 			if (gateChains) gateChains = null;
