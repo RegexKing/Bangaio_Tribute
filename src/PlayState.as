@@ -53,24 +53,24 @@ package
                 FlxG.addPlugin(new FlxSpecialFX);
             }
 			
-			mapCollideable = new FlxGroup();
+			mapCollideable = new FlxGroup(3);
 			
-			explosionAreas = new FlxGroup();
+			explosionAreas = new FlxGroup(2);
 			bulletDamageableObstacles = new FlxGroup();
-			explosionVictims = new FlxGroup();
-			enemyObjects = new FlxGroup();
+			explosionVictims = new FlxGroup(2);
+			enemyObjects = new FlxGroup(2);
 			immovableObstaclesB = new FlxGroup();
 			
 			collideableUnits = new FlxGroup();
 			immovableObstacles = new FlxGroup();
-			bullets = new FlxGroup();
+			bullets = new FlxGroup(2);
 			
 			enemies = new FlxGroup();
-			playerBullets = new FlxGroup();
+			playerBullets = new FlxGroup(2);
 			hud = new FlxGroup();
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
-			particleEmitters = new FlxGroup();
+			particleEmitters = new FlxGroup(2);
 			textGroup = new FlxGroup();
 			explosions = new FlxGroup();
 			
@@ -143,6 +143,8 @@ package
 			FlxG.collide(map, mapCollideable);
 			FlxG.collide(collideableUnits, collideableUnits);
 			FlxG.collide(collideableUnits, immovableObstacles);
+			FlxG.collide(playerBullets, map.greenBoxes);
+			FlxG.collide(playerBullets.members[1] as FlxGroup, map.blueBoxes); // bounce bullet bounce off
 			
 			FlxG.overlap(player, items, pickupItem);
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);

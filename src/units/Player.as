@@ -125,8 +125,8 @@ package units
 			homingGun.setBulletLifeSpan(2800);
 			homingGun.setPostFireCallback(null, AssetsRegistry.BOUNCEGUN_MP3);
 			
-			_playerBullets.add(bounceGun.group);
 			_playerBullets.add(homingGun.group);
+			_playerBullets.add(bounceGun.group);
 			
 		}
 		

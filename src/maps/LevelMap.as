@@ -14,6 +14,9 @@ package maps
 	{
 		public static const TILE_SIZE:int = 16;
 		
+		public var blueBoxes:FlxGroup;
+		public var greenBoxes:FlxGroup;
+		
 		private var enemyBullets:FlxGroup;
 		private var bulletTrails:BulletTrailsContainer;
 		private var items:FlxGroup;
@@ -68,6 +71,9 @@ package maps
 			bulletDamageableObstacles = _bulletDamageableObstacles;
 			
 			targets = new Array();
+			gateChains = new Array();
+			blueBoxes = new FlxGroup();
+			greenBoxes = new FlxGroup();
 			
 			//recycleable groups//=====
 			//items
@@ -129,7 +135,6 @@ package maps
 		
 		private function parseSpriteMap():void
 		{
-			gateChains = new Array();
 			
 		}
 		
