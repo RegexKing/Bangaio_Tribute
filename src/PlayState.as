@@ -150,7 +150,7 @@ package
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
 			FlxG.overlap(bulletDamageableObstacles, bullets, damageObject);
-			FlxG.overlap(explosionVictims, explosions);
+			FlxG.overlap(explosionVictims, explosionAreas);
 		}
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
