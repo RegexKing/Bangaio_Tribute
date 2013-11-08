@@ -26,10 +26,12 @@ package units
 		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;
-		private var targets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var textGroup:FlxGroup;
+		
+		
 		private var closestTargets:Array;
+		private var targets:Array;
 		
 		private var gibs:FlxEmitter;
 		private var bulletShells:FlxEmitter;
@@ -50,7 +52,7 @@ package units
 		protected var bounceGun:FlxWeaponExt;
 		protected var homingGun:FlxWeaponExt;
 		
-		public function Player(_map:FlxTilemapExt, _zoomCamera:Function, _playerBullets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _targets:FlxGroup, _textGroup:FlxGroup, _particleEmitters:FlxGroup, _xPos:int=0, _yPos:int=0) 
+		public function Player(_map:FlxTilemapExt, _zoomCamera:Function, _playerBullets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _particleEmitters:FlxGroup, _xPos:int=0, _yPos:int=0) 
 		{	
 			super(_xPos, _yPos);
 			
@@ -58,7 +60,6 @@ package units
 			zoomCamera = _zoomCamera;
 			
 			enemyBullets = _enemyBullets;
-			targets = _targets;
 			textGroup = _textGroup;
 			closestTargets = new Array();
 			
@@ -127,6 +128,21 @@ package units
 			_playerBullets.add(bounceGun.group);
 			_playerBullets.add(homingGun.group);
 			
+		}
+		
+		public function set targetsArray(_targets:Array):void
+		{
+			targets = _targets;
+		}
+		
+		public function get bounceBulletGroup():FlxGroup
+		{
+			return bounceGun.group;
+		}
+		
+		public function get homingBulletGroup():FlxGroup
+		{
+			return homingGun.group;
 		}
 		
 		override public function update():void
@@ -342,7 +358,7 @@ package units
 			// clear the array first
 			closestTargets.length = 0;
 			
-			for each (var target:FlxSprite in targets.members)
+			for each (var target:FlxSprite in targets)
 			{
 				if (target != null && target.exists && target.onScreen())
 				{

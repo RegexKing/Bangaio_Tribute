@@ -13,15 +13,18 @@ package maps
 	public class LevelMap extends FlxTilemapExt
 	{
 		public static const TILE_SIZE:int = 16;
-		public var indestructibleBlocks:FlxGroup;
 		
-		private var obstacles:FlxGroup;
-		private var targets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var bulletTrails:BulletTrailsContainer;
 		private var items:FlxGroup;
 		private var player:Player;
 		private var textGroup:FlxGroup;
+		
+		private var enemies:FlxGroup;
+		private var collideableUnits:FlxGroup;
+		private var immovableObstacles:FlxGroup;
+		private var immovableObstaclesB:FlxGroup;
+		private var bulletDamageableObstacles:FlxGroup;
 		
 		//recycleable flxgroups
 		private var oranges:FlxGroup;
@@ -36,6 +39,7 @@ package maps
 		
 		private var spriteMap:String = "";
 		private var gateChains:Array;
+		private var targets:Array;
 		
 		public function LevelMap(_level:uint = 1) 
 		{
@@ -48,18 +52,22 @@ package maps
 			}
 		}
 		
-		public function InitializeLevel(_player:Player, _obstacles:FlxGroup, _targets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _items:FlxGroup, _explosions:FlxGroup, _explosionAreas:FlxGroup):void
+		public function InitializeLevel(_bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _player:Player, _enemies:FlxGroup, 
+			_enemyBullets:FlxGroup, _items:FlxGroup, _explosions:FlxGroup, _explsionAreas:FlxGroup, _collideableUnits:FlxGroup, 
+			_immovableObstacles:FlxGroup, _immovableObstaclesB:FlxGroup,  _bulletDamageableObstacles:FlxGroup):void
 		{
 			bulletTrails = _bulletTrails;
 			player = _player;
-			obstacles = _obstacles;
-			targets = _targets;
 			enemyBullets = _enemyBullets;
 			textGroup = _textGroup;
 			items = _items;
+			enemies = _enemies;
+			collideableUnits = _collideableUnits;
+			immovableObstacles = _immovableObstacles;
+			immovableObstaclesB = _immovableObstaclesB;
+			bulletDamageableObstacles = _bulletDamageableObstacles;
 			
-			// group to add inde blocks to
-			indestructibleBlocks = new FlxGroup();
+			targets = new Array();
 			
 			//recycleable groups//=====
 			//items
@@ -85,9 +93,11 @@ package maps
 			
 			_explosions.add(blueExplosions);
 			_explosions.add(redExplosions);
+			_explosions.add(smallExplosionAreas);
+			_explosions.add(largeExplosionAreas);
 			
-			_explosionAreas.add(smallExplosionAreas);
-			_explosionAreas.add(largeExplosionAreas);
+			_explsionAreas.add(smallExplosionAreas);
+			_explsionAreas.add(largeExplosionAreas);
 			
 			// parseSpriteMap();
 			// ^^ this function will parse the spritemapdata, will create/position game objects
@@ -100,13 +110,19 @@ package maps
 				var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, textGroup, "homing");
 				enemy2.x = 800;
 				enemy2.y = 200;
-				targets.add(enemy2);
+				enemies.add(enemy2);
+				targets.push(enemy2);
+				
+				
 			//}
 			
 			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, textGroup, "normal");
 			enemy3.x = 900;
 			enemy3.y = 300;
-			targets.add(enemy3);
+			enemies.add(enemy3);
+			targets.push(enemy3);
+			
+			player.targetsArray = targets;
 			
 		}
 		
