@@ -18,9 +18,6 @@ package
 		//Tiles
 		[Embed(source = "../assets/tiles/tiles.png")] public static var tilesPNG:Class;
 		
-		// Maps
-		[Embed(source = "../assets/maps/test.csv", mimeType = "application/octet-stream")] public static var testCSV:Class;
-		
 		//BGMS
 		
 		//539682_Omegeist
@@ -35,7 +32,13 @@ package
 		//-- Fonts --//
 		
 		//Megaman2
-		[Embed(source="../assets/fonts/megaman.ttf", fontFamily="NES", embedAsCFF="false")] public static var fontNES:String;
+		[Embed(source = "../assets/fonts/megaman.ttf", fontFamily = "NES", embedAsCFF = "false")] public static var fontNES:String;
+		
+		// Level Maps
+		[Embed(source = "../assets/maps/level_1_map.csv", mimeType = "application/octet-stream")] public static var level_1CSV:Class;
+		
+		// Sprite Maps
+		[Embed(source = "../assets/maps/level_1_spriteMap.csv", mimeType = "application/octet-stream")] public static var level_1_SpritesCSV:Class;
 		
 		
 		public function AssetsRegistry() {}

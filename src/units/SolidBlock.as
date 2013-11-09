@@ -7,13 +7,13 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class SolidGate extends FlxSprite implements Gate
+	public class SolidBlock extends Destructible implements Gate
 	{
 		
 		private var map:LevelMap;
 		private var index:FlxPoint;
 		
-		public function SolidGate(_map:LevelMap, _index:FlxPoint) 
+		public function SolidBlock(_map:LevelMap, _index:FlxPoint) 
 		{
 			map = _map;
 			index = _index;

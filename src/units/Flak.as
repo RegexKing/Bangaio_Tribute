@@ -11,11 +11,11 @@ package units
 	import util.BulletTrailsContainer;
 	import weapons.*; 
 	 
-	public class Shrapnel extends Enemy
+	public class Flak extends Shooter
 	{
 		private var timer:Number = 0;
 		
-		public function Shrapnel(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		public function Flak(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
@@ -28,6 +28,7 @@ package units
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(0);
+			gun.setBulletOffset(0, 0);
 		}
 		
 		override public function update():void

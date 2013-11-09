@@ -13,7 +13,7 @@ package units
 	import util.BulletTrailsContainer;
 	import weapons.*; 
 	 
-	public class Enemy extends Target
+	public class Shooter extends Destructible
 	{
 		
 		public var aim:int = 0;
@@ -27,7 +27,7 @@ package units
 		
 		protected var gun:FlxWeaponExt;
 		
-		public function Enemy(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		public function Shooter(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_textGroup);
 			

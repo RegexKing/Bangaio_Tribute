@@ -8,9 +8,15 @@ package units
 	public class IndestructibleBlock extends FlxSprite
 	{
 		
-		public function IndestructibleBlock() 
+		private var tempX:int = 0;
+		
+		public function IndestructibleBlock(X:int, Y:int) 
 		{
+			super(X, Y);
+			
 			makeGraphic(32, 32);
+			
+			tempX = this.x;
 			
 		}
 		
@@ -20,12 +26,18 @@ package units
 			
 			acceleration.y = 400;
 			velocity.x = 0;
+			acceleration.x = 0;
 		}
 		
-		override public function hurt(value:Number):void
+		override public function postUpdate():void
 		{
+			super.postUpdate();
 			
+			this.x = tempX;
 		}
+		
+		override public function hurt(_value:Number):void { }
+		override public function kill():void { }
 		
 	}
 

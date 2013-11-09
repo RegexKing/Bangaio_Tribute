@@ -7,8 +7,7 @@ package maps
 	
 	import org.flixel.*;
 	import units.*;
-	import util.BulletTrailsContainer;
-	import util.FlxTilemapExt;
+	import util.*;
 	 
 	public class LevelMap extends FlxTilemapExt
 	{
@@ -40,7 +39,7 @@ package maps
 		private var smallExplosionAreas:FlxGroup;
 		private var largeExplosionAreas:FlxGroup;
 		
-		private var spriteMap:String = "";
+		private var spriteMap:String;
 		private var gateChains:Array;
 		private var targets:Array;
 		
@@ -48,10 +47,8 @@ package maps
 		{
 			if (_level == 1)  
 			{
-				this.loadMap(new AssetsRegistry.testCSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
-				
-				//TODO: load csv map of sprite positions
-				//spriteMap = //sprite csv data
+				this.loadMap(new AssetsRegistry.level_1CSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
+				spriteMap = new AssetsRegistry.level_1_SpritesCSV;
 			}
 		}
 		
@@ -105,37 +102,51 @@ package maps
 			_explsionAreas.add(smallExplosionAreas);
 			_explsionAreas.add(largeExplosionAreas);
 			
-			// parseSpriteMap();
-			// ^^ this function will parse the spritemapdata, will create/position game objects
+			parseSpriteMap();
 			
+			// To remove later -----
 			player.x = 1 * TILE_SIZE;
 			player.y = 6 * TILE_SIZE;
-			
-			//for (var i:int = 0; i < 50; i++)
-			//{
-				var enemy2:Blue = new Blue(enemyBullets, player, this, bulletTrails, textGroup, "homing");
-				enemy2.x = 800;
-				enemy2.y = 200;
-				enemies.add(enemy2);
-				targets.push(enemy2);
-				
-				
-			//}
-			
-			var enemy3:Shrapnel = new Shrapnel(enemyBullets, player, this, bulletTrails, textGroup, "normal");
-			enemy3.x = 900;
-			enemy3.y = 300;
-			enemies.add(enemy3);
-			targets.push(enemy3);
+			//----------------------
 			
 			player.targetsArray = targets;
-			
 		}
 		
 		
 		private function parseSpriteMap():void
-		{
+		{	
+			var spriteIds:Array = CSVParser.parse(spriteMap);
 			
+			for (var i:int = 0; i < this.heightInTiles; i++)
+			{
+				for (var j:int = 0; j < this.widthInTiles; j++)
+				{
+					var id:int = int(spriteIds[i][j]);
+					
+					var xPos:int = j;
+					var yPos:int = i;
+					xPos *= TILE_SIZE;
+					yPos *= TILE_SIZE;
+					
+					if (id == 1)
+					{
+						player.x = xPos;
+						player.y = yPos;
+					}
+					
+					else if (id == 63)
+					{
+						var redRobot:RedRobot = new RedRobot(enemyBullets, player, this, bulletTrails, textGroup);
+						redRobot.x = xPos;
+						redRobot.y = yPos;
+						
+						enemies.add(redRobot);
+						targets.push(redRobot);
+					}
+				}
+			}
+			
+			spriteIds = null;
 		}
 		
 		override public function destroy():void

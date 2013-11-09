@@ -6,7 +6,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Building extends Target
+	public class Building extends Destructible
 	{
 		
 		private var buildingType:String;

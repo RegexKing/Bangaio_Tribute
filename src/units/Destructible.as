@@ -6,14 +6,14 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Target extends FlxSprite
+	public class Destructible extends FlxSprite
 	{
 		private var textGroup:FlxGroup;
 		
 		protected var pointDisplay:ScrollingText;
 		protected var points:uint = 0;
 		
-		public function Target(_textGroup:FlxGroup) 
+		public function Destructible(_textGroup:FlxGroup) 
 		{
 			super();
 			

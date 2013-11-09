@@ -6,26 +6,23 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BrownBlock extends Target
+	public class BrownBlock extends Destructible
 	{
 		
 		private var tempX:int = 0;
 		
-		public function BrownBlock(_textGroup:FlxGroup) 
+		public function BrownBlock(X:int, Y:int, _textGroup:FlxGroup) 
 		{
 			super(_textGroup);
+			
+			this.x = X;
+			this.y = Y;
+			tempX = this.x;
 			
 			health = 10;
 			points = 100;
 			
 			makeGraphic(32, 32);
-		}
-		
-		override public function preUpdate():void
-		{
-			super.preUpdate();
-			
-			tempX = this.x;
 		}
 		
 		override public function update():void

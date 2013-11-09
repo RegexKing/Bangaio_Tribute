@@ -7,10 +7,10 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Sentry extends Enemy
+	public class Turret extends Shooter
 	{
 		
-		public function Sentry(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		public function Turret(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			

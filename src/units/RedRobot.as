@@ -10,14 +10,14 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Blue extends Enemy
+	public class RedRobot extends Shooter
 	{
 		private var moving:Boolean = false;
 		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
 		
 		
-		public function Blue(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		public function RedRobot(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
@@ -31,8 +31,6 @@ package units
 			addAnimation("straight", [3], 60);
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
-			
-			immovable = true;
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);

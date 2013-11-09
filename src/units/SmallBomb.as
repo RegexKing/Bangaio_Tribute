@@ -7,7 +7,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class ExplosiveGate extends FlxSprite implements GateChain
+	public class SmallBomb extends Destructible implements GateChain
 	{
 		
 		private var above:Gate;
@@ -17,7 +17,7 @@ package units
 		
 		private var explodeDelay:FlxDelay;
 		
-		public function ExplosiveGate(_textGroup:FlxGroup) 
+		public function SmallBomb(_textGroup:FlxGroup) 
 		{
 			super(_textGroup);
 			
