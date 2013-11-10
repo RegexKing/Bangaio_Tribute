@@ -37,12 +37,31 @@ package items
 			kill();
 		}
 		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			if (flickerTimer)
+			{
+				flickerTimer.abort();
+				flickerTimer = null;
+			}
+			
+			if (killTimer)
+			{
+				killTimer.abort();
+				killTimer = null;
+			}
+		}
+		
 		private function startFlicker():void
 		{
 			this.flicker(5);
 			
 			killTimer.start();
 		}
+		
+		
 		
 	}
 
