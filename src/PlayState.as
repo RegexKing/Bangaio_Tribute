@@ -158,13 +158,13 @@ package
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
 		{
 			
-			unit.hurt((bullet as Bullet).dealDamage());
+			if ((unit as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
 			bullet.kill();
 		}
 		
 		public function damageImmoveableObject(unit:FlxObject, bullet:FlxObject):void
 		{
-			unit.hurt((bullet as Bullet).dealDamage());
+			if ((unit as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
 			if (!(unit is BlueDiamond)) bullet.kill();
 		}
 		

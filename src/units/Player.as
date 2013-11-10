@@ -361,8 +361,7 @@ package units
 		
 		override public function kill():void
 		{
-			
-			overdriveCounter.text = "";
+			if (overdriveCounter) overdriveCounter.kill();
 			
 			super.kill();
 			

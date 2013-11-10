@@ -12,6 +12,7 @@ package units
 		
 		protected var pointDisplay:ScrollingText;
 		protected var points:uint = 0;
+		protected var scoreable:Boolean = true;
 		
 		public function Scoreable(_textGroup:FlxGroup) 
 		{
@@ -24,28 +25,39 @@ package units
 		{
 			super.kill();
 			
-			var color:uint = 0;
-			
-			if (points >= 1000)
+			if (scoreable)
 			{
-				color = 0xff9900FF;
+				var color:uint = 0;
+				
+				if (points >= 1000)
+				{
+					color = 0xff9900FF;
+				}
+				
+				else if (points >= 500)
+				{
+					color = 0xff3399CC;
+				}
+				
+				else 
+				{
+					color = 0xffFF3300;
+				}
+				
+				pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
+				pointDisplay.text = points + "pnts";
+				pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
+				pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
+				pointDisplay.start();
 			}
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
 			
-			else if (points >= 500)
-			{
-				color = 0xff3399CC;
-			}
-			
-			else 
-			{
-				color = 0xffFF3300;
-			}
-			
-			pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
-			pointDisplay.text = points + "pnts";
-			pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
-			pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
-			pointDisplay.start();
+			scoreable = true;
+			this.flicker(0);
 		}
 		
 	}
