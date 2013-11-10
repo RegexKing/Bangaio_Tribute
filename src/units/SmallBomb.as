@@ -60,7 +60,7 @@ package units
 		{
 			super.destroy();
 			
-			if (explodeDelay != null)
+			if (explodeDelay)
 			{
 				explodeDelay.abort();
 				explodeDelay = null;

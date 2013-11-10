@@ -134,7 +134,7 @@ package units
 			
 			super.destroy();
 			
-			if (shotDelay != null)
+			if (shotDelay)
 			{
 				shotDelay.abort();
 				shotDelay = null;
