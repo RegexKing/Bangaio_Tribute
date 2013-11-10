@@ -7,7 +7,7 @@ package hud
 	 */
 	public class ScrollingText extends FlxText
 	{
-		private static const WIDTH:uint = 120;
+		private static const WIDTH:uint = 260;
 		
 		private var timer:Number = 0;
 		private var timerOn:Boolean = false;

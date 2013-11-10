@@ -22,7 +22,7 @@ package units
 		private var weaponType:Boolean = Boolean(HOMING);
 		
 		// If changing this, change number of baked rotations for bullets
-		private const OVERDRIVE_BONUS_MAX:uint = 300;
+		private const OVERDRIVE_BONUS_MAX:int = 300;
 		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;
@@ -207,22 +207,22 @@ package units
 			{
 				overdriveCharges -= 50;
 				
-				var bonusOverdrive:uint = 0;
+				var bonusOverdrive:int = 0;
 				
-				for each (var bulletsGroup:FlxGroup in enemyBullets)
+				for each (var bulletsGroup:FlxGroup in enemyBullets.members)
 				{
-					 bonusOverdrive += bulletsGroup.countOnScreen();
+					 bonusOverdrive += bulletsGroup.countOnScreen() * 2;
 				}
 				
-				//bonusOverdrive = 300;
-				
 				if (bonusOverdrive > OVERDRIVE_BONUS_MAX) bonusOverdrive = OVERDRIVE_BONUS_MAX;
+				
+				var overDriveAmt:int = (overdriveTimer / 0.01) + bonusOverdrive;
 					
 				if (uint(weaponType) == HOMING)
 				{
 					homingGun.setBulletOffset(0, 0);
 					homingGun.setFireRate(0);
-					homingGun.missleOverdrive((overdriveTimer / 0.01 + bonusOverdrive));
+					homingGun.missleOverdrive(overDriveAmt);
 					homingGun.setFireRate(100);
 				}
 					
@@ -230,13 +230,15 @@ package units
 				{
 					bounceGun.setBulletOffset(0, 0);
 					bounceGun.setFireRate(0);
-					bounceGun.missleOverdrive((overdriveTimer / 0.01 + bonusOverdrive));
+					bounceGun.missleOverdrive(overDriveAmt);
 					bounceGun.setFireRate(100);
 				}
 					
 				overdriveTimer = 0.2;
 				
 				if (bonusOverdrive > 0) overdriveCounter.text += "+" + bonusOverdrive;
+				
+				overdriveCounter.size += Math.ceil(overDriveAmt / 14);
 				overdriveCounter.start();
 					
 				FlxControl.player1.enabled = true;
@@ -245,7 +247,6 @@ package units
 				
 				//play overdrive sound
 				FlxG.play(AssetsRegistry.MISSLEOVERDRIVE_MP3);
-				
 			}
 				
 			else if (FlxG.keys.justPressed("SPACE"))
