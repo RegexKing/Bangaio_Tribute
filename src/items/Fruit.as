@@ -35,31 +35,31 @@ package items
 				
 				if (_fruitType == "orange")
 				{
-					makeGraphic(32, 32, 0xffFFB07F);
+					loadGraphic(AssetsRegistry.orangePNG);
 					chargeAmt = 3;
 				}
 				
 				else if (_fruitType == "apple")
 				{
-					makeGraphic(32, 32, 0xffFF7F7F);
+					loadGraphic(AssetsRegistry.applePNG);
 					chargeAmt = 5;
 				}
 				
 				else if (_fruitType == "banana")
 				{
-					makeGraphic(32, 32, 0xffFFFF7F);
+					loadGraphic(AssetsRegistry.bananaPNG);
 					chargeAmt = 10;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
-					makeGraphic(32, 32, 0xffF7D17B);
+					loadGraphic(AssetsRegistry.pineapplePNG);
 					chargeAmt = 20;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
-					makeGraphic(32, 32, 0xff7FFF7F);
+					loadGraphic(AssetsRegistry.watermelonPNG);
 					chargeAmt = 50;
 				}
 			}
@@ -75,31 +75,31 @@ package items
 				
 				if (_fruitType == "orange")
 				{
-					makeGraphic(32, 32, 0xffFFB07F);
+					loadGraphic(AssetsRegistry.orangePNG);
 					chargeAmt = 3;
 				}
 				
 				else if (_fruitType == "apple")
 				{
-					makeGraphic(32, 32, 0xffFF7F7F);
+					loadGraphic(AssetsRegistry.applePNG);
 					chargeAmt = 5;
 				}
 				
 				else if (_fruitType == "banana")
 				{
-					makeGraphic(32, 32, 0xffFFFF7F);
+					loadGraphic(AssetsRegistry.bananaPNG);
 					chargeAmt = 10;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
-					makeGraphic(32, 32, 0xffF7D17B);
+					loadGraphic(AssetsRegistry.pineapplePNG);
 					chargeAmt = 20;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
-					makeGraphic(32, 32, 0xff7FFF7F);
+					loadGraphic(AssetsRegistry.watermelonPNG);
 					chargeAmt = 50;
 				}
 			}

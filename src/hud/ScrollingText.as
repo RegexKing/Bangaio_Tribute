@@ -27,7 +27,7 @@ package hud
 		
 		public function setText(_size:Number, _color:uint, _text:String = "", _font:String = null):ScrollingText
 		{
-			this.setFormat(_font, _size, _color, null, 0xff000000);
+			this.setFormat(_font, _size, _color, "center", 0xff000000);
 			this.text = _text;
 			
 			this.revive();

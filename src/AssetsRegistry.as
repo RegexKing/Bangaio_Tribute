@@ -15,6 +15,13 @@ package
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
 		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;
 		
+		//Fruit sprites
+		[Embed(source = "../assets/sprites/apple.png")] public static var applePNG:Class;
+		[Embed(source = "../assets/sprites/orange.png")] public static var orangePNG:Class;
+		[Embed(source = "../assets/sprites/banana.png")] public static var bananaPNG:Class;
+		[Embed(source = "../assets/sprites/pineapple.png")] public static var pineapplePNG:Class;
+		[Embed(source = "../assets/sprites/watermelon.png")] public static var watermelonPNG:Class;
+		
 		//Tiles
 		[Embed(source = "../assets/tiles/tiles.png")] public static var tilesPNG:Class;
 		

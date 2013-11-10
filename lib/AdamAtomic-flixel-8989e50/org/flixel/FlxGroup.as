@@ -518,7 +518,7 @@ package org.flixel
 				{
 					if(count < 0)
 						count = 0;
-  					if(basic.exists && basic.alive && (basic as FlxSprite).onScreen())
+  					if(basic.exists && (basic as FlxSprite).onScreen())
 						count++;
 				}
 			}

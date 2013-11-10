@@ -24,7 +24,7 @@ package weapons
 			super();
 
 			// Makes rendering rotations perform better, 200 rotations for 200 directions
-			loadRotatedGraphic(AssetsRegistry.misslePNG, 200);
+			loadRotatedGraphic(AssetsRegistry.misslePNG, 100);
 			
 			offset.x = 14;
 			width = 10;

@@ -22,7 +22,7 @@ package units
 		private var weaponType:Boolean = Boolean(HOMING);
 		
 		// If changing this, change number of baked rotations for bullets
-		private const OVERDRIVE_BONUS_MAX:int = 100;
+		private const OVERDRIVE_BONUS_MAX:uint = 300;
 		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;
@@ -138,8 +138,6 @@ package units
 			{
 				overdriveCharges = 500;
 			}
-			
-			FlxG.log(overdriveCharges);
 		}
 		
 		public function set targetsArray(_targets:Array):void
@@ -189,7 +187,7 @@ package units
 				acceleration.x = acceleration.y = 0;
 				
 				overdriveCounter = (textGroup.recycle(ScrollingText) as ScrollingText).setText(16, 0xffFFFFFF);
-				overdriveCounter.x = this.getMidpoint().x - overdriveCounter.width/6;
+				overdriveCounter.x = this.getMidpoint().x - (overdriveCounter.width/2);
 				overdriveCounter.y = this.y - overdriveCounter.height;
 			}
 			
@@ -208,12 +206,23 @@ package units
 			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= 1)
 			{
 				overdriveCharges -= 50;
+				
+				var bonusOverdrive:uint = 0;
+				
+				for each (var bulletsGroup:FlxGroup in enemyBullets)
+				{
+					 bonusOverdrive += bulletsGroup.countOnScreen();
+				}
+				
+				//bonusOverdrive = 300;
+				
+				if (bonusOverdrive > OVERDRIVE_BONUS_MAX) bonusOverdrive = OVERDRIVE_BONUS_MAX;
 					
 				if (uint(weaponType) == HOMING)
 				{
 					homingGun.setBulletOffset(0, 0);
 					homingGun.setFireRate(0);
-					homingGun.missleOverdrive((overdriveTimer / 0.01));
+					homingGun.missleOverdrive((overdriveTimer / 0.01 + bonusOverdrive));
 					homingGun.setFireRate(100);
 				}
 					
@@ -221,11 +230,13 @@ package units
 				{
 					bounceGun.setBulletOffset(0, 0);
 					bounceGun.setFireRate(0);
-					bounceGun.missleOverdrive((overdriveTimer / 0.01));
+					bounceGun.missleOverdrive((overdriveTimer / 0.01 + bonusOverdrive));
 					bounceGun.setFireRate(100);
 				}
 					
 				overdriveTimer = 0.2;
+				
+				if (bonusOverdrive > 0) overdriveCounter.text += "+" + bonusOverdrive;
 				overdriveCounter.start();
 					
 				FlxControl.player1.enabled = true;
@@ -349,6 +360,8 @@ package units
 		
 		override public function kill():void
 		{
+			
+			overdriveCounter.text = "";
 			
 			super.kill();
 			
