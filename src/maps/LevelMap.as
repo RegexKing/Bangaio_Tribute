@@ -21,7 +21,7 @@ package maps
 		
 		private var enemyBullets:FlxGroup;
 		private var bulletTrails:BulletTrailsContainer;
-		private var items:FlxGroup;
+		private var itemsGroup:FlxGroup
 		private var player:Player;
 		private var textGroup:FlxGroup;
 		
@@ -37,6 +37,8 @@ package maps
 		private var bananas:FlxGroup;
 		private var pineapples:FlxGroup;
 		private var watermelons:FlxGroup;
+		private var lifeUpCrates:FlxGroup;
+		private var lifeUps:FlxGroup;
 		private var redExplosions:FlxGroup;
 		private var blueExplosions:FlxGroup;
 		private var smallExplosionAreas:FlxGroup;
@@ -70,7 +72,7 @@ package maps
 			player = _player;
 			enemyBullets = _enemyBullets;
 			textGroup = _textGroup;
-			items = _items;
+			itemsGroup = _items;
 			enemies = _enemies;
 			collideableUnits = _collideableUnits;
 			immovableObstacles = _immovableObstacles;
@@ -89,6 +91,9 @@ package maps
 			bananas = new FlxGroup();
 			pineapples = new FlxGroup();
 			watermelons = new FlxGroup();
+			lifeUpCrates = new FlxGroup();
+			lifeUps = new FlxGroup();
+			
 			//explosion animations
 			redExplosions = new FlxGroup();
 			blueExplosions = new FlxGroup();
@@ -98,11 +103,12 @@ package maps
 			//==========================
 			
 			//aggregate flxgroups
-			_items.add(oranges);
-			_items.add(apples);
-			_items.add(bananas);
-			_items.add(pineapples);
-			_items.add(watermelons);
+			itemsGroup.add(oranges);
+			itemsGroup.add(apples);
+			itemsGroup.add(bananas);
+			itemsGroup.add(pineapples);
+			itemsGroup.add(watermelons);
+			itemsGroup.add(lifeUps);
 			
 			_explosions.add(blueExplosions);
 			_explosions.add(redExplosions);
@@ -160,16 +166,32 @@ package maps
 			
 			else if (id == 2)
 			{
-				
+				(lifeUpCrates.recycle(LifeUpCrate) as LifeUpCrate).setPos(X, Y, textGroup, bulletDamageableObstacles, collideableUnits, targets, lifeUps);
 			}
 			
 			else if (id == 3)
 			{
 				
+				var fullLifeCrate:SpecialCrate = new SpecialCrate(textGroup, itemsGroup, "fullLife");
+				fullLifeCrate.x = X;
+				fullLifeCrate.y = Y;
+				
+				bulletDamageableObstacles.add(fullLifeCrate);
+				collideableUnits.add(fullLifeCrate);
+				targets.push(fullLifeCrate);
+				
 			}
 			
 			else if (id == 4)
 			{
+				
+				var invinceableCrate:SpecialCrate = new SpecialCrate(textGroup, itemsGroup, "invinceable");
+				invinceableCrate.x = X;
+				invinceableCrate.y = Y;
+				
+				bulletDamageableObstacles.add(invinceableCrate);
+				collideableUnits.add(invinceableCrate);
+				targets.push(invinceableCrate);
 				
 			}
 			

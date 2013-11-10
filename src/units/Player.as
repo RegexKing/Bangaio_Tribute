@@ -130,6 +130,16 @@ package units
 			
 		}
 		
+		public function incHealth():void
+		{
+			if (health < 100) health += 10;
+		}
+		
+		public function fillHealth():void
+		{
+			health = 100;
+		}
+		
 		public function setCharge(_chargeAmt:uint):void
 		{
 			overdriveCharges += _chargeAmt;
