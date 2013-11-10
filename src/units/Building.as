@@ -15,21 +15,23 @@ package units
 		{
 			super(_textGroup);
 			
+			immovable = true;
+			
 			buildingType = _buildingType;
 			
-			if (_buildingType == "2x2")
+			if (_buildingType == "house")
 			{
 				health = 20;
 				points = 100;
 				makeGraphic(32, 32);
 			}
-			else if (_buildingType == "4x2")
+			else if (_buildingType == "wideBuilding")
 			{
 				health = 50;
 				points = 200;
 				makeGraphic(64, 32);
 			}
-			else if (_buildingType == "3x4")
+			else if (_buildingType == "tallBuilding")
 			{
 				health = 160;
 				points = 300;
@@ -51,8 +53,6 @@ package units
 			{
 				angle = 180;
 			}
-			
-			immovable = true;
 		}
 		
 	}

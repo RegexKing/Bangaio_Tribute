@@ -143,7 +143,7 @@ package
 			FlxG.collide(map, mapCollideable);
 			FlxG.collide(collideableUnits, collideableUnits);
 			FlxG.collide(collideableUnits, immovableObstacles);
-			FlxG.collide(playerBullets, map.greenBoxes);
+			FlxG.collide(playerBullets, map.playerBulletImpassable);
 			FlxG.collide(playerBullets.members[1] as FlxGroup, map.blueBoxes); // bounce bullet bounce off
 			
 			FlxG.overlap(player, items, pickupItem);

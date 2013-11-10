@@ -10,16 +10,18 @@ package units
 	public class SmallBomb extends Destructible implements GateChain
 	{
 		
-		private var above:Gate;
-		private var below:Gate;
-		private var left:Gate;
-		private var right:Gate;
+		private var above:GateChain;
+		private var below:GateChain;
+		private var left:GateChain;
+		private var right:GateChain;
 		
 		private var explodeDelay:FlxDelay;
 		
 		public function SmallBomb(_textGroup:FlxGroup) 
 		{
 			super(_textGroup);
+			
+			immovable = true;
 			
 			health = 10;
 			points = 20;
@@ -38,7 +40,7 @@ package units
 		
 		public function setGate(gateChains:Array):void
 		{
-			for each (var gate:FlxSprite in gates)
+			for each (var gate:FlxSprite in gateChains)
 			{
 				if (gate.x == this.x - 16) left = (gate as GateChain);
 				else if (gate.x == this.x + 16) right = (gate as GateChain);

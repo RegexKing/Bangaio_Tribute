@@ -19,12 +19,12 @@ package units
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
 			
+			this.immovable = true;
+			
 			health = 160;
 			points = 500;
 			
 			makeGraphic(32, 32);
-			
-			this.immovable = true;
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(0);
