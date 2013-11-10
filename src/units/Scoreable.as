@@ -57,7 +57,6 @@ package units
 			super.revive();
 			
 			scoreable = true;
-			this.flicker(0);
 		}
 		
 	}

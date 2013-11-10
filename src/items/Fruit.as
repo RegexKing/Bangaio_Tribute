@@ -35,6 +35,7 @@ package items
 		public function setPos(X:int, Y:int, _textGroup:FlxGroup, _fruitType:String):void
 		{
 			revive();
+			this.flicker(0);
 			
 			x = X;
 			y = Y;
@@ -73,13 +74,12 @@ package items
 					chargeAmt = 50;
 				}
 			}
-			
-			flickerTimer.start();
 		}
 		
 		public function setPosAt(targetMidpoint:FlxPoint, _textGroup:FlxGroup, _fruitType:String):void
 		{
 			revive();
+			this.flicker(0);
 			
 			if (textGroup == null)
 			{
