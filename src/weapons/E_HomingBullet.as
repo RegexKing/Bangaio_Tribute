@@ -16,10 +16,10 @@ package weapons
 			
 			loadRotatedGraphic(AssetsRegistry.misslePNG, 200);
 			
-			offset.x = 14;
-			width = 10;
-			offset.y = 14;
-			height = 10;
+			offset.x = 11;
+			width = 16;
+			offset.y = 11;
+			height = 16;
 			
 			trailColor = 0xffFF0000;
 		}

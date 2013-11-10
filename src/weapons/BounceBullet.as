@@ -23,11 +23,14 @@ package weapons
 			super();
 
 			// Makes rendering rotations perform better, 200 rotations for 200 directions
-			loadRotatedGraphic(AssetsRegistry.laserPNG, 200);
+			loadRotatedGraphic(AssetsRegistry.bouncePNG, 200);
+			
+			offset.x = 8;
+			width = 16;
+			offset.y = 11;
+			height = 8;
 			
 			trailColor = 0xff66FFCC;
-			
-			visible = false;
 			
 		}
 		

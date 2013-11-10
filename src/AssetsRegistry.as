@@ -10,7 +10,7 @@ package
 		[Embed(source = "../assets/sprites/player.png")] public static var playerPNG:Class;
 		[Embed(source = "../assets/sprites/blue.png")] public static var bluePNG:Class;
 		
-		[Embed(source = "../assets/sprites/laser.png")] public static var laserPNG:Class;
+		[Embed(source = "../assets/sprites/bounce.png")] public static var bouncePNG:Class;
 		[Embed(source = "../assets/sprites/missle.png")] public static var misslePNG:Class;
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
 		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;

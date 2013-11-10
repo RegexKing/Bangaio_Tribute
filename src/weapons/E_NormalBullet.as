@@ -11,12 +11,12 @@ package weapons
 		{
 			super();
 			
-			loadRotatedGraphic(AssetsRegistry.misslePNG, 200);
+			loadRotatedGraphic(AssetsRegistry.bouncePNG, 200);
 			
-			offset.x = 14;
-			width = 10;
-			offset.y = 14;
-			height = 10;
+			offset.x = 8;
+			width = 16;
+			offset.y = 11;
+			height = 8;
 			
 			trailColor = 0xffFF0000;
 		}
