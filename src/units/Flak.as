@@ -24,7 +24,7 @@ package units
 			health = 160;
 			points = 500;
 			
-			makeGraphic(32, 32);
+			makeGraphic(32, 32, 0xffFF00B6);
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(0);
@@ -40,7 +40,7 @@ package units
 			{
 				if (inSight && onScreen())
 				{
-					gun.missleOverdrive(40);
+					gun.missleOverdrive(20);
 					timer = 0;
 				}
 			}

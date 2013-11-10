@@ -5,6 +5,7 @@ package
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FX.StarfieldFX;
+	import units.BlueDiamond;
 	import units.Player;
 	import util.BulletTrailsContainer;
 	import util.ZoomCamera;
@@ -122,12 +123,12 @@ package
 			add(bulletTrails);
 			add(bg);
 			add(map);
-			add(immovableObstacles);
 			add(items);
 			add(collideableUnits);
 			add(explosions);
 			add(particleEmitters);
 			add(bullets);
+			add(immovableObstacles);
 			add(hud);
 			
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
@@ -149,7 +150,7 @@ package
 			FlxG.overlap(player, items, pickupItem);
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
-			FlxG.overlap(bulletDamageableObstacles, bullets, damageObject);
+			FlxG.overlap(bulletDamageableObstacles, bullets, damageImmoveableObject);
 			FlxG.overlap(explosionVictims, explosionAreas);
 		}
 		
@@ -158,6 +159,12 @@ package
 			
 			unit.hurt((bullet as Bullet).dealDamage());
 			bullet.kill();
+		}
+		
+		public function damageImmoveableObject(unit:FlxObject, bullet:FlxObject):void
+		{
+			unit.hurt((bullet as Bullet).dealDamage());
+			if (!(unit is BlueDiamond)) bullet.kill();
 		}
 		
 		public function pickupItem(unit:FlxObject, item:FlxObject):void

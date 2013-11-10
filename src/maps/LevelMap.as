@@ -113,14 +113,17 @@ package maps
 			
 			parseSpriteMap();
 			
-			// To remove later -----
-			player.x = 1 * TILE_SIZE;
-			player.y = 6 * TILE_SIZE;
-			//----------------------
-			
 			player.targetsArray = targets;
+			setGates();
 		}
 		
+		private function setGates():void
+		{
+			for each (var gate:FlxSprite in gateChains)
+			{
+				if (gate is SmallBomb) (gate as SmallBomb).setGate(gateChains);
+			}
+		}
 		
 		private function parseSpriteMap():void
 		{	
@@ -196,17 +199,32 @@ package maps
 			
 			else if (id == 10)
 			{
+				var blueDiamond:BlueDiamond = new BlueDiamond(textGroup);
+				blueDiamond.x = X;
+				blueDiamond.y = Y;
 				
+				immovableObstacles.add(blueDiamond);
+				immovableObstaclesB.add(blueDiamond);
 			}
 			
 			else if (id == 11)
 			{
+				var greenBall:Ball = new Ball(textGroup, "green");
+				greenBall.x = X;
+				greenBall.y = Y;
 				
+				immovableObstacles.add(greenBall);
+				immovableObstaclesB.add(greenBall);
 			}
 			
 			else if (id == 12)
 			{
+				var purpleBall:Ball = new Ball(textGroup, "purple");
+				purpleBall.x = X;
+				purpleBall.y = Y;
 				
+				immovableObstacles.add(purpleBall);
+				immovableObstaclesB.add(purpleBall);
 			}
 			
 			else if (id == 13)
@@ -243,6 +261,7 @@ package maps
 			else if (id == 18)
 			{
 				var brownBlock:BrownBlock = new BrownBlock(X, Y, textGroup);
+				
 				collideableUnits.add(brownBlock);
 				bulletDamageableObstacles.add(brownBlock);
 				targets.push(brownBlock);
@@ -341,17 +360,27 @@ package maps
 				var indestructibleBlock:IndestructibleBlock = new IndestructibleBlock(X, Y);
 				
 				collideableUnits.add(indestructibleBlock);
-				playerBulletImpassable.add(indestructibleBlock);
+				bulletDamageableObstacles.add(indestructibleBlock);
 			}
 			
 			else if (id == 28)
 			{
+				var blueBox:Box = new Box(textGroup, "blue");
+				blueBox.x = X;
+				blueBox.y = Y;
 				
+				immovableObstacles.add(blueBox);
+				blueBoxes.add(blueBox);
 			}
 			
 			else if (id == 29)
 			{
+				var greenBox:Box = new Box(textGroup, "green");
+				greenBox.x = X;
+				greenBox.y = Y;
 				
+				immovableObstacles.add(greenBox);
+				playerBulletImpassable.add(greenBox);
 			}
 			
 			else if (id == 30)

@@ -14,7 +14,7 @@ package units
 		{
 			super(X, Y);
 			
-			makeGraphic(32, 32);
+			makeGraphic(32, 32, 0xffCCCCCC);
 			
 			tempX = this.x;
 			

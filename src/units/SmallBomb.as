@@ -20,13 +20,13 @@ package units
 		public function SmallBomb(_textGroup:FlxGroup) 
 		{
 			super(_textGroup);
-			
+		
 			immovable = true;
 			
 			health = 10;
 			points = 20;
 			
-			makeGraphic(16, 16);
+			makeGraphic(16, 16, 0xffFF0000);
 			
 			explodeDelay = new FlxDelay(100);
 			explodeDelay.callback = kill;

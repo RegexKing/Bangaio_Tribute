@@ -22,7 +22,7 @@ package units
 			health = 10;
 			points = 100;
 			
-			makeGraphic(32, 32);
+			makeGraphic(32, 32, 0xff996600);
 		}
 		
 		override public function update():void
