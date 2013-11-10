@@ -8,6 +8,7 @@ package
 	import units.BlueDiamond;
 	import units.Player;
 	import util.BulletTrailsContainer;
+	import items.Item;
 	import util.ZoomCamera;
 	import weapons.BounceBullet;
 	 
@@ -169,8 +170,7 @@ package
 		
 		public function pickupItem(unit:FlxObject, item:FlxObject):void
 		{
-			//(item as Item).pickup(unit as Player); TODO: Item pickup function
-			item.kill();
+			(item as Item).pickUp(unit as Player);
 		}
 		
 		 override public function destroy():void

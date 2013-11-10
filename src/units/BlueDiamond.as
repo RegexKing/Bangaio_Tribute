@@ -5,7 +5,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BlueDiamond extends Destructible
+	public class BlueDiamond extends Scoreable
 	{
 		
 		public function BlueDiamond(_textGroup:FlxGroup) 

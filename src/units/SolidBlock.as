@@ -8,7 +8,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class SolidBlock extends Destructible implements GateChain
+	public class SolidBlock extends Scoreable implements GateChain
 	{
 		
 		private var map:LevelMap;

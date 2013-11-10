@@ -1,19 +1,32 @@
 package units 
 {
 	import hud.ScrollingText;
+	import items.Fruit;
 	import org.flixel.FlxGroup;
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Building extends Destructible
+	public class Building extends Targetable
 	{
 		
 		private var buildingType:String;
 		
-		public function Building(_buildingType:String, _textGroup:FlxGroup, _upOrDown:uint = UP) 
+		private var oranges:FlxGroup;
+		private var bananas:FlxGroup;
+		private var pineapples:FlxGroup;
+		private var watermelons:FlxGroup;
+		
+		public function Building(_buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
 		{
 			super(_textGroup);
+			
+			buildingType = _buildingType;
+			
+			oranges = _oranges;
+			bananas = _bananas;
+			pineapples = _pineapples;
+			watermelons = _watermelons;
 			
 			immovable = true;
 			
@@ -53,6 +66,28 @@ package units
 			{
 				angle = 180;
 			}
+		}
+		
+		override public function kill():void
+		{
+			if (buildingType == "house")
+			{
+				(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "orange");
+			}
+			else if (buildingType == "wideBuilding")
+			{
+				(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "banana");
+			}
+			else if (buildingType == "tallBuilding")
+			{
+				(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "pineapple");
+			}
+			else if (buildingType == "car")
+			{
+				(watermelons.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "watermelon");
+			}
+			
+			super.kill();
 		}
 		
 	}

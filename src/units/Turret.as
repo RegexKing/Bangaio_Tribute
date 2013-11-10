@@ -1,5 +1,6 @@
 package units 
 {
+	import items.Fruit;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import util.BulletTrailsContainer;
@@ -10,9 +11,14 @@ package units
 	public class Turret extends Shooter
 	{
 		
-		public function Turret(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal", _orientation:uint = FLOOR) 
+		private var apples:FlxGroup;
+		
+		public function Turret(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _bulletType:String = "normal", _orientation:uint = FLOOR) 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
+			
+			apples = _apples;
+			
 			this.immovable = true;
 			
 			health = 40;
@@ -52,6 +58,13 @@ package units
 			{
 				gun.fireFromAngle(aim);
 			}
+		}
+		
+		override public function kill():void
+		{
+			(apples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "apple");
+			
+			super.kill();
 		}
 	}
 

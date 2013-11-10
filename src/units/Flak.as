@@ -9,15 +9,20 @@ package units
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import util.BulletTrailsContainer;
+	import items.Fruit
 	import weapons.*; 
 	 
 	public class Flak extends Shooter
 	{
 		private var timer:Number = 0;
 		
-		public function Flak(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		private var pineapples:FlxGroup;
+		
+		public function Flak(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String, _pineapples:FlxGroup) 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
+			
+			pineapples = _pineapples;
 			
 			this.immovable = true;
 			
@@ -48,6 +53,8 @@ package units
 		
 		override public function kill():void
 		{
+			(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "pineapple");
+
 			super.kill();
 			
 			timer = 0;

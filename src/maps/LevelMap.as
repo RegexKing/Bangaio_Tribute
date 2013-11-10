@@ -5,6 +5,7 @@ package maps
 	 * @author Frank Fazio
 	 */
 	
+	import items.Fruit;
 	import org.flixel.*;
 	import units.*;
 	import util.*;
@@ -97,11 +98,11 @@ package maps
 			//==========================
 			
 			//aggregate flxgroups
-			items.add(oranges);
-			items.add(apples);
-			items.add(bananas);
-			items.add(pineapples);
-			items.add(watermelons);
+			_items.add(oranges);
+			_items.add(apples);
+			_items.add(bananas);
+			_items.add(pineapples);
+			_items.add(watermelons);
 			
 			_explosions.add(blueExplosions);
 			_explosions.add(redExplosions);
@@ -174,27 +175,27 @@ package maps
 			
 			else if (id == 5)
 			{
-				
+				(oranges.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "orange");
 			}
 			
 			else if (id == 6)
 			{
-				
+				(apples.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "apple");
 			}
 			
 			else if (id == 7)
 			{
-				
+				(bananas.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "banana");
 			}
 			
 			else if (id == 8)
 			{
-				
+				(pineapples.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "pineapple");
 			}
 			
 			else if (id == 9)
 			{
-				
+				(watermelons.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "watermelon");
 			}
 			
 			else if (id == 10)
@@ -260,7 +261,7 @@ package maps
 			
 			else if (id == 18)
 			{
-				var brownBlock:BrownBlock = new BrownBlock(X, Y, textGroup);
+				var brownBlock:BrownBlock = new BrownBlock(X, Y, textGroup, oranges);
 				
 				collideableUnits.add(brownBlock);
 				bulletDamageableObstacles.add(brownBlock);
@@ -269,7 +270,7 @@ package maps
 			
 			else if (id == 19)
 			{
-				var buildingh:Building = new Building("house", textGroup);
+				var buildingh:Building = new Building("house", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingh.x = X;
 				buildingh.y = Y;
 				
@@ -280,7 +281,7 @@ package maps
 			
 			else if (id == 20)
 			{
-				var buildingw:Building = new Building("wideBuilding", textGroup);
+				var buildingw:Building = new Building("wideBuilding", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingw.x = X;
 				buildingw.y = Y;
 				
@@ -291,7 +292,7 @@ package maps
 			
 			else if (id == 21)
 			{
-				var buildingt:Building = new Building("tallBuilding", textGroup);
+				var buildingt:Building = new Building("tallBuilding", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingt.x = X;
 				buildingt.y = Y;
 				
@@ -302,7 +303,7 @@ package maps
 			
 			else if (id == 22)
 			{
-				var buildingc:Building = new Building("car", textGroup);
+				var buildingc:Building = new Building("car", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingc.x = X;
 				buildingc.y = Y;
 				
@@ -313,7 +314,7 @@ package maps
 			
 			else if (id == 23)
 			{
-				var buildinghd:Building = new Building("house", textGroup, DOWN);
+				var buildinghd:Building = new Building("house", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildinghd.x = X;
 				buildinghd.y = Y;
 				
@@ -324,7 +325,7 @@ package maps
 			
 			else if (id == 24)
 			{
-				var buildingwd:Building = new Building("wideBuilding", textGroup, DOWN);
+				var buildingwd:Building = new Building("wideBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingwd.x = X;
 				buildingwd.y = Y;
 				
@@ -335,7 +336,7 @@ package maps
 			
 			else if (id == 25)
 			{
-				var buildingtd:Building = new Building("tallBuilding", textGroup, DOWN);
+				var buildingtd:Building = new Building("tallBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingtd.x = X;
 				buildingtd.y = Y;
 				
@@ -346,7 +347,7 @@ package maps
 			
 			else if (id == 26)
 			{
-				var buildingcd:Building = new Building("car", textGroup, DOWN);
+				var buildingcd:Building = new Building("car", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingcd.x = X;
 				buildingcd.y = Y;
 				
@@ -425,7 +426,7 @@ package maps
 			
 			else if (id == 37)
 			{
-				var turretnl:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "normal", LEFT);
+				var turretnl:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "normal", LEFT);
 				turretnl.x = X;
 				turretnl.y = Y;
 				
@@ -435,7 +436,7 @@ package maps
 			
 			else if (id == 38)
 			{
-				var turretnr:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "normal", RIGHT);
+				var turretnr:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "normal", RIGHT);
 				turretnr.x = X;
 				turretnr.y = Y;
 				
@@ -445,7 +446,7 @@ package maps
 			
 			else if (id == 39)
 			{
-				var turretnc:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "normal", CEILING);
+				var turretnc:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "normal", CEILING);
 				turretnc.x = X;
 				turretnc.y = Y;
 				
@@ -455,7 +456,7 @@ package maps
 			
 			else if (id == 40)
 			{
-				var turretnf:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "normal", FLOOR);
+				var turretnf:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "normal", FLOOR);
 				turretnf.x = X;
 				turretnf.y = Y;
 				
@@ -465,7 +466,7 @@ package maps
 			
 			else if (id == 41)
 			{
-				var turrethl:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "homing", LEFT);
+				var turrethl:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "homing", LEFT);
 				turrethl.x = X;
 				turrethl.y = Y;
 				
@@ -475,7 +476,7 @@ package maps
 			
 			else if (id == 42)
 			{
-				var turrethr:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "homing", RIGHT);
+				var turrethr:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "homing", RIGHT);
 				turrethr.x = X;
 				turrethr.y = Y;
 				
@@ -485,7 +486,7 @@ package maps
 			
 			else if (id == 43)
 			{
-				var turrethc:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "homing", CEILING);
+				var turrethc:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "homing", CEILING);
 				turrethc.x = X;
 				turrethc.y = Y;
 				
@@ -495,7 +496,7 @@ package maps
 			
 			else if (id == 44)
 			{
-				var turrethf:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, "homing", FLOOR);
+				var turrethf:Turret = new Turret(enemyBullets, player, this, bulletTrails, textGroup, apples, "homing", FLOOR);
 				turrethf.x = X;
 				turrethf.y = Y;
 				
@@ -505,7 +506,7 @@ package maps
 			
 			else if (id == 45)
 			{
-				var flak:Flak = new Flak(enemyBullets, player, this, bulletTrails, textGroup);
+				var flak:Flak = new Flak(enemyBullets, player, this, bulletTrails, textGroup, "normal", pineapples);
 				flak.x = X;
 				flak.y = Y;
 				
@@ -515,7 +516,7 @@ package maps
 			
 			else if (id == 46)
 			{
-				var flakh:Flak = new Flak(enemyBullets, player, this, bulletTrails, textGroup, "homing");
+				var flakh:Flak = new Flak(enemyBullets, player, this, bulletTrails, textGroup, "homing", pineapples);
 				flakh.x = X;
 				flakh.y = Y;
 				
@@ -605,7 +606,7 @@ package maps
 					
 			else if (id == 63)
 			{
-				var redRobot:RedRobot = new RedRobot(enemyBullets, player, this, bulletTrails, textGroup);
+				var redRobot:RedRobot = new RedRobot(enemyBullets, player, this, bulletTrails, textGroup, apples);
 				redRobot.x = X;
 				redRobot.y = Y;
 						

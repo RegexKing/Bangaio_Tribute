@@ -13,7 +13,7 @@ package units
 	import util.BulletTrailsContainer;
 	import weapons.*; 
 	 
-	public class Shooter extends Destructible
+	public class Shooter extends Targetable
 	{
 		
 		public var aim:int = 0;

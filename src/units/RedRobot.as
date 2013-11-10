@@ -1,5 +1,6 @@
 package units 
 {
+	import items.Fruit;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
@@ -16,10 +17,14 @@ package units
 		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
 		
+		private var apples:FlxGroup;
 		
-		public function RedRobot(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
+		
+		public function RedRobot(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
+			
+			apples = _apples;
 			
 			health = 40;
 			points = 200;
@@ -110,6 +115,8 @@ package units
 		
 		override public function kill():void
 		{
+			(apples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "apple");
+			
 			super.kill();
 			
 			stopPathfinding();

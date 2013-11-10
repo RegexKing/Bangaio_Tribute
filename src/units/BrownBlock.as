@@ -1,19 +1,24 @@
 package units 
 {
+	import items.Fruit;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxMath;
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BrownBlock extends Destructible
+	public class BrownBlock extends Targetable
 	{
 		
 		private var tempX:int = 0;
 		
-		public function BrownBlock(X:int, Y:int, _textGroup:FlxGroup) 
+		private var oranges:FlxGroup;
+		
+		public function BrownBlock(X:int, Y:int, _textGroup:FlxGroup, _oranges:FlxGroup) 
 		{
 			super(_textGroup);
+			
+			oranges = _oranges;
 			
 			this.x = X;
 			this.y = Y;
@@ -39,6 +44,13 @@ package units
 			super.postUpdate();
 			
 			this.x = tempX;
+		}
+		
+		override public function kill():void
+		{
+			(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "orange");
+			
+			super.kill();
 		}
 		
 	}

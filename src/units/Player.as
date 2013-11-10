@@ -130,6 +130,18 @@ package units
 			
 		}
 		
+		public function setCharge(_chargeAmt:uint):void
+		{
+			overdriveCharges += _chargeAmt;
+			
+			if (overdriveCharges > 500)
+			{
+				overdriveCharges = 500;
+			}
+			
+			FlxG.log(overdriveCharges);
+		}
+		
 		public function set targetsArray(_targets:Array):void
 		{
 			targets = _targets;

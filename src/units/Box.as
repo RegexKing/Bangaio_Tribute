@@ -5,7 +5,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Box extends Destructible
+	public class Box extends Scoreable
 	{
 		
 		public function Box(_textgroup:FlxGroup, _color:String = "blue") 

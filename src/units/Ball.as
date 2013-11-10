@@ -5,7 +5,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Ball extends Destructible
+	public class Ball extends Scoreable
 	{
 		
 		public function Ball(_textGroup:FlxGroup, _color:String = "green") 

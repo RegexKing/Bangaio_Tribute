@@ -7,7 +7,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class SmallBomb extends Destructible implements GateChain
+	public class SmallBomb extends Scoreable implements GateChain
 	{
 		
 		private var above:GateChain;
