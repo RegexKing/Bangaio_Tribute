@@ -1,5 +1,6 @@
 package weapons 
 {
+	import hud.CountdownTimer;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.*;
@@ -49,7 +50,7 @@ package weapons
 		 */
 		override protected function runFire(method:uint, x:int = 0, y:int = 0, target:FlxSprite = null, angle:int = 0,smissleOverdrive:Boolean = true, bulletShells:FlxEmitter = null):Boolean
 		{
-			if (fireRate > 0 && (getTimer() < nextFire))
+			if (fireRate > 0 && (CountdownTimer.getTimer() < nextFire))
 			{
 				return false;
 			}
@@ -73,8 +74,8 @@ package weapons
 			currentBullet.acceleration.x = 0;
 			currentBullet.acceleration.y = 0;
 			
-			lastFired = getTimer();
-			nextFire = getTimer() + fireRate;
+			lastFired = CountdownTimer.getTimer();
+			nextFire = CountdownTimer.getTimer() + fireRate;
 			
 			var launchX:int = positionOffset.x;
 			var launchY:int = positionOffset.y;

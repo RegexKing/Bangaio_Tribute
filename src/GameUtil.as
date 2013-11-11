@@ -80,7 +80,6 @@ package
 				return FlxObject.LEFT;
 		}
 		
-		
 		public static function cloneArray(source:Array):Array
 		{ 
 			var newArray:Array = new Array();

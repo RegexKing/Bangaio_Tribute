@@ -13,6 +13,7 @@
 
 package org.flixel.plugin.photonstorm.BaseTypes 
 {
+	import hud.CountdownTimer;
 	import org.flixel.FlxPoint;
 	import org.flixel.FlxSprite;
 	import org.flixel.plugin.photonstorm.FlxMath;
@@ -181,12 +182,12 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			
 			exists = true;
 			
-			launchTime = getTimer();
+			launchTime = CountdownTimer.getTimer();
 			
 			if (weapon.bulletLifeSpan > 0)
 			{
 				lifespan = weapon.bulletLifeSpan + FlxMath.rand( -weapon.rndFactorLifeSpan, weapon.rndFactorLifeSpan);
-				expiresTime = getTimer() + lifespan;
+				expiresTime = launchTime + lifespan;
 			}
 			
 			if (weapon.onFireCallback is Function)
@@ -221,8 +222,8 @@ package org.flixel.plugin.photonstorm.BaseTypes
 		}
 		
 		override public function update():void
-		{
-			if (lifespan > 0 && getTimer() > expiresTime)
+		{	
+			if (lifespan > 0 && CountdownTimer.getTimer() > expiresTime)
 			{
 				kill();
 			}

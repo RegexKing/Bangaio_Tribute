@@ -14,6 +14,7 @@
 
 package org.flixel.plugin.photonstorm 
 {
+	import hud.CountdownTimer;
 	import org.flixel.*;
 	import flash.utils.getTimer;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -262,7 +263,7 @@ package org.flixel.plugin.photonstorm
 		 */
 		protected function runFire(method:uint, x:int = 0, y:int = 0, target:FlxSprite = null, angle:int = 0, missleOverdrive:Boolean = true, bulletShells:FlxEmitter = null):Boolean
 		{
-			if (fireRate > 0 && (getTimer() < nextFire))
+			if (fireRate > 0 && (CountdownTimer.getTimer() < nextFire))
 			{
 				return false;
 			}
@@ -288,8 +289,8 @@ package org.flixel.plugin.photonstorm
 			currentBullet.velocity.x = 0;
 			currentBullet.velocity.y = 0;
 			
-			lastFired = getTimer();
-			nextFire = getTimer() + fireRate;
+			lastFired = CountdownTimer.getTimer();
+			nextFire = CountdownTimer.getTimer() + fireRate;
 			
 			var launchX:int = positionOffset.x;
 			var launchY:int = positionOffset.y;

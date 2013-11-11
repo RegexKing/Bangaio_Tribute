@@ -1,5 +1,6 @@
 package  
 {	
+	import hud.CountdownTimer;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
@@ -31,7 +32,7 @@ package
 		private var playerBullets:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		private var items:FlxGroup;
-		private var hud:FlxGroup;
+		private var hudGroup:FlxGroup;
 		private var textGroup:FlxGroup;
 		private var particleEmitters:FlxGroup;
 		private var explosions:FlxGroup;
@@ -71,7 +72,7 @@ package
 			
 			enemies = new FlxGroup();
 			playerBullets = new FlxGroup(2);
-			hud = new FlxGroup();
+			hudGroup = new FlxGroup();
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
 			particleEmitters = new FlxGroup(2);
@@ -118,8 +119,9 @@ package
 			collideableUnits.add(enemies);
 			
 			//decorate purely visual flxgroups
-			hud.add(textGroup);
-			hud.add(player.lifeBar);
+			hudGroup.add(textGroup);
+			hudGroup.add(player.lifeBar);
+			hudGroup.add(new CountdownTimer());
 			explosions.add(explosionAreas);
 			
 			//add to state
@@ -132,7 +134,7 @@ package
 			add(particleEmitters);
 			add(bullets);
 			add(immovableObstacles);
-			add(hud);
+			add(hudGroup);
 			
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 		}
