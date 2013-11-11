@@ -42,7 +42,7 @@ package units
 		public var overDriveHud:Overdrive;
 		
 		//charges availible for missle overdrive. cant use if not at least 50
-		public var overdriveCharges:uint = 200;
+		public var overdriveCharges:uint = 100;
 		private var fruitMultiplier:uint = 1;
 		
 		public var aim:int = 0;
@@ -160,9 +160,9 @@ package units
 		{
 			overdriveCharges += _chargeAmt;
 			
-			if (overdriveCharges > 500)
+			if (overdriveCharges > 250)
 			{
-				overdriveCharges = 500;
+				overdriveCharges = 250;
 			}
 		}
 		

@@ -7,7 +7,8 @@ package
 	 
 	public class GameData 
 	{
-		public static var clearedTime:Boolean = true;
+		public static var level:uint = 2;
 		
+		public static var clearedTime:Boolean = true;
 	}
 }

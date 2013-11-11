@@ -80,7 +80,7 @@ package
 			explosions = new FlxGroup();
 			
 			// TODO: LevelMap takes an int argument to decide which level data to load
-			map = new LevelMap();
+			map = new LevelMap(GameData.level);
 			
 			FlxG.worldBounds = map.getBounds();
 			
