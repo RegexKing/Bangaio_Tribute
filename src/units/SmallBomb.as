@@ -17,9 +17,9 @@ package units
 		
 		private var explodeDelay:FlxDelay;
 		
-		public function SmallBomb(_textGroup:FlxGroup) 
+		public function SmallBomb(_player:Player, _textGroup:FlxGroup) 
 		{
-			super(_textGroup);
+			super(_player,_textGroup);
 		
 			immovable = true;
 			

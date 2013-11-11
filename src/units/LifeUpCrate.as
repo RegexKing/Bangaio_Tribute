@@ -12,14 +12,14 @@ package units
 		
 		public function LifeUpCrate() 
 		{
-			super(null);
+			super(null, null);
 			
 			health = 10;
 			points = 100;
 			
 		}
 		
-		public function setPos(X:int, Y:int, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void
+		public function setPos(X:int, Y:int, _player:Player, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void
 		{
 			revive();
 			
@@ -28,6 +28,7 @@ package units
 			
 			if (textGroup == null)
 			{
+				player = _player;
 				textGroup = _textGroup;
 				_bulletDamageableObjects.add(this);
 				_collideableUnits.add(this);

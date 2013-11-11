@@ -53,7 +53,7 @@ package units
 		
 		override public function kill():void
 		{
-			(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "pineapple");
+			(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "pineapple");
 
 			super.kill();
 			

@@ -14,9 +14,9 @@ package units
 		
 		private var oranges:FlxGroup;
 		
-		public function BrownBlock(X:int, Y:int, _textGroup:FlxGroup, _oranges:FlxGroup) 
+		public function BrownBlock(X:int, Y:int, _player:Player, _textGroup:FlxGroup, _oranges:FlxGroup) 
 		{
-			super(_textGroup);
+			super(_player, _textGroup);
 			
 			oranges = _oranges;
 			
@@ -48,7 +48,7 @@ package units
 		
 		override public function kill():void
 		{
-			(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "orange");
+			(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "orange");
 			
 			super.kill();
 		}

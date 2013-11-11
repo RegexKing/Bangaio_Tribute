@@ -8,9 +8,9 @@ package units
 	public class BlueDiamond extends Scoreable
 	{
 		
-		public function BlueDiamond(_textGroup:FlxGroup) 
+		public function BlueDiamond(_player:Player, _textGroup:FlxGroup) 
 		{
-			super(_textGroup);
+			super(_player,_textGroup);
 			
 			immovable = true;
 			

@@ -38,9 +38,11 @@ package units
 		
 		// hud objects
 		public var lifeBar:FlxBar;
+		public var score:Score;
 		
 		//charges availible for missle overdrive. cant use if not at least 50
 		public var overdriveCharges:uint = 200;
+		private var fruitMultiplier:uint = 1;
 		
 		public var aim:int = 0;
 		private var directionAngle:Number;
@@ -109,6 +111,8 @@ package units
 			lifeBar.setCallbacks(null, null);
 			lifeBar.scrollFactor.x = lifeBar.scrollFactor.y = 0;
 			
+			score = new Score();
+			
 			// Guns
 			bounceGun = new FlxWeaponExt(BounceBullet, "bounce", _bulletTrails, this, this);
 			bounceGun.setBulletBounds(FlxG.worldBounds);
@@ -138,6 +142,16 @@ package units
 		public function fillHealth():void
 		{
 			health = 100;
+		}
+		
+		public function multiplyFruit(_scoreAmt:uint):uint
+		{
+			var newScoreAmt:uint = _scoreAmt * fruitMultiplier;
+			if (newScoreAmt > 1000) newScoreAmt = 1000;
+			
+			fruitMultiplier++;
+			
+			return newScoreAmt;
 		}
 		
 		public function setCharge(_chargeAmt:uint):void
@@ -305,7 +319,6 @@ package units
 				play ("up");
 			else
 				play("straight");
-			
 		}
 		
 		private function fireGun(gun:FlxWeaponExt):void
@@ -367,6 +380,7 @@ package units
 		override public function hurt(_damageNumber:Number):void
 		{
 			super.hurt(_damageNumber);
+			fruitMultiplier = 1;
 			
 			this.flicker(0.7);
 			FlxG.camera.shake(0.005, 0.35);

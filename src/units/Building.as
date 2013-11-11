@@ -17,9 +17,9 @@ package units
 		private var pineapples:FlxGroup;
 		private var watermelons:FlxGroup;
 		
-		public function Building(_buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
+		public function Building(_player:Player, _buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
 		{
-			super(_textGroup);
+			super(_player,_textGroup);
 			
 			buildingType = _buildingType;
 			
@@ -81,19 +81,19 @@ package units
 		{
 			if (buildingType == "house")
 			{
-				(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "orange");
+				(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "orange");
 			}
 			else if (buildingType == "wideBuilding")
 			{
-				(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "banana");
+				(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
 			}
 			else if (buildingType == "tallBuilding")
 			{
-				(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "pineapple");
+				(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "pineapple");
 			}
 			else if (buildingType == "car")
 			{
-				(watermelons.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "watermelon");
+				(watermelons.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "watermelon");
 			}
 			
 			play("destroyed");

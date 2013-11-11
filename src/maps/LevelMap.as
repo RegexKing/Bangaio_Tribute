@@ -48,7 +48,7 @@ package maps
 		private var gateChains:Array;
 		private var targets:Array;
 		
-		public function LevelMap(_level:uint = 1) 
+		public function LevelMap(_level:uint = 2) 
 		{
 			if (_level == 1)  
 			{
@@ -172,13 +172,13 @@ package maps
 			
 			else if (id == 2)
 			{
-				(lifeUpCrates.recycle(LifeUpCrate) as LifeUpCrate).setPos(X, Y, textGroup, bulletDamageableObstacles, collideableUnits, targets, lifeUps);
+				(lifeUpCrates.recycle(LifeUpCrate) as LifeUpCrate).setPos(X, Y, player, textGroup, bulletDamageableObstacles, collideableUnits, targets, lifeUps);
 			}
 			
 			else if (id == 3)
 			{
 				
-				var fullLifeCrate:SpecialCrate = new SpecialCrate(textGroup, itemsGroup, "fullLife");
+				var fullLifeCrate:SpecialCrate = new SpecialCrate(player, textGroup, itemsGroup, "fullLife");
 				fullLifeCrate.x = X;
 				fullLifeCrate.y = Y;
 				
@@ -191,7 +191,7 @@ package maps
 			else if (id == 4)
 			{
 				
-				var invinceableCrate:SpecialCrate = new SpecialCrate(textGroup, itemsGroup, "invinceable");
+				var invinceableCrate:SpecialCrate = new SpecialCrate(player, textGroup, itemsGroup, "invinceable");
 				invinceableCrate.x = X;
 				invinceableCrate.y = Y;
 				
@@ -203,32 +203,32 @@ package maps
 			
 			else if (id == 5)
 			{
-				(oranges.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "orange");
+				(oranges.recycle(Fruit) as Fruit).setPos(X, Y, player, textGroup, "orange");
 			}
 			
 			else if (id == 6)
 			{
-				(apples.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "apple");
+				(apples.recycle(Fruit) as Fruit).setPos(X, Y, player, textGroup, "apple");
 			}
 			
 			else if (id == 7)
 			{
-				(bananas.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "banana");
+				(bananas.recycle(Fruit) as Fruit).setPos(X, Y, player, textGroup, "banana");
 			}
 			
 			else if (id == 8)
 			{
-				(pineapples.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "pineapple");
+				(pineapples.recycle(Fruit) as Fruit).setPos(X, Y, player, textGroup, "pineapple");
 			}
 			
 			else if (id == 9)
 			{
-				(watermelons.recycle(Fruit) as Fruit).setPos(X, Y, textGroup, "watermelon");
+				(watermelons.recycle(Fruit) as Fruit).setPos(X, Y, player, textGroup, "watermelon");
 			}
 			
 			else if (id == 10)
 			{
-				var blueDiamond:BlueDiamond = new BlueDiamond(textGroup);
+				var blueDiamond:BlueDiamond = new BlueDiamond(player, textGroup);
 				blueDiamond.x = X;
 				blueDiamond.y = Y;
 				
@@ -238,7 +238,7 @@ package maps
 			
 			else if (id == 11)
 			{
-				var greenBall:Ball = new Ball(textGroup, "green");
+				var greenBall:Ball = new Ball(player, textGroup, "green");
 				greenBall.x = X;
 				greenBall.y = Y;
 				
@@ -248,7 +248,7 @@ package maps
 			
 			else if (id == 12)
 			{
-				var purpleBall:Ball = new Ball(textGroup, "purple");
+				var purpleBall:Ball = new Ball(player, textGroup, "purple");
 				purpleBall.x = X;
 				purpleBall.y = Y;
 				
@@ -258,7 +258,7 @@ package maps
 			
 			else if (id == 13)
 			{
-				var smallBomb:SmallBomb = new SmallBomb(textGroup);
+				var smallBomb:SmallBomb = new SmallBomb(player, textGroup);
 				smallBomb.x = X;
 				smallBomb.y = Y;
 				
@@ -289,7 +289,7 @@ package maps
 			
 			else if (id == 18)
 			{
-				var brownBlock:BrownBlock = new BrownBlock(X, Y, textGroup, oranges);
+				var brownBlock:BrownBlock = new BrownBlock(X, Y, player, textGroup, oranges);
 				
 				collideableUnits.add(brownBlock);
 				bulletDamageableObstacles.add(brownBlock);
@@ -298,7 +298,7 @@ package maps
 			
 			else if (id == 19)
 			{
-				var buildingh:Building = new Building("house", textGroup, oranges, bananas, pineapples, watermelons);
+				var buildingh:Building = new Building(player, "house", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingh.x = X;
 				buildingh.y = Y;
 				
@@ -309,7 +309,7 @@ package maps
 			
 			else if (id == 20)
 			{
-				var buildingw:Building = new Building("wideBuilding", textGroup, oranges, bananas, pineapples, watermelons);
+				var buildingw:Building = new Building(player, "wideBuilding", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingw.x = X;
 				buildingw.y = Y;
 				
@@ -320,7 +320,7 @@ package maps
 			
 			else if (id == 21)
 			{
-				var buildingt:Building = new Building("tallBuilding", textGroup, oranges, bananas, pineapples, watermelons);
+				var buildingt:Building = new Building(player, "tallBuilding", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingt.x = X;
 				buildingt.y = Y;
 				
@@ -331,7 +331,7 @@ package maps
 			
 			else if (id == 22)
 			{
-				var buildingc:Building = new Building("car", textGroup, oranges, bananas, pineapples, watermelons);
+				var buildingc:Building = new Building(player, "car", textGroup, oranges, bananas, pineapples, watermelons);
 				buildingc.x = X;
 				buildingc.y = Y;
 				
@@ -342,7 +342,7 @@ package maps
 			
 			else if (id == 23)
 			{
-				var buildinghd:Building = new Building("house", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
+				var buildinghd:Building = new Building(player, "house", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildinghd.x = X;
 				buildinghd.y = Y;
 				
@@ -353,7 +353,7 @@ package maps
 			
 			else if (id == 24)
 			{
-				var buildingwd:Building = new Building("wideBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
+				var buildingwd:Building = new Building(player, "wideBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingwd.x = X;
 				buildingwd.y = Y;
 				
@@ -364,7 +364,7 @@ package maps
 			
 			else if (id == 25)
 			{
-				var buildingtd:Building = new Building("tallBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
+				var buildingtd:Building = new Building(player, "tallBuilding", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingtd.x = X;
 				buildingtd.y = Y;
 				
@@ -375,7 +375,7 @@ package maps
 			
 			else if (id == 26)
 			{
-				var buildingcd:Building = new Building("car", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
+				var buildingcd:Building = new Building(player, "car", textGroup, oranges, bananas, pineapples, watermelons, DOWN);
 				buildingcd.x = X;
 				buildingcd.y = Y;
 				
@@ -394,7 +394,7 @@ package maps
 			
 			else if (id == 28)
 			{
-				var blueBox:Box = new Box(textGroup, "blue");
+				var blueBox:Box = new Box(player, textGroup, "blue");
 				blueBox.x = X;
 				blueBox.y = Y;
 				
@@ -404,7 +404,7 @@ package maps
 			
 			else if (id == 29)
 			{
-				var greenBox:Box = new Box(textGroup, "green");
+				var greenBox:Box = new Box(player, textGroup, "green");
 				greenBox.x = X;
 				greenBox.y = Y;
 				
@@ -414,7 +414,7 @@ package maps
 			
 			else if (id == 30)
 			{
-				var solidBlock:SolidBlock = new SolidBlock(this, textGroup, X / TILE_SIZE, Y / TILE_SIZE);
+				var solidBlock:SolidBlock = new SolidBlock(this, player, textGroup, X / TILE_SIZE, Y / TILE_SIZE);
 				solidBlock.x = X;
 				solidBlock.y = Y;
 				

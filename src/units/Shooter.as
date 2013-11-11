@@ -19,7 +19,6 @@ package units
 		public var aim:int = 0;
 		protected var speed:int = 0;
 		
-		protected var player:Player;
 		protected var map:LevelMap;
 		
 		protected var directionAngle:Number = 0;
@@ -29,9 +28,8 @@ package units
 		
 		public function Shooter(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
-			super(_textGroup);
+			super(_player, _textGroup);
 			
-			player = _player;
 			map = _map;
 			
 			

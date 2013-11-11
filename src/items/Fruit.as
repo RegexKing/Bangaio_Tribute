@@ -14,12 +14,13 @@ package items
 		private var chargeAmt:uint = 0;
 		private var flickerTimer:FlxDelay;
 		private var killTimer:FlxDelay;
+		private var moveTowardsPlayer:Boolean = false;
 		
 		private var expired:Boolean = false;
 		
 		public function Fruit() 
 		{
-			super(null);
+			super(null, null);
 			
 			immovable = true;
 			
@@ -32,10 +33,11 @@ package items
 			killTimer.callback = expireFruit;
 		}
 		
-		public function setPos(X:int, Y:int, _textGroup:FlxGroup, _fruitType:String):void
+		public function setPos(X:int, Y:int, _player:Player, _textGroup:FlxGroup, _fruitType:String):void
 		{
 			revive();
 			this.flicker(0);
+			moveTowardsPlayer = false;
 			
 			x = X;
 			y = Y;
@@ -43,75 +45,78 @@ package items
 			if (textGroup == null)
 			{
 				textGroup = _textGroup;
+				player = _player;
 				
 				if (_fruitType == "orange")
 				{
-					loadGraphic(AssetsRegistry.orangePNG);
+					loadRotatedGraphic(AssetsRegistry.orangePNG, 1);
 					chargeAmt = 3;
 				}
 				
 				else if (_fruitType == "apple")
 				{
-					loadGraphic(AssetsRegistry.applePNG);
+					loadRotatedGraphic(AssetsRegistry.applePNG, 1);
 					chargeAmt = 5;
 				}
 				
 				else if (_fruitType == "banana")
 				{
-					loadGraphic(AssetsRegistry.bananaPNG);
+					loadRotatedGraphic(AssetsRegistry.bananaPNG, 1);
 					chargeAmt = 10;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
-					loadGraphic(AssetsRegistry.pineapplePNG);
+					loadRotatedGraphic(AssetsRegistry.pineapplePNG, 1);
 					chargeAmt = 20;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
-					loadGraphic(AssetsRegistry.watermelonPNG);
+					loadRotatedGraphic(AssetsRegistry.watermelonPNG, 1);
 					chargeAmt = 50;
 				}
 			}
 		}
 		
-		public function setPosAt(targetMidpoint:FlxPoint, _textGroup:FlxGroup, _fruitType:String):void
+		public function setPosAt(targetMidpoint:FlxPoint, _player:Player, _textGroup:FlxGroup, _fruitType:String):void
 		{
 			revive();
 			this.flicker(0);
+			moveTowardsPlayer = true;
 			
 			if (textGroup == null)
 			{
 				textGroup = _textGroup;
+				player = _player;
 				
 				if (_fruitType == "orange")
 				{
-					loadGraphic(AssetsRegistry.orangePNG);
+					loadRotatedGraphic(AssetsRegistry.orangePNG, 1);
 					chargeAmt = 3;
 				}
 				
 				else if (_fruitType == "apple")
 				{
-					loadGraphic(AssetsRegistry.applePNG);
+					loadRotatedGraphic(AssetsRegistry.applePNG, 1);
 					chargeAmt = 5;
 				}
 				
 				else if (_fruitType == "banana")
 				{
-					loadGraphic(AssetsRegistry.bananaPNG);
+					loadRotatedGraphic(AssetsRegistry.bananaPNG, 1);
 					chargeAmt = 10;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
-					loadGraphic(AssetsRegistry.pineapplePNG);
+					loadRotatedGraphic(AssetsRegistry.pineapplePNG, 1);
 					chargeAmt = 20;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
-					loadGraphic(AssetsRegistry.watermelonPNG);
+					loadRotatedGraphic(AssetsRegistry.watermelonPNG, 1);
 					chargeAmt = 50;
 				}
 			}
@@ -127,6 +132,25 @@ package items
 			_player.setCharge(chargeAmt);
 			
 			kill();
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			
+			if (moveTowardsPlayer)
+			{
+				angle = GameUtil.easeTowardsTarget(this, player, 4500, 0.1);
+			}
+		}
+		
+		override public function addScore():uint
+		{
+			var newScoreAmt:uint = player.multiplyFruit(points);
+			
+			player.score.increaseScore(newScoreAmt);
+			
+			return newScoreAmt;
 		}
 		
 		override public function destroy():void

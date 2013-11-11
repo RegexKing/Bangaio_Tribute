@@ -8,9 +8,9 @@ package units
 	public class Ball extends Scoreable
 	{
 		
-		public function Ball(_textGroup:FlxGroup, _color:String = "green") 
+		public function Ball(_player:Player, _textGroup:FlxGroup, _color:String = "green") 
 		{
-			super(_textGroup);
+			super(_player,_textGroup);
 			
 			immovable = true;
 			

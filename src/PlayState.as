@@ -122,6 +122,7 @@ package
 			hudGroup.add(textGroup);
 			hudGroup.add(player.lifeBar);
 			hudGroup.add(new CountdownTimer());
+			hudGroup.add(player.score);
 			explosions.add(explosionAreas);
 			
 			//add to state
@@ -136,7 +137,7 @@ package
 			add(explosions);
 			add(hudGroup);
 			
-			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 		}
 		
 		override public function update():void
