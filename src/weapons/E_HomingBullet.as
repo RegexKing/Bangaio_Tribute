@@ -14,7 +14,7 @@ package weapons
 		{
 			super();
 			
-			loadRotatedGraphic(AssetsRegistry.misslePNG, 200);
+			loadRotatedGraphic(AssetsRegistry.misslePNG, 100);
 			
 			offset.x = 11;
 			width = 16;

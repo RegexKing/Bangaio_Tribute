@@ -19,7 +19,7 @@ package hud
 			
 			player = _player;
 			
-			overDriveMeter =  new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 100, 10, null, null, 0, 50);
+			overDriveMeter =  new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10, null, null, 0, 50);
 			overDriveMeter.y = FlxG.height - overDriveMeter.height;
 			
 			charges = new FlxText(0, 0, 150);
