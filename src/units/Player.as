@@ -39,6 +39,7 @@ package units
 		// hud objects
 		public var lifeBar:FlxBar;
 		public var score:Score;
+		public var overDriveHud:Overdrive;
 		
 		//charges availible for missle overdrive. cant use if not at least 50
 		public var overdriveCharges:uint = 200;
@@ -112,6 +113,7 @@ package units
 			lifeBar.scrollFactor.x = lifeBar.scrollFactor.y = 0;
 			
 			score = new Score();
+			overDriveHud = new Overdrive(this);
 			
 			// Guns
 			bounceGun = new FlxWeaponExt(BounceBullet, "bounce", _bulletTrails, this, this);
@@ -269,6 +271,8 @@ package units
 				
 				overdriveCounter.size += Math.ceil(overDriveAmt / 14);
 				overdriveCounter.start();
+				
+				overDriveHud.updateOverdriveHud();
 					
 				FlxControl.player1.enabled = true;
 				

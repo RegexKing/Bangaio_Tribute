@@ -48,7 +48,7 @@ package maps
 		private var gateChains:Array;
 		private var targets:Array;
 		
-		public function LevelMap(_level:uint = 2) 
+		public function LevelMap(_level:uint = 1) 
 		{
 			if (_level == 1)  
 			{

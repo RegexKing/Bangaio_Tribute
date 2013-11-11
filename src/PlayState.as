@@ -123,6 +123,7 @@ package
 			hudGroup.add(player.lifeBar);
 			hudGroup.add(new CountdownTimer());
 			hudGroup.add(player.score);
+			hudGroup.add(player.overDriveHud);
 			explosions.add(explosionAreas);
 			
 			//add to state

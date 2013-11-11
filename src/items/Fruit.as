@@ -131,6 +131,8 @@ package items
 		{
 			_player.setCharge(chargeAmt);
 			
+			_player.overDriveHud.updateOverdriveHud();
+			
 			kill();
 		}
 		
@@ -140,7 +142,7 @@ package items
 			
 			if (moveTowardsPlayer)
 			{
-				angle = GameUtil.easeTowardsTarget(this, player, 4500, 0.1);
+				angle = GameUtil.easeTowardsTarget(this, player, 8000, 0.1);
 			}
 		}
 		
