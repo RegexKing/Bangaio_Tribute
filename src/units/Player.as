@@ -170,7 +170,12 @@ package units
 			super.update();
 				
 			// toggle weapon type
-			if (FlxG.keys.justPressed("Q")) weaponType = !weaponType;
+			if (FlxG.keys.justPressed("Q"))
+			{
+				weaponType = !weaponType;
+				
+				FlxG.play(AssetsRegistry.SWITCHWEAPON_MP3);
+			}
 			
 			
 			//boost controls
