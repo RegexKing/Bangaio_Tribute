@@ -36,25 +36,31 @@ package units
 			{
 				health = 20;
 				points = 100;
-				makeGraphic(32, 32);
+				
+				loadGraphic(AssetsRegistry.housePNG, true, false, 32, 32);
 			}
 			else if (_buildingType == "wideBuilding")
 			{
 				health = 50;
 				points = 200;
-				makeGraphic(64, 32);
+				
+				loadGraphic(AssetsRegistry.wideBuildingPNG, true, false, 64, 32);
 			}
 			else if (_buildingType == "tallBuilding")
 			{
 				health = 160;
 				points = 300;
 				makeGraphic(48, 64);
+				
+				loadGraphic(AssetsRegistry.tallBuildingPNG, true, false, 48, 64);
 			}
 			else if (_buildingType == "car")
 			{
 				health = 160;
 				points = 500;
 				makeGraphic(32, 16);
+				
+				loadGraphic(AssetsRegistry.carPNG, true, false, 32, 16);
 			}
 			
 			if (_upOrDown == UP)
@@ -66,6 +72,11 @@ package units
 			{
 				angle = 180;
 			}
+			
+			addAnimation("intact", [0]);
+			addAnimation("destroyed", [1]);
+			
+			play("intact");
 		}
 		
 		override public function kill():void
@@ -87,7 +98,12 @@ package units
 				(watermelons.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), textGroup, "watermelon");
 			}
 			
-			super.kill();
+			play("destroyed");
+			
+			active = false;
+			alive = false;
+			solid = false;
+			visible = true;
 		}
 		
 	}

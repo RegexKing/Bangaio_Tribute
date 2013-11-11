@@ -213,7 +213,7 @@ package units
 					
 			}
 				
-			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= 1)
+			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= 50)
 			{
 				overdriveCharges -= 50;
 				
@@ -395,7 +395,7 @@ package units
 			
 			for each (var target:FlxSprite in targets)
 			{
-				if (target != null && target.exists && target.onScreen())
+				if (target != null && target.active && target.onScreen())
 				{
 					closestTargets.push(target);
 				}

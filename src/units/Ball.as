@@ -19,12 +19,12 @@ package units
 			
 			if (_color == "green")
 			{
-				makeGraphic(16, 16, 0xff009900);
+				loadGraphic(AssetsRegistry.greenBallPNG);
 			}
 			
 			else if (_color == "purple")
 			{
-				makeGraphic(16, 16, 0xff9933CC);
+				loadGraphic(AssetsRegistry.purpleBallPNG);
 			}
 			
 		}

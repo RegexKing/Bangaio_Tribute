@@ -128,12 +128,12 @@ package
 			add(bulletTrails);
 			add(bg);
 			add(map);
-			add(items);
 			add(collideableUnits);
-			add(explosions);
-			add(particleEmitters);
 			add(bullets);
 			add(immovableObstacles);
+			add(items);
+			add(particleEmitters);
+			add(explosions);
 			add(hudGroup);
 			
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);

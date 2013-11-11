@@ -15,6 +15,21 @@ package
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
 		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;
 		
+		
+		//obstacles
+		[Embed(source = "../assets/sprites/blueDiamond.png")] public static var blueDiamondPNG:Class;
+		[Embed(source = "../assets/sprites/greenBall.png")] public static var greenBallPNG:Class;
+		[Embed(source = "../assets/sprites/purpleBall.png")] public static var purpleBallPNG:Class;
+		[Embed(source = "../assets/sprites/greenBox.png")] public static var greenBoxPNG:Class;
+		[Embed(source = "../assets/sprites/blueBox.png")] public static var blueBoxPNG:Class;
+		
+		//buildings
+		[Embed(source = "../assets/sprites/house.png")] public static var housePNG:Class;
+		[Embed(source = "../assets/sprites/wideBuilding.png")] public static var wideBuildingPNG:Class;
+		[Embed(source = "../assets/sprites/tallBuilding.png")] public static var tallBuildingPNG:Class;
+		[Embed(source = "../assets/sprites/car.png")] public static var carPNG:Class;
+		
+		
 		//Fruit sprites
 		[Embed(source = "../assets/sprites/apple.png")] public static var applePNG:Class;
 		[Embed(source = "../assets/sprites/orange.png")] public static var orangePNG:Class;

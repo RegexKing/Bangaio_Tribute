@@ -17,7 +17,7 @@ package units
 			points = 10;
 			health = 10;
 			
-			makeGraphic(16, 16, 0xff0000FF);
+			loadGraphic(AssetsRegistry.blueDiamondPNG);
 		}
 		
 	}
