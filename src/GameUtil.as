@@ -98,6 +98,12 @@ package
 			return FlxMath.atan2(vY, vX) * 180 / Math.PI;
 		}
 		
+		static public function shakeCam():void
+		{
+			
+			FlxG.camera.shake(Math.random() / 500, .2);
+		}
+		
 		
 		public static const TIME_DELTA:Number = 0.05;
 		public static const RAD:Number = 57.2957795;

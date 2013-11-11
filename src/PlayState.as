@@ -6,11 +6,13 @@ package
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FX.StarfieldFX;
 	import units.BlueDiamond;
+	import units.Building;
 	import units.Player;
 	import util.BulletTrailsContainer;
 	import items.Item;
 	import util.ZoomCamera;
 	import weapons.BounceBullet;
+	import weapons.HomingBullet;
 	 
 	public class PlayState extends FlxState
 	{
@@ -157,15 +159,30 @@ package
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
 		{
-			
-			if ((unit as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
-			bullet.kill();
+			if ((bullet as FlxSprite).onScreen())
+			{
+				unit.hurt((bullet as Bullet).dealDamage());
+				bullet.kill();
+				
+				if (bullet is BounceBullet || bullet is HomingBullet)
+				{
+					GameUtil.shakeCam();
+				}
+			}
 		}
 		
 		public function damageImmoveableObject(unit:FlxObject, bullet:FlxObject):void
 		{
-			if ((unit as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
-			if (!(unit is BlueDiamond)) bullet.kill();
+			if ((bullet as FlxSprite).onScreen())
+			{
+				unit.hurt((bullet as Bullet).dealDamage());
+				if (!(unit is BlueDiamond)) bullet.kill();
+				
+				if (bullet is BounceBullet || bullet is HomingBullet)
+				{
+					GameUtil.shakeCam();
+				}
+			}
 		}
 		
 		public function pickupItem(unit:FlxObject, item:FlxObject):void
