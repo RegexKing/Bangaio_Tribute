@@ -29,7 +29,7 @@ package units
 			health = 160;
 			points = 500;
 			
-			makeGraphic(32, 32, 0xffFF00B6);
+			loadGraphic(AssetsRegistry.flakPNG);
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(0);

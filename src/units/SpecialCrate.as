@@ -25,12 +25,12 @@ package units
 			
 			if (crateType == "fullLife")
 			{
-				makeGraphic(32, 32, 0xff7DB6B1);
+				loadGraphic(AssetsRegistry.fullLifeCratePNG);
 			}
 			
 			else if (crateType == "invinceable")
 			{
-				makeGraphic(32, 32, 0xff7DB6B1);
+				loadGraphic(AssetsRegistry.invinceableCratePNG);
 			}
 		}
 		

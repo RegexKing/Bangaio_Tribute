@@ -24,7 +24,7 @@ package units
 			health = 40;
 			points = 100;
 			
-			makeGraphic(32, 32, 0xff00A1D7);
+			loadGraphic(AssetsRegistry.turretPNG);
 			
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);

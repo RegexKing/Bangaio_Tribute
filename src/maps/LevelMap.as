@@ -55,6 +55,12 @@ package maps
 				this.loadMap(new AssetsRegistry.level_1CSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
 				spriteMap = new AssetsRegistry.level_1_SpritesCSV;
 			}
+			
+			else if (_level == 2)  
+			{
+				this.loadMap(new AssetsRegistry.level_2CSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
+				spriteMap = new AssetsRegistry.level_2_SpritesCSV;
+			}
 		}
 		
 		override public function destroy():void

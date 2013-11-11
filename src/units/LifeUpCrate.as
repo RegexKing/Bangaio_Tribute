@@ -35,7 +35,7 @@ package units
 				
 				lifeUps = _lifeUps;
 				
-				makeGraphic(32, 32, 0xff7DB6B1);
+				loadGraphic(AssetsRegistry.lifeUpCratePNG);
 			}
 		}
 		

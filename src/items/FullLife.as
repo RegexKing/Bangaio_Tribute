@@ -19,7 +19,7 @@ package items
 			
 			immovable = true;
 			
-			makeGraphic(32, 32, 0xffC688C6);
+			loadGraphic(AssetsRegistry.fullLifePNG);
 			
 			flickerTimer = new FlxDelay(10000);
 			killTimer = new FlxDelay(5000);

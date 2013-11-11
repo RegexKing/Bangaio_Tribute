@@ -42,7 +42,7 @@ package items
 			{	
 				used = true;
 				
-				makeGraphic(32, 32, 0xffC688C6);
+				loadGraphic(AssetsRegistry.lifeUpPNG);
 			}
 			
 			flickerTimer.start();

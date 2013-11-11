@@ -50,7 +50,6 @@ package units
 			{
 				health = 160;
 				points = 300;
-				makeGraphic(48, 64);
 				
 				loadGraphic(AssetsRegistry.tallBuildingPNG, true, false, 48, 64);
 			}
@@ -58,7 +57,6 @@ package units
 			{
 				health = 160;
 				points = 500;
-				makeGraphic(32, 16);
 				
 				loadGraphic(AssetsRegistry.carPNG, true, false, 32, 16);
 			}
