@@ -23,6 +23,7 @@ package units
 		
 		protected var directionAngle:Number = 0;
 		protected var inSight:Boolean = false;
+		private var alert:Boolean = false;
 		
 		protected var gun:FlxWeaponExt;
 		
@@ -48,18 +49,30 @@ package units
 		{
 			super.update();
 			
-			if (FlxG.keys.justPressed("F")) this.active = !this.active;
-			
-			trace(this.active);
-			
-			// find the angle between enemy and player
-			directionAngle = FlxVelocity.angleBetween(this, player, true);
-			// find which way enemy should face
-			this.facing = GameUtil.findFacing(directionAngle);
-			// find where the enemy should aim
-			aim = GameUtil.findDirection(directionAngle);
-			
 			inSight = map.ray(this.getMidpoint(), player.getMidpoint(), null, 1);
+			
+			if (inSight)
+			{
+				alert = true;
+				
+				// find the angle between enemy and player
+				directionAngle = FlxVelocity.angleBetween(this, player, true);
+
+				// find where the enemy should aim
+				aim = GameUtil.findDirection(directionAngle);
+			}
+			
+			if (alert)
+			{
+				// find which way enemy should face
+				this.facing = GameUtil.findFacing(directionAngle);
+			}
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
+			alert = false;
 		}
 		
 		override public function destroy():void

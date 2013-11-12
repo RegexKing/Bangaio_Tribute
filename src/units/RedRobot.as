@@ -141,6 +141,14 @@ package units
 			}
 		}
 		
+		override public function revive():void
+		{
+			super.revive();
+			
+			aware = false;
+			moving = false;
+		}
+		
 	}
 
 }
