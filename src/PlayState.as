@@ -162,7 +162,7 @@ package
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
 			FlxG.overlap(bulletDamageableObstacles, bullets, damageImmoveableObject);
-			FlxG.overlap(explosionVictims, explosionAreas);
+			FlxG.overlap(explosionVictims, explosionAreas, explodeObject);
 		}
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
@@ -198,6 +198,11 @@ package
 					GameUtil.shakeCam();
 				}
 			}
+		}
+		
+		public function explodeObject(unit:FlxObject, explosion:FlxObject):void
+		{
+			unit.hurt(1);
 		}
 		
 		public function pickupItem(unit:FlxObject, item:FlxObject):void

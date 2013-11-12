@@ -1,6 +1,7 @@
 package units 
 {
 	import effects.BlueExplosion;
+	import effects.SmallRedExplosion;
 	import hud.ScrollingText;
 	import org.flixel.*;
 	/**
@@ -17,6 +18,7 @@ package units
 		protected var points:uint = 0;
 		protected var scoreable:Boolean = true;
 		protected var enableExplosion:Boolean = true;
+		protected var isBomb:Boolean = false;
 		
 		public function Scoreable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup = null) 
 		{
@@ -68,6 +70,21 @@ package units
 			}
 			
 			if (enableExplosion && blueExplosions)
+			{
+				explode();
+			}
+			
+		}
+		
+		protected function explode():void
+		{
+			
+			if (isBomb)
+			{
+				(blueExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(this.getMidpoint());
+			}
+			
+			else 
 			{
 				(blueExplosions.recycle(BlueExplosion) as BlueExplosion).startAt(this.getMidpoint());
 			}

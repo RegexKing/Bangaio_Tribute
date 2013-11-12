@@ -8,7 +8,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class SolidBlock extends Scoreable implements GateChain
+	public class SolidBlock extends Scoreable
 	{
 		
 		private var map:LevelMap;
@@ -35,9 +35,9 @@ package units
 			map.setTile(xCoord, yCoord, 6);
 		}
 		
-		public function activateGate():void
+		override public function kill():void
 		{
-			kill();
+			super.kill();
 			
 			map.setTile(xMapCoord, yMapCoord, 0);
 		}

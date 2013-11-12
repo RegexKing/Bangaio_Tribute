@@ -7,21 +7,17 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class SmallBomb extends Scoreable implements GateChain
+	public class SmallBomb extends Scoreable
 	{
-		
-		private var above:GateChain;
-		private var below:GateChain;
-		private var left:GateChain;
-		private var right:GateChain;
 		
 		private var explodeDelay:FlxDelay;
 		
-		public function SmallBomb(_player:Player, _textGroup:FlxGroup) 
+		public function SmallBomb(_player:Player, _smallAreaExplosions:FlxGroup, _textGroup:FlxGroup) 
 		{
-			super(_player,_textGroup);
+			super(_player,_textGroup, _smallAreaExplosions);
 		
 			immovable = true;
+			isBomb = true;
 			
 			health = 10;
 			points = 20;
@@ -33,27 +29,14 @@ package units
 			
 		}
 		
-		public function activateGate():void
+		public function activateBomb():void
 		{
 			explodeDelay.start();
-		}
-		
-		public function setGate(gateChains:Array):void
-		{
-			for each (var gate:FlxSprite in gateChains)
-			{
-				if (gate.x == this.x - 16) left = (gate as GateChain);
-				else if (gate.x == this.x + 16) right = (gate as GateChain);
-				else if (gate.y == this.y - 16) above = (gate as GateChain);
-				else if (gate.y == this.y + 16) below = (gate as GateChain);
-			}
 		}
 		
 		override public function kill():void
 		{
 			super.kill();
-			
-			activateSurroundingGates();
 		}
 		
 		override public function destroy():void
@@ -66,15 +49,6 @@ package units
 				explodeDelay = null;
 			}
 		}
-		
-		private function activateSurroundingGates():void
-		{
-			if (above) above.activateGate();
-			if (below) below.activateGate();
-			if (left) left.activateGate();
-			if (right) right.activateGate();
-		}
-		
 	}
 
 }

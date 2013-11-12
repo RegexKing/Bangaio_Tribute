@@ -32,7 +32,7 @@ package effects
 		{
 			super.update();
 			
-			if (_curFrame == 21)
+			if (_curFrame == 20)
 			{
 				kill();
 			}

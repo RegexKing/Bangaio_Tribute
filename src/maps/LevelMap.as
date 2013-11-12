@@ -39,13 +39,11 @@ package maps
 		private var watermelons:FlxGroup;
 		private var lifeUpCrates:FlxGroup;
 		private var lifeUps:FlxGroup;
-		private var smallRedExplosions:FlxGroup;
 		private var blueExplosions:FlxGroup;
 		private var smallExplosionAreas:FlxGroup;
 		private var largeExplosionAreas:FlxGroup;
 		
 		private var spriteMap:String;
-		private var gateChains:Array;
 		private var targets:Array;
 		
 		public function LevelMap(_level:uint = 1) 
@@ -67,7 +65,6 @@ package maps
 		{	
 			super.destroy();
 			
-			if (gateChains) gateChains = null;
 		}
 		
 		public function InitializeLevel(_bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _player:Player, _enemies:FlxGroup, 
@@ -86,7 +83,6 @@ package maps
 			bulletDamageableObstacles = _bulletDamageableObstacles;
 			
 			targets = new Array();
-			gateChains = new Array();
 			blueBoxes = new FlxGroup();
 			playerBulletImpassable = new FlxGroup();
 			
@@ -125,15 +121,6 @@ package maps
 			parseSpriteMap();
 			
 			player.targetsArray = targets;
-			setGates();
-		}
-		
-		private function setGates():void
-		{
-			for each (var gate:FlxSprite in gateChains)
-			{
-				if (gate is SmallBomb) (gate as SmallBomb).setGate(gateChains);
-			}
 		}
 		
 		private function parseSpriteMap():void
@@ -256,13 +243,12 @@ package maps
 			
 			else if (id == 13)
 			{
-				var smallBomb:SmallBomb = new SmallBomb(player, textGroup);
+				var smallBomb:SmallBomb = new SmallBomb(player, smallExplosionAreas, textGroup);
 				smallBomb.x = X;
 				smallBomb.y = Y;
 				
 				immovableObstacles.add(smallBomb);
 				immovableObstaclesB.add(smallBomb);
-				gateChains.push(smallBomb);
 			}
 			
 			else if (id == 14)
@@ -417,7 +403,6 @@ package maps
 				solidBlock.y = Y;
 				
 				immovableObstacles.add(solidBlock);
-				gateChains.push(solidBlock);
 			}
 			
 			else if (id == 31)
