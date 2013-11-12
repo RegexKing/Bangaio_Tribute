@@ -19,7 +19,7 @@ package units
 			
 		}
 		
-		public function setPos(X:int, Y:int, _player:Player, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void
+		public function setPos(X:int, Y:int, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void
 		{
 			revive();
 			
@@ -30,6 +30,7 @@ package units
 			{
 				player = _player;
 				textGroup = _textGroup;
+				blueExplosions = _blueExplosions;
 				_bulletDamageableObjects.add(this);
 				_collideableUnits.add(this);
 				_targets.push(this);

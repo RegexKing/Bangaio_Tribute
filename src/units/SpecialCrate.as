@@ -13,9 +13,9 @@ package units
 		private var itemsGroup:FlxGroup;
 		private var crateType:String;
 		
-		public function SpecialCrate(_player:Player, _textGroup:FlxGroup,  _itemsGroup:FlxGroup, _crateType:String) 
+		public function SpecialCrate(_player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup,  _itemsGroup:FlxGroup, _crateType:String) 
 		{
-			super(_player,_textGroup, null);
+			super(_player,_textGroup, _blueExplosions);
 			
 			health = 10;
 			points = 100;

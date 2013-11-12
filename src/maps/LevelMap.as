@@ -170,13 +170,13 @@ package maps
 			
 			else if (id == 2)
 			{
-				(lifeUpCrates.recycle(LifeUpCrate) as LifeUpCrate).setPos(X, Y, player, textGroup, bulletDamageableObstacles, collideableUnits, targets, lifeUps);
+				(lifeUpCrates.recycle(LifeUpCrate) as LifeUpCrate).setPos(X, Y, player, blueExplosions, textGroup, bulletDamageableObstacles, collideableUnits, targets, lifeUps);
 			}
 			
 			else if (id == 3)
 			{
 				
-				var fullLifeCrate:SpecialCrate = new SpecialCrate(player, textGroup, itemsGroup, "fullLife");
+				var fullLifeCrate:SpecialCrate = new SpecialCrate(player, blueExplosions, textGroup, itemsGroup, "fullLife");
 				fullLifeCrate.x = X;
 				fullLifeCrate.y = Y;
 				
@@ -189,7 +189,7 @@ package maps
 			else if (id == 4)
 			{
 				
-				var invinceableCrate:SpecialCrate = new SpecialCrate(player, textGroup, itemsGroup, "invinceable");
+				var invinceableCrate:SpecialCrate = new SpecialCrate(player, blueExplosions, textGroup, itemsGroup, "invinceable");
 				invinceableCrate.x = X;
 				invinceableCrate.y = Y;
 				
