@@ -18,7 +18,7 @@ package units
 		protected var points:uint = 0;
 		protected var scoreable:Boolean = true;
 		protected var enableExplosion:Boolean = true;
-		protected var isBomb:Boolean = false;
+		protected var bombType:String = null;
 		
 		public function Scoreable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup = null) 
 		{
@@ -79,7 +79,7 @@ package units
 		protected function explode():void
 		{
 			
-			if (isBomb)
+			if (bombType == "smallRed")
 			{
 				(blueExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(this.getMidpoint());
 			}

@@ -34,6 +34,7 @@ package effects
 			
 			if (_curFrame == 20)
 			{
+				_curFrame = 0;
 				kill();
 			}
 		}
