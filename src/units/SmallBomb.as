@@ -21,20 +21,6 @@ package units
 			points = 20;
 			
 			makeGraphic(16, 16, 0xffFF0000);
-			
-			
-			
-		}
-	
-		override public function kill():void
-		{
-			super.kill();
-		}
-		
-		
-		override public function destroy():void
-		{
-			super.destroy();
 		}
 	}
 

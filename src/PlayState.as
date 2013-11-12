@@ -74,15 +74,14 @@ package
 			
 			enemies = new FlxGroup();
 			playerBullets = new FlxGroup(2);
-			hudGroup = new FlxGroup();
+			hudGroup = new FlxGroup(6);
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
 			particleEmitters = new FlxGroup(2);
 			textGroup = new FlxGroup();
-			explosions = new FlxGroup();
+			explosions = new FlxGroup(5);
 			smallRedExplosions = new FlxGroup();
 			
-			// TODO: LevelMap takes an int argument to decide which level data to load
 			map = new LevelMap(GameData.level);
 			
 			FlxG.worldBounds = map.getBounds();
@@ -127,6 +126,7 @@ package
 			hudGroup.add(new CountdownTimer());
 			hudGroup.add(player.score);
 			hudGroup.add(player.overDriveHud);
+			
 			explosions.add(explosionAreas);
 			explosions.add(smallRedExplosions);
 			
