@@ -10,7 +10,7 @@ package
 	 * @author Frank Fazio
 	 */
 	
-	[SWF(width="720", height="480", backgroundColor="#000000")]
+	[SWF(width="640", height="512", backgroundColor="#000000")]
 	[Frame(factoryClass = "Preloader")]
 	
 	public class Main extends FlxGame 
@@ -19,7 +19,7 @@ package
 		public function Main():void 
 		{
 			
-			super(720, 480, PlayState, 1, 60, 60, true);
+			super(640, 512, PlayState, 1, 60, 60, true);
 			
 			forceDebugger = true;
 		}
