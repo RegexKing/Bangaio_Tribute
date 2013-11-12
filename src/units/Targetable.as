@@ -8,9 +8,9 @@ package units
 	public class Targetable extends Scoreable
 	{
 		
-		public function Targetable(_player:Player, _textGroup:FlxGroup) 
+		public function Targetable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup) 
 		{
-			super(_player, _textGroup);
+			super(_player, _textGroup,  _blueExplosions);
 		}
 		
 	}

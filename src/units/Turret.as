@@ -13,9 +13,9 @@ package units
 		
 		private var apples:FlxGroup;
 		
-		public function Turret(_enemyBullets:FlxGroup, _player:Player, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _bulletType:String = "normal", _orientation:uint = FLOOR) 
+		public function Turret(_enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _bulletType:String = "normal", _orientation:uint = FLOOR) 
 		{
-			super(_enemyBullets, _player, _map, _bulletTrails, _textGroup, _bulletType);
+			super(_enemyBullets, _player,  _blueExplosions, _map, _bulletTrails, _textGroup, _bulletType);
 			
 			apples = _apples;
 			

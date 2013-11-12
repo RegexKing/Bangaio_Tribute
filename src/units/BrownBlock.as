@@ -14,9 +14,9 @@ package units
 		
 		private var oranges:FlxGroup;
 		
-		public function BrownBlock(X:int, Y:int, _player:Player, _textGroup:FlxGroup, _oranges:FlxGroup) 
+		public function BrownBlock(X:int, Y:int, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup) 
 		{
-			super(_player, _textGroup);
+			super(_player, _textGroup, _blueExplosions);
 			
 			oranges = _oranges;
 			

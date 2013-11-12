@@ -15,9 +15,9 @@ package units
 		private var xMapCoord:int = 0;
 		private var yMapCoord:int = 0;
 		
-		public function SolidBlock(_map:LevelMap, _player:Player, _textGroup:FlxGroup, xCoord:int, yCoord:int) 
+		public function SolidBlock(_map:LevelMap, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, xCoord:int, yCoord:int) 
 		{
-			super(_player,_textGroup);
+			super(_player,_textGroup,  _blueExplosions);
 			
 			immovable = true;
 			

@@ -12,7 +12,7 @@ package units
 		
 		public function LifeUpCrate() 
 		{
-			super(null, null);
+			super(null, null, null);
 			
 			health = 10;
 			points = 100;

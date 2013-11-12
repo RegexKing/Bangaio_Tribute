@@ -23,6 +23,7 @@ package items
 			super(null, null);
 			
 			immovable = true;
+			enableExplosion = false;
 			
 			points = 10;
 			

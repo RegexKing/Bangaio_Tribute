@@ -1,5 +1,6 @@
 package  
 {	
+	import effects.SmallRedExplosion;
 	import hud.CountdownTimer;
 	import maps.LevelMap;
 	import org.flixel.*;
@@ -36,6 +37,7 @@ package
 		private var textGroup:FlxGroup;
 		private var particleEmitters:FlxGroup;
 		private var explosions:FlxGroup;
+		private var smallRedExplosions:FlxGroup;
 		
 		private var zoomCam:ZoomCamera;
 		private var map:LevelMap;
@@ -78,6 +80,7 @@ package
 			particleEmitters = new FlxGroup(2);
 			textGroup = new FlxGroup();
 			explosions = new FlxGroup();
+			smallRedExplosions = new FlxGroup();
 			
 			// TODO: LevelMap takes an int argument to decide which level data to load
 			map = new LevelMap(GameData.level);
@@ -125,6 +128,7 @@ package
 			hudGroup.add(player.score);
 			hudGroup.add(player.overDriveHud);
 			explosions.add(explosionAreas);
+			explosions.add(smallRedExplosions);
 			
 			//add to state
 			add(bulletTrails);
@@ -166,7 +170,9 @@ package
 			if ((bullet as FlxSprite).onScreen())
 			{
 				unit.hurt((bullet as Bullet).dealDamage());
+				
 				bullet.kill();
+				(smallRedExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(bullet.getMidpoint());
 				
 				if (bullet is BounceBullet || bullet is HomingBullet)
 				{
@@ -180,7 +186,12 @@ package
 			if ((bullet as FlxSprite).onScreen())
 			{
 				unit.hurt((bullet as Bullet).dealDamage());
-				if (!(unit is BlueDiamond)) bullet.kill();
+				
+				if (!(unit is BlueDiamond)) 
+				{
+					bullet.kill();
+					(smallRedExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(bullet.getMidpoint());
+				}
 				
 				if (bullet is BounceBullet || bullet is HomingBullet)
 				{

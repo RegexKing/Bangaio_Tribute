@@ -1,5 +1,6 @@
 package units 
 {
+	import effects.BlueExplosion;
 	import hud.ScrollingText;
 	import items.Fruit;
 	import org.flixel.FlxGroup;
@@ -17,9 +18,9 @@ package units
 		private var pineapples:FlxGroup;
 		private var watermelons:FlxGroup;
 		
-		public function Building(_player:Player, _buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
+		public function Building(_player:Player, _blueExplosions:FlxGroup, _buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
 		{
-			super(_player,_textGroup);
+			super(_player,_textGroup, _blueExplosions);
 			
 			buildingType = _buildingType;
 			
@@ -79,6 +80,7 @@ package units
 		
 		override public function kill():void
 		{
+			
 			if (buildingType == "house")
 			{
 				(oranges.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "orange");
@@ -102,6 +104,9 @@ package units
 			alive = false;
 			solid = false;
 			visible = true;
+			
+			//since kill is overwritten
+			(blueExplosions.recycle(BlueExplosion) as BlueExplosion).startAt(this.getMidpoint());
 		}
 		
 	}

@@ -7,10 +7,15 @@ package
 	public class AssetsRegistry 
 	{
 		//-- Sprites --//
+		
+		//effects
+		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;
+		[Embed(source = "../assets/sprites/redExplosion.png")] public static var redExplosionPNG:Class;
+		[Embed(source = "../assets/sprites/blueExplosion.png")] public static var blueExplosionPNG:Class;
+		
 		[Embed(source = "../assets/sprites/bounce.png")] public static var bouncePNG:Class;
 		[Embed(source = "../assets/sprites/missle.png")] public static var misslePNG:Class;
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
-		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;
 		
 		[Embed(source = "../assets/sprites/player.png")] public static var playerPNG:Class;
 		
