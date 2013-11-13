@@ -41,6 +41,7 @@ package maps
 		private var lifeUps:FlxGroup;
 		private var blueExplosions:FlxGroup;
 		private var smallExplosionAreas:FlxGroup;
+		private var mediumExplosionAreas:FlxGroup;
 		private var largeExplosionAreas:FlxGroup;
 		
 		private var spriteMap:String;
@@ -100,6 +101,7 @@ package maps
 			blueExplosions = new FlxGroup();
 			//explosion areas
 			smallExplosionAreas = new FlxGroup();
+			mediumExplosionAreas = new FlxGroup();
 			largeExplosionAreas = new FlxGroup();
 			//==========================
 			
@@ -113,9 +115,11 @@ package maps
 			
 			_explosions.add(blueExplosions);
 			_explosions.add(smallExplosionAreas);
+			_explosions.add(mediumExplosionAreas);
 			_explosions.add(largeExplosionAreas);
 			
 			_explsionAreas.add(smallExplosionAreas);
+			_explsionAreas.add(mediumExplosionAreas);
 			_explsionAreas.add(largeExplosionAreas);
 			
 			parseSpriteMap();

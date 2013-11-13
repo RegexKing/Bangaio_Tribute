@@ -22,7 +22,7 @@ package units
 		private var weaponType:Boolean = Boolean(HOMING);
 		
 		// If changing this, change number of baked rotations for bullets
-		private const OVERDRIVE_BONUS_MAX:int = 300;
+		private const OVERDRIVE_BONUS_MAX:int = 200;
 		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;

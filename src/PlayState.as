@@ -62,7 +62,7 @@ package
 			
 			mapCollideable = new FlxGroup(3);
 			
-			explosionAreas = new FlxGroup(2);
+			explosionAreas = new FlxGroup(3);
 			bulletDamageableObstacles = new FlxGroup();
 			explosionVictims = new FlxGroup(2);
 			enemyObjects = new FlxGroup(2);
@@ -77,9 +77,9 @@ package
 			hudGroup = new FlxGroup(6);
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
-			particleEmitters = new FlxGroup(2);
+			particleEmitters = new FlxGroup(3);
 			textGroup = new FlxGroup();
-			explosions = new FlxGroup(5);
+			explosions = new FlxGroup(6);
 			smallRedExplosions = new FlxGroup();
 			
 			map = new LevelMap(GameData.level);
