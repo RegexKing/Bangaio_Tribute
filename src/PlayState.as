@@ -1,6 +1,6 @@
 package  
 {	
-	import effects.SmallRedExplosion;
+	import effects.RedExplosion;
 	import hud.CountdownTimer;
 	import maps.LevelMap;
 	import org.flixel.*;
@@ -172,7 +172,7 @@ package
 				unit.hurt((bullet as Bullet).dealDamage());
 				
 				bullet.kill();
-				(smallRedExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(bullet.getMidpoint());
+				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 				
 				if (bullet is BounceBullet || bullet is HomingBullet)
 				{
@@ -190,7 +190,7 @@ package
 				if (!(unit is BlueDiamond)) 
 				{
 					bullet.kill();
-					(smallRedExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(bullet.getMidpoint());
+					(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 				}
 				
 				if (bullet is BounceBullet || bullet is HomingBullet)

@@ -11,6 +11,8 @@ package
 		//effects
 		[Embed(source = "../assets/sprites/bulletShell.png")] public static var bulletShellPNG:Class;
 		[Embed(source = "../assets/sprites/redExplosion.png")] public static var redExplosionPNG:Class;
+		[Embed(source = "../assets/sprites/mediumRedExplosion.png")] public static var mediumRedExplosionPNG:Class;
+		[Embed(source = "../assets/sprites/largeRedExplosion.png")] public static var largeRedExplosionPNG:Class;
 		[Embed(source = "../assets/sprites/blueExplosion.png")] public static var blueExplosionPNG:Class;
 		
 		[Embed(source = "../assets/sprites/bounce.png")] public static var bouncePNG:Class;

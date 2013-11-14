@@ -13,7 +13,7 @@ package weapons
 	 */
 	public class BounceBullet extends BulletExt
 	{
-		private var target:FlxSprite;
+		//private var target:FlxSprite;
 		
 		// helper variable for slope collisions
 		public var parity:int = -1;
@@ -38,7 +38,7 @@ package weapons
 		
 		override public function getBullet(_weapon:FlxWeaponExt, _aimAngle:int, _bulletTrails:BulletTrailsContainer, _player:Player = null):BulletExt
 		{
-			target = _player.findClosestTarget();
+			//target = _player.findClosestTarget();
 			
 			return super.getBullet(_weapon, _aimAngle, _bulletTrails, _player);
 		}
@@ -49,6 +49,7 @@ package weapons
 			
 			if (justTouched(ANY))
 			{
+				/*
 				if (target != null && target.exists && player.bulletLOS(this, target))
 				{
 					var angleBetween:Number = FlxVelocity.angleBetween(this, target, true);
@@ -59,7 +60,7 @@ package weapons
 				{
 					target = player.findClosestTarget();
 				}
-				
+				*/
 				
 				this.angle = GameUtil.findAngleByVelocity(this.velocity.x, this.velocity.y);
 				

@@ -1,7 +1,7 @@
 package units 
 {
 	import effects.BlueExplosion;
-	import effects.SmallRedExplosion;
+	import effects.RedExplosion;
 	import hud.ScrollingText;
 	import org.flixel.*;
 	/**
@@ -81,7 +81,17 @@ package units
 			
 			if (bombType == "smallRed")
 			{
-				(blueExplosions.recycle(SmallRedExplosion) as SmallRedExplosion).startAt(this.getMidpoint());
+				(blueExplosions.recycle(RedExplosion) as RedExplosion).startAt(this.getMidpoint(), "small" );
+			}
+			
+			else if (bombType == "mediumRed")
+			{
+				(blueExplosions.recycle(RedExplosion) as RedExplosion).startAt(this.getMidpoint(), "medium" );
+			}
+			
+			else if (bombType == "largeRed")
+			{
+				(blueExplosions.recycle(RedExplosion) as RedExplosion).startAt(this.getMidpoint(), "large" );
 			}
 			
 			else 

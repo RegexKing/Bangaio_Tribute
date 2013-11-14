@@ -257,22 +257,23 @@ package maps
 			
 			else if (id == 14)
 			{
+				var smallPowerBomb:SmallPowerBomb = new SmallPowerBomb(player, largeExplosionAreas, textGroup);
+				smallPowerBomb.x = X;
+				smallPowerBomb.y = Y;
 				
+				immovableObstacles.add(smallPowerBomb);
+				immovableObstaclesB.add(smallPowerBomb);
 			}
 			
 			else if (id == 15)
 			{
+				var bigBomb:BigBomb = new BigBomb(player, mediumExplosionAreas, textGroup, oranges);
+				bigBomb.x = X;
+				bigBomb.y = Y;
 				
-			}
-			
-			else if (id == 16)
-			{
-				
-			}
-			
-			else if (id == 17)
-			{
-				
+				collideableUnits.add(bigBomb);
+				bulletDamageableObstacles.add(bigBomb);
+				targets.push(bigBomb);
 			}
 			
 			else if (id == 18)
