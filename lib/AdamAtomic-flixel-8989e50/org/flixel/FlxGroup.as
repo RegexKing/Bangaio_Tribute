@@ -1,5 +1,6 @@
 package org.flixel
 {
+	import weapons.E_Laser;
 	/**
 	 * This is an organizational class that can update and render a bunch of <code>FlxBasic</code>s.
 	 * NOTE: Although <code>FlxGroup</code> extends <code>FlxBasic</code>, it will not automatically
@@ -518,7 +519,7 @@ package org.flixel
 				{
 					if(count < 0)
 						count = 0;
-  					if(basic.exists && (basic as FlxSprite).onScreen())
+  					if(basic.exists && !(basic is E_Laser) && (basic as FlxSprite).onScreen())
 						count++;
 				}
 			}
