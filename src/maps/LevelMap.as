@@ -14,6 +14,8 @@ package maps
 	{
 		public static const TILE_SIZE:int = 16;
 		
+		public var doors:FlxGroup;
+		
 		public var blueBoxes:FlxGroup;
 		
 		//Green boxes and small solid blocks
@@ -86,6 +88,7 @@ package maps
 			targets = new Array();
 			blueBoxes = new FlxGroup();
 			playerBulletImpassable = new FlxGroup();
+			doors = new FlxGroup();
 			
 			//recycleable groups//=====
 			//items
@@ -412,23 +415,28 @@ package maps
 			
 			else if (id == 31)
 			{
-				
+				var doorRl:RedDoor = new RedDoor(X, Y, this, player, LEFT);
+				doors.add(doorRl);
 			}
 			
 			else if (id == 32)
 			{
-				
+				var doorRr:RedDoor = new RedDoor(X, Y, this, player, RIGHT);
+				doors.add(doorRr);
 			}
 			
 			else if (id == 33)
 			{
-				
+				var doorRc:RedDoor = new RedDoor(X, Y, this, player, CEILING);
+				doors.add(doorRc);
 			}
 			
 			else if (id == 34)
 			{
-				
+				var doorRf:RedDoor = new RedDoor(X, Y, this, player, FLOOR);
+				doors.add(doorRf);
 			}
+			
 			
 			else if (id == 35)
 			{

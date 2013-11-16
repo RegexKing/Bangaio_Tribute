@@ -134,10 +134,12 @@ package
 			//add to state
 			add(bulletTrails);
 			add(bg);
+			add(map.doors);
 			add(map);
 			add(collideableUnits);
 			add(bullets);
 			add(immovableObstacles);
+			
 			add(items);
 			add(particleEmitters);
 			add(explosions);
