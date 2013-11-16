@@ -134,9 +134,9 @@ package
 			//add to state
 			add(bulletTrails);
 			add(bg);
-			add(map.doors);
 			add(map);
 			add(collideableUnits);
+			add(map.doors);
 			add(bullets);
 			add(immovableObstacles);
 			

@@ -21,6 +21,8 @@ package maps
 		{
 			super(X, Y);
 			
+			immovable = true;
+			
 			map = _map;
 			player = _player;
 			orientation = _orientation;
@@ -30,7 +32,7 @@ package maps
 			
 			if (orientation == LEFT)
 			{
-				makeGraphic(32, 80);
+				makeGraphic(32, 128);
 				
 				for (var i:int = 0; i < this.height/16; i++)
 				{
@@ -40,7 +42,7 @@ package maps
 			
 			else if (orientation == RIGHT)
 			{
-				makeGraphic(32, 80);
+				makeGraphic(32, 128);
 				
 				for (var j:int = 0; j < this.height/16; j++)
 				{
@@ -50,7 +52,7 @@ package maps
 			
 			else if (orientation == CEILING)
 			{
-				makeGraphic(80, 32);
+				makeGraphic(128, 32);
 				
 				for (var k:int = 0; k < this.width/16; k++)
 				{
@@ -60,7 +62,7 @@ package maps
 			
 			else if (orientation == FLOOR)
 			{
-				makeGraphic(80, 32);
+				makeGraphic(128, 32);
 				
 				for (var l:int = 0; l < this.width/16; l++)
 				{
@@ -72,6 +74,8 @@ package maps
 			sensor.y = this.y;
 			sensor.width = this.width;
 			sensor.height = this.height;
+			
+			openDoor();
 		}
 		
 		override public function update():void
@@ -107,6 +111,17 @@ package maps
 				if (orientation == LEFT || orientation == CEILING) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
+			
+			else
+			{
+				if (insideRect)
+				{
+					openDoor();
+				}
+				
+				if (orientation == RIGHT || orientation == FLOOR) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
+				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
+			}
 		}
 		
 		override public function destroy():void
@@ -126,8 +141,21 @@ package maps
 			}
 			
 			doorClosed = true;
+			
+			alpha = 1; //todo add close animation
 		}
 		
+		private function openDoor():void
+		{
+			for each (var point:FlxPoint in gates)
+			{
+				map.setTile(point.x, point.y, 0);
+			}
+			
+			doorClosed = false;
+			
+			alpha = 0.5; //todo add open animation
+		}
 	}
 
 }
