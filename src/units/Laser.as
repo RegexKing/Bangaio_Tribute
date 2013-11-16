@@ -26,7 +26,7 @@ package units
 			makeGraphic(16, 16);
 			
 			gun.setBulletSpeed(200);
-			gun.setFireRate(500);
+			gun.setFireRate(200);
 			
 			if (_orientation == FLOOR)
 			{
