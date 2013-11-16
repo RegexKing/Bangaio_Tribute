@@ -3,6 +3,7 @@ package units
 	import items.Fruit;
 	import maps.LevelMap;
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import util.BulletTrailsContainer;
 	/**
 	 * ...
@@ -53,6 +54,19 @@ package units
 		override public function update():void
 		{
 			super.update();
+			
+			inSight = map.ray(this.getMidpoint(), player.getMidpoint(), null, 1);
+			
+			if (inSight)
+			{
+				alert = true;
+				
+				// find the angle between enemy and player
+				directionAngle = FlxVelocity.angleBetween(this, player, true);
+
+				// find where the enemy should aim
+				aim = GameUtil.findDirection(directionAngle);
+			}
 			
 			if (inSight && onScreen())
 			{

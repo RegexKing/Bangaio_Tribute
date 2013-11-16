@@ -542,42 +542,74 @@ package maps
 			
 			else if (id == 47)
 			{
+				var lasercl:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, CEIL_LEFT);
+				lasercl.x = X;
+				lasercl.y = Y;
 				
+				enemies.add(lasercl);
 			}
 			
 			else if (id == 48)
 			{
+				var lasercr:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, CEIL_RIGHT);
+				lasercr.x = X;
+				lasercr.y = Y;
 				
+				enemies.add(lasercr);
 			}
 			
 			else if (id == 49)
 			{
+				var laserfl:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, FLOOR_LEFT);
+				laserfl.x = X;
+				laserfl.y = Y;
 				
+				enemies.add(laserfl);
 			}
 			
 			else if (id == 50)
 			{
+				var laserfr:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples,  FLOOR_RIGHT);
+				laserfr.x = X;
+				laserfr.y = Y;
 				
+				enemies.add(laserfr);
 			}
 			
 			else if (id == 51)
 			{
+				var laserl:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, LEFT);
+				laserl.x = X;
+				laserl.y = Y;
 				
+				enemies.add(laserl);
 			}
 			
 			else if (id == 52)
 			{
+				var laserr:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, RIGHT);
+				laserr.x = X;
+				laserr.y = Y;
 				
+				enemies.add(laserr);
 			}
 			
 			else if (id == 53)
 			{
+				var laserc:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, CEILING);
+				laserc.x = X;
+				laserc.y = Y;
 				
+				enemies.add(laserc);
 			}
 			
 			else if (id == 54)
 			{
+				var laserf:Laser = new Laser(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, FLOOR);
+				laserf.x = X;
+				laserf.y = Y;
 				
+				enemies.add(laserl);
 			}
 			
 			else if (id == 55)

@@ -23,7 +23,7 @@ package units
 		
 		protected var directionAngle:Number = 0;
 		protected var inSight:Boolean = false;
-		private var alert:Boolean = false;
+		protected var alert:Boolean = false;
 		
 		protected var gun:FlxWeaponExt;
 		
@@ -37,6 +37,7 @@ package units
 			// Guns
 			if (_bulletType == "normal") gun = new FlxWeaponExt(E_NormalBullet, "gun", _bulletTrails, this, player);
 			else if (_bulletType == "homing") gun = new FlxWeaponExt(E_HomingBullet, "gun", _bulletTrails, this, player);
+			else if (_bulletType == "laser") gun = new FlxWeaponExt(E_Laser, "gun", _bulletTrails, this, player);
 			else throw new Error("invalid bullet type");
 			
 			gun.setBulletBounds(FlxG.worldBounds);
@@ -48,25 +49,6 @@ package units
 		override public function update():void
 		{
 			super.update();
-			
-			inSight = map.ray(this.getMidpoint(), player.getMidpoint(), null, 1);
-			
-			if (inSight)
-			{
-				alert = true;
-				
-				// find the angle between enemy and player
-				directionAngle = FlxVelocity.angleBetween(this, player, true);
-
-				// find where the enemy should aim
-				aim = GameUtil.findDirection(directionAngle);
-			}
-			
-			if (alert)
-			{
-				// find which way enemy should face
-				this.facing = GameUtil.findFacing(directionAngle);
-			}
 		}
 		
 		override public function revive():void

@@ -51,6 +51,25 @@ package units
 			
 			super.update();
 			
+			inSight = map.ray(this.getMidpoint(), player.getMidpoint(), null, 1);
+			
+			if (inSight)
+			{
+				alert = true;
+				
+				// find the angle between enemy and player
+				directionAngle = FlxVelocity.angleBetween(this, player, true);
+
+				// find where the enemy should aim
+				aim = GameUtil.findDirection(directionAngle);
+			}
+			
+			if (alert)
+			{
+				// find which way enemy should face
+				this.facing = GameUtil.findFacing(directionAngle);
+			}
+			
 			if (inSight && onScreen()) gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming

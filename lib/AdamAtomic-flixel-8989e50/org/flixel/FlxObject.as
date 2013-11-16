@@ -34,6 +34,11 @@ package org.flixel
 		 */
 		static public const DOWN:uint	= 0x1000;
 		
+		static public const CEIL_LEFT:uint	= 0x0101;
+		static public const CEIL_RIGHT:uint	= 0x0110;
+		static public const FLOOR_LEFT:uint	= 0x1001;
+		static public const FLOOR_RIGHT:uint = 0x1010;
+		
 		/**
 		 * Special-case constant meaning no collisions, used mainly by <code>allowCollisions</code> and <code>touching</code>.
 		 */
