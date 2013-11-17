@@ -22,9 +22,17 @@ package units
 		
 		override public function update():void
 		{
+			var tempY:int = this.y;
+			
 			super.update();
 			
 			acceleration.y = 400;
+			
+			if (isTouching(FLOOR))
+			{
+				this.y = tempY;
+				velocity.y = 0;
+			}
 		}
 		
 		public function setPos(X:int, Y:int, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void

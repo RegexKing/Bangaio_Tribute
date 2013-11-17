@@ -37,9 +37,17 @@ package units
 		
 		override public function update():void
 		{
+			var tempY:int = this.y;
+			
 			super.update();
 			
 			acceleration.y = 400;
+			
+			if (isTouching(FLOOR))
+			{
+				this.y = tempY;
+				velocity.y = 0;
+			}
 		}
 		
 		override public function kill():void
