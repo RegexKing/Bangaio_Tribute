@@ -20,7 +20,7 @@ package units
 			health = 10;
 			points = 20;
 			
-			makeGraphic(16, 16, 0xffFF0000);
+			loadGraphic(AssetsRegistry.smallBombPNG);
 		}
 	}
 

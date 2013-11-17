@@ -6,17 +6,25 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class LifeUpCrate extends Targetable
+	public class LifeUpCrate extends Targetable implements Inertia
 	{
 		private var lifeUps:FlxGroup;
 		
 		public function LifeUpCrate() 
 		{
 			super(null, null, null);
+			immovable = true;
 			
 			health = 10;
 			points = 100;
 			
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			
+			acceleration.y = 400;
 		}
 		
 		public function setPos(X:int, Y:int, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, _bulletDamageableObjects:FlxGroup, _collideableUnits:FlxGroup, _targets:Array, _lifeUps:FlxGroup):void

@@ -9,6 +9,7 @@ package
 	import org.flixel.plugin.photonstorm.FX.StarfieldFX;
 	import units.BlueDiamond;
 	import units.Building;
+	import units.Inertia;
 	import units.Player;
 	import util.BulletTrailsContainer;
 	import items.Item;
@@ -155,11 +156,11 @@ package
 			//debug
 			if (FlxG.keys.justPressed("R")) FlxG.switchState(new PlayState);
 			
-			FlxG.collide(map, mapCollideable);
-			FlxG.collide(collideableUnits, collideableUnits);
-			FlxG.collide(collideableUnits, immovableObstacles);
 			FlxG.collide(playerBullets, map.playerBulletImpassable);
 			FlxG.collide(playerBullets.members[1] as FlxGroup, map.blueBoxes); // bounce bullet bounce off
+			FlxG.collide(collideableUnits, collideableUnits);
+			FlxG.collide(immovableObstacles, collideableUnits);
+			FlxG.collide(map, mapCollideable);
 			
 			FlxG.overlap(player, items, pickupItem);
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);

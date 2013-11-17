@@ -37,6 +37,12 @@ package
 		[Embed(source = "../assets/sprites/blueBox.png")] public static var blueBoxPNG:Class;
 		[Embed(source = "../assets/sprites/brownBox.png")] public static var brownBoxPNG:Class;
 		[Embed(source = "../assets/sprites/indestructibleBlock.png")] public static var indestructableBlockPNG:Class;
+		[Embed(source = "../assets/sprites/smallBomb.png")] public static var smallBombPNG:Class;
+		[Embed(source = "../assets/sprites/bigBomb.png")] public static var bigBombPNG:Class;
+		[Embed(source = "../assets/sprites/smallPowerBomb.png")] public static var smallPowerBombPNG:Class;
+		[Embed(source = "../assets/sprites/solidBlock.png")] public static var solidBlockPNG:Class;
+		[Embed(source = "../assets/sprites/redDoorVert.png")] public static var redDoorVertPNG:Class;
+		[Embed(source = "../assets/sprites/redDoorHori.png")] public static var redDoorHoriPNG:Class;
 		
 		//buildings
 		[Embed(source = "../assets/sprites/house.png")] public static var housePNG:Class;

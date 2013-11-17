@@ -5,6 +5,7 @@ package org.flixel
 	import flash.geom.Point;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxMath;
+	import units.Inertia;
 	
 	import org.flixel.FlxBasic;
 	
@@ -1094,7 +1095,7 @@ package org.flixel
 			//can't separate two immovable objects
 			var obj1immovable:Boolean = Object1.immovable;
 			var obj2immovable:Boolean = Object2.immovable;
-			if(obj1immovable && obj2immovable)
+			if(obj1immovable && (obj2immovable && !(Object2 is Inertia)))
 				return false;
 			
 			//If one of the objects is a tilemap, just pass it off.
@@ -1164,6 +1165,27 @@ package org.flixel
 					Object1.velocity.y = average + obj1velocity * Object1.elasticity;
 					Object2.velocity.y = average + obj2velocity * Object2.elasticity;
 				}
+				
+				else if (Object1 is Inertia && Object2 is Inertia)
+				{
+					if (Object1.y < Object2.y)
+					{
+						Object1.y = Object1.y - overlap;
+						Object1.velocity.y = obj2v - obj1v*Object1.elasticity;
+						//This is special case code that handles cases like horizontal moving platforms you can ride
+						if(Object2.active && Object2.moves && (obj1delta > obj2delta))
+							Object1.x += Object2.x - Object2.last.x;
+					}
+					
+					else
+					{
+						Object2.y += overlap;
+						Object2.velocity.y = obj1v - obj2v*Object2.elasticity;
+						//This is special case code that handles cases like horizontal moving platforms you can ride
+						if(Object1.active && Object1.moves && (obj1delta < obj2delta))
+							Object2.x += Object1.x - Object1.last.x;
+					}
+				}
 				else if(!obj1immovable)
 				{
 					Object1.y = Object1.y - overlap;
@@ -1172,7 +1194,7 @@ package org.flixel
 					if(Object2.active && Object2.moves && (obj1delta > obj2delta))
 						Object1.x += Object2.x - Object2.last.x;
 				}
-				else if(!obj2immovable)
+				else if(!obj2immovable || Object2 is Inertia)
 				{
 					Object2.y += overlap;
 					Object2.velocity.y = obj1v - obj2v*Object2.elasticity;
@@ -1180,6 +1202,7 @@ package org.flixel
 					if(Object1.active && Object1.moves && (obj1delta < obj2delta))
 						Object2.x += Object1.x - Object1.last.x;
 				}
+				
 				return true;
 			}
 			else

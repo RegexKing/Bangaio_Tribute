@@ -19,7 +19,7 @@ package units
 			health = 10;
 			points = 50;
 			
-			makeGraphic(16, 16, 0xffFF0000);
+			loadGraphic(AssetsRegistry.smallPowerBombPNG);
 			
 			FlxG.camera.shake(0.05, 0.2);
 		}

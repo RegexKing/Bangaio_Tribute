@@ -7,22 +7,19 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BrownBlock extends Targetable
+	public class BrownBlock extends Targetable implements Inertia
 	{
-		
-		private var tempX:int = 0;
-		
 		private var oranges:FlxGroup;
 		
 		public function BrownBlock(X:int, Y:int, _player:Player, _blueExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup) 
 		{
 			super(_player, _textGroup, _blueExplosions);
+			immovable = true;
 			
 			oranges = _oranges;
 			
 			this.x = X;
 			this.y = Y;
-			tempX = this.x;
 			
 			health = 10;
 			points = 100;
@@ -35,15 +32,6 @@ package units
 			super.update();
 			
 			acceleration.y = 400;
-			velocity.x = 0;
-			acceleration.x = 0;
-		}
-		
-		override public function postUpdate():void
-		{
-			super.postUpdate();
-			
-			this.x = tempX;
 		}
 		
 		override public function kill():void

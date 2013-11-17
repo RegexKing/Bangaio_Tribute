@@ -5,19 +5,15 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class IndestructibleBlock extends FlxSprite
+	public class IndestructibleBlock extends FlxSprite implements Inertia
 	{
-		
-		private var tempX:int = 0;
 		
 		public function IndestructibleBlock(X:int, Y:int) 
 		{
 			super(X, Y);
 			
 			loadGraphic(AssetsRegistry.indestructableBlockPNG);
-			
-			tempX = this.x;
-			
+			immovable = true;
 		}
 		
 		override public function update():void
@@ -25,15 +21,6 @@ package units
 			super.update();
 			
 			acceleration.y = 400;
-			velocity.x = 0;
-			acceleration.x = 0;
-		}
-		
-		override public function postUpdate():void
-		{
-			super.postUpdate();
-			
-			this.x = tempX;
 		}
 		
 		override public function hurt(_value:Number):void { }

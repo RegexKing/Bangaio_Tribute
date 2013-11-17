@@ -270,9 +270,7 @@ package maps
 			
 			else if (id == 15)
 			{
-				var bigBomb:BigBomb = new BigBomb(player, mediumExplosionAreas, textGroup, oranges);
-				bigBomb.x = X;
-				bigBomb.y = Y;
+				var bigBomb:BigBomb = new BigBomb(X, Y, player, mediumExplosionAreas, textGroup, oranges);
 				
 				collideableUnits.add(bigBomb);
 				bulletDamageableObstacles.add(bigBomb);

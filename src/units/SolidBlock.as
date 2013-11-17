@@ -29,10 +29,10 @@ package units
 			health = 10;
 			points = 10;
 			
-			makeGraphic(16, 16, 0xff666666);
+			loadGraphic(AssetsRegistry.solidBlockPNG);
 			
 			//TODO, set to invisible, collideable tile
-			map.setTile(xCoord, yCoord, 6);
+			map.setTile(xCoord, yCoord, 14);
 		}
 		
 		override public function kill():void

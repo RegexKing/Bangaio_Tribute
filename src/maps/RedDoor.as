@@ -30,9 +30,20 @@ package maps
 			gates = new Vector.<FlxPoint>();
 			sensor = new FlxRect();
 			
+			if (orientation == LEFT || orientation == RIGHT)
+			{
+				loadGraphic(AssetsRegistry.redDoorVertPNG, true, false, 32, 128);
+			}
+			else
+			{
+				loadGraphic(AssetsRegistry.redDoorHoriPNG, true, false, 128, 32);
+			}
+			
+			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 24, false);
+			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 24, false);
+			
 			if (orientation == LEFT)
 			{
-				makeGraphic(32, 128);
 				
 				for (var i:int = 0; i < this.height/16; i++)
 				{
@@ -42,7 +53,6 @@ package maps
 			
 			else if (orientation == RIGHT)
 			{
-				makeGraphic(32, 128);
 				
 				for (var j:int = 0; j < this.height/16; j++)
 				{
@@ -52,7 +62,6 @@ package maps
 			
 			else if (orientation == CEILING)
 			{
-				makeGraphic(128, 32);
 				
 				for (var k:int = 0; k < this.width/16; k++)
 				{
@@ -62,7 +71,6 @@ package maps
 			
 			else if (orientation == FLOOR)
 			{
-				makeGraphic(128, 32);
 				
 				for (var l:int = 0; l < this.width/16; l++)
 				{
@@ -111,7 +119,7 @@ package maps
 				if (orientation == LEFT || orientation == CEILING) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
-			
+			/*
 			else
 			{
 				if (insideRect)
@@ -122,6 +130,7 @@ package maps
 				if (orientation == RIGHT || orientation == FLOOR) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
+			*/
 		}
 		
 		override public function destroy():void
@@ -137,12 +146,12 @@ package maps
 		{
 			for each (var point:FlxPoint in gates)
 			{
-				map.setTile(point.x, point.y, 6);
+				map.setTile(point.x, point.y, 14);
 			}
 			
 			doorClosed = true;
 			
-			alpha = 1; //todo add close animation
+			play("close");
 		}
 		
 		private function openDoor():void
@@ -154,7 +163,7 @@ package maps
 			
 			doorClosed = false;
 			
-			alpha = 0.5; //todo add open animation
+			play("open");
 		}
 	}
 

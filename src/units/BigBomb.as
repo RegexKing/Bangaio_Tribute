@@ -8,13 +8,17 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BigBomb extends Scoreable
+	public class BigBomb extends Scoreable implements Inertia
 	{
 		private var oranges:FlxGroup;
 		
-		public function BigBomb(_player:Player, _mediumAreaExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup) 
+		public function BigBomb(X:int, Y:int, _player:Player, _mediumAreaExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup) 
 		{
 			super(_player, _textGroup, _mediumAreaExplosions);
+			immovable = true;
+			x = X;
+			y = Y;
+			
 			oranges = _oranges;
 
 			bombType = "mediumRed";
@@ -22,7 +26,14 @@ package units
 			health = 10;
 			points = 100;
 			
-			makeGraphic(32, 32, 0xffFF0000);
+			loadGraphic(AssetsRegistry.bigBombPNG);
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			
+			acceleration.y = 400;
 		}
 		
 		override public function kill():void
