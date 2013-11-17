@@ -418,7 +418,7 @@ package units
 			
 			for each (var target:FlxSprite in targets)
 			{
-				if (target != null && target.active && target.onScreen())
+				if (target != null && target.active && target.onScreen() && map.ray(this.getMidpoint(), target.getMidpoint()))
 				{
 					closestTargets.push(target);
 				}

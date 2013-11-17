@@ -19,7 +19,7 @@ package weapons
 			
 			visible = false;
 			
-			trailColor = 0xffFF0000;
+			trailColor = 0xffFFFF00;
 		}
 		
 		override public function update():void

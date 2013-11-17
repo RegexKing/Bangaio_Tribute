@@ -6,6 +6,7 @@ package org.flixel
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxMath;
 	import units.Inertia;
+	import units.Player;
 	
 	import org.flixel.FlxBasic;
 	
@@ -1186,6 +1187,16 @@ package org.flixel
 							Object2.x += Object1.x - Object1.last.x;
 					}
 				}
+				
+				else if(!obj2immovable || Object1 is Player || Object2 is Inertia)
+				{
+					Object2.y += overlap;
+					Object2.velocity.y = obj1v - obj2v*Object2.elasticity;
+					//This is special case code that handles cases like horizontal moving platforms you can ride
+					if(Object1.active && Object1.moves && (obj1delta < obj2delta))
+						Object2.x += Object1.x - Object1.last.x;
+				}
+				
 				else if(!obj1immovable)
 				{
 					Object1.y = Object1.y - overlap;
@@ -1194,14 +1205,7 @@ package org.flixel
 					if(Object2.active && Object2.moves && (obj1delta > obj2delta))
 						Object1.x += Object2.x - Object2.last.x;
 				}
-				else if(!obj2immovable || Object2 is Inertia)
-				{
-					Object2.y += overlap;
-					Object2.velocity.y = obj1v - obj2v*Object2.elasticity;
-					//This is special case code that handles cases like horizontal moving platforms you can ride
-					if(Object1.active && Object1.moves && (obj1delta < obj2delta))
-						Object2.x += Object1.x - Object1.last.x;
-				}
+				
 				
 				return true;
 			}
