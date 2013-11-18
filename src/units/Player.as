@@ -323,6 +323,8 @@ package units
 				play ("up");
 			else
 				play("straight");
+				
+			if (isTouching(FLOOR)) velocity.y = 0;
 		}
 		
 		private function fireGun(gun:FlxWeaponExt):void
