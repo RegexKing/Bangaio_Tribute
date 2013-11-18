@@ -25,54 +25,54 @@ package units
 			
 			makeGraphic(16, 16);
 			
-			gun.setBulletSpeed(200);
+			gun.setBulletSpeed(500);
 			gun.setFireRate(200);
 			
 			if (_orientation == FLOOR)
 			{
-				angle = 0;
-				aim = 0;
-			}
-			else if (_orientation == CEILING)
-			{
-				angle = 180;
-				aim = 180;
-			}
-			
-			else if (_orientation == LEFT)
-			{
 				angle = -90;
 				aim = -90;
 			}
-			
-			else if (_orientation == RIGHT)
+			else if (_orientation == CEILING)
 			{
 				angle = 90;
 				aim = 90;
 			}
 			
+			else if (_orientation == LEFT)
+			{
+				angle = 180;
+				aim = 180;
+			}
+			
+			else if (_orientation == RIGHT)
+			{
+				angle = 0;
+				aim = 0;
+			}
+			
 			else if (_orientation == FLOOR_LEFT)
-			{
-				angle = -45;
-				aim = -45;
-			}
-			
-			else if (_orientation == FLOOR_RIGHT)
-			{
-				angle = 45;
-				aim = 45;
-			}
-			
-			else if (_orientation == CEIL_LEFT)
 			{
 				angle = -135;
 				aim = -135;
 			}
 			
-			else if (_orientation == CEIL_RIGHT)
+			else if (_orientation == FLOOR_RIGHT)
+			{
+				angle = -45;
+				aim = -45;
+			}
+			
+			else if (_orientation == CEIL_LEFT)
 			{
 				angle = 135;
 				aim = 135;
+			}
+			
+			else if (_orientation == CEIL_RIGHT)
+			{
+				angle = 45;
+				aim = 45;
 			}
 		}
 		

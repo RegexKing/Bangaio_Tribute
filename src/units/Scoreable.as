@@ -62,7 +62,7 @@ package units
 				}
 				
 				pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
-				pointDisplay.text = countedPoints + "pnts";
+				pointDisplay.text = countedPoints + "pt";
 				pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
 				pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
 				pointDisplay.start();

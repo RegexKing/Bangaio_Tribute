@@ -177,10 +177,10 @@ package
 				
 				if (!(bullet is E_Laser)) 
 				{
-					bullet.kill();
-				
 					(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 				}
+				
+				bullet.kill();
 				
 				if (bullet is BounceBullet || bullet is HomingBullet)
 				{

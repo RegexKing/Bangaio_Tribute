@@ -29,8 +29,6 @@ package weapons
 			if (touching) kill();
 		}
 		
-		override public function hurt(_val:Number):void {}
-		
 	}
 
 }

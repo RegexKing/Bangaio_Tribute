@@ -51,9 +51,16 @@ package units
 			super.update();
 		}
 		
+		override public function kill():void
+		{
+			super.kill();
+			gun.group.kill();
+		}
+		
 		override public function revive():void
 		{
 			super.revive();
+			gun.group.revive();
 			alert = false;
 		}
 		

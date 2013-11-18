@@ -137,6 +137,7 @@ package items
 			kill();
 		}
 		
+		/*
 		override public function update():void
 		{
 			super.update();
@@ -146,6 +147,7 @@ package items
 				angle = GameUtil.easeTowardsTarget(this, player, 8000, 0.1);
 			}
 		}
+		*/
 		
 		override public function addScore():uint
 		{
