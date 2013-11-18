@@ -39,8 +39,9 @@ package maps
 				loadGraphic(AssetsRegistry.redDoorHoriPNG, true, false, 128, 32);
 			}
 			
-			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 24, false);
-			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 24, false);
+			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 60, false);
+			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 60
+			, false);
 			
 			if (orientation == LEFT)
 			{
@@ -78,10 +79,21 @@ package maps
 				}
 			}
 			
-			sensor.x = this.x;
-			sensor.y = this.y;
-			sensor.width = this.width;
-			sensor.height = this.height;
+			if (orientation == LEFT || orientation == RIGHT)
+			{
+				sensor.x = this.x;
+				sensor.y = this.y - 16;
+				sensor.width = this.width;
+				sensor.height = this.height + 32;
+			}
+			
+			else
+			{
+				sensor.x = this.x - 16;
+				sensor.y = this.y;
+				sensor.width = this.width + 32;
+				sensor.height = this.height;
+			}
 			
 			openDoor();
 		}
@@ -119,6 +131,7 @@ package maps
 				if (orientation == LEFT || orientation == CEILING) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
+			
 			/*
 			else
 			{
@@ -131,6 +144,7 @@ package maps
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
 			*/
+			
 		}
 		
 		override public function destroy():void

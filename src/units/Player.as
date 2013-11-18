@@ -423,10 +423,15 @@ package units
 				if (target != null && target.active && target.onScreen() && map.ray(this.getMidpoint(), target.getMidpoint()))
 				{
 					closestTargets.push(target);
+					
+					// TODO: play animation for selected target?
+				}
+				
+				else
+				{
+					//TODO: kill animation for selected target
 				}
 			}
-			
-			// TODO: play animation for selected target?
 			
 			// get a random target close to player
 			return closestTargets[Math.floor(Math.random() * closestTargets.length)];
