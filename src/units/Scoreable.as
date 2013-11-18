@@ -61,7 +61,9 @@ package units
 					color = 0xffFF3300;
 				}
 				
-				pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
+				if (countedPoints < 500) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
+				else if (countedPoints < 1000) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(16, color);
+				else pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(24, color);
 				pointDisplay.text = countedPoints + "pt";
 				pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
 				pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);

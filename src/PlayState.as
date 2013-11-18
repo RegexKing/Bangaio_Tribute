@@ -76,7 +76,7 @@ package
 			
 			enemies = new FlxGroup();
 			playerBullets = new FlxGroup(2);
-			hudGroup = new FlxGroup(6);
+			hudGroup = new FlxGroup(8);
 			enemyBullets = new FlxGroup();
 			items = new FlxGroup();
 			particleEmitters = new FlxGroup(3);

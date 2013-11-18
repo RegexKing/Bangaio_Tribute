@@ -98,6 +98,8 @@ package units
 				(watermelons.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "watermelon");
 			}
 			
+			super.kill();
+			super.revive();
 			play("destroyed");
 			
 			active = false;

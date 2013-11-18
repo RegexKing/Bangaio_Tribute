@@ -27,7 +27,7 @@ package items
 			
 			points = 10;
 			
-			flickerTimer = new FlxDelay(10000);
+			flickerTimer = new FlxDelay(15000);
 			killTimer = new FlxDelay(5000);
 			
 			flickerTimer.callback = startFlicker;
