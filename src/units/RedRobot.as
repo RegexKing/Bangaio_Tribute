@@ -94,6 +94,8 @@ package units
 					
 				moving = false;
 			}	
+			
+			if (isTouching(FLOOR)) velocity.y = 0;
 		}
 		
 		protected function move():void

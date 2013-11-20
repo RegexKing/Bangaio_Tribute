@@ -40,8 +40,7 @@ package maps
 			}
 			
 			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 60, false);
-			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 60
-			, false);
+			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 60, false);
 			
 			if (orientation == LEFT)
 			{
@@ -77,22 +76,6 @@ package maps
 				{
 					gates.push(new FlxPoint((this.x / 16) + l, this.y / 16));
 				}
-			}
-			
-			if (orientation == LEFT || orientation == RIGHT)
-			{
-				sensor.x = this.x;
-				sensor.y = this.y - 16;
-				sensor.width = this.width;
-				sensor.height = this.height + 32;
-			}
-			
-			else
-			{
-				sensor.x = this.x - 16;
-				sensor.y = this.y;
-				sensor.width = this.width + 32;
-				sensor.height = this.height;
 			}
 			
 			openDoor();
@@ -132,7 +115,7 @@ package maps
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
 			
-			/*
+			
 			else
 			{
 				if (insideRect)
@@ -143,14 +126,22 @@ package maps
 				if (orientation == RIGHT || orientation == FLOOR) insideRect = FlxMath.pointInFlxRect(player.x, player.y, sensor);
 				else insideRect = FlxMath.pointInFlxRect(player.x + player.width, player.y + player.height, sensor);
 			}
-			*/
+			
 			
 		}
 		
 		override public function destroy():void
 		{
 			gates.length = 0;
-			if (gates) gates = null;
+			if (gates) 
+			{
+				for each (var point:FlxPoint in gates)
+				{
+					point = null;
+				}
+				
+				gates = null;
+			}
 			if (sensor) sensor = null;
 			
 			super.destroy();	
@@ -158,6 +149,26 @@ package maps
 		
 		private function closeDoor():void
 		{
+			if (orientation == LEFT)
+			{
+				sensor.x -= this.width;
+			}
+			
+			else if (orientation == RIGHT)
+			{
+				sensor.x += this.width;
+			}
+			
+			else if (orientation == CEILING)
+			{
+				sensor.y -= this.height;
+			}
+			
+			else
+			{	
+				sensor.y += this.height;
+			}
+			
 			for each (var point:FlxPoint in gates)
 			{
 				map.setTile(point.x, point.y, 14);
@@ -165,11 +176,29 @@ package maps
 			
 			doorClosed = true;
 			
+			
+			
 			play("close");
 		}
 		
 		private function openDoor():void
 		{
+			if (orientation == LEFT || orientation == RIGHT)
+			{
+				sensor.x = this.x;
+				sensor.y = this.y - 16;
+				sensor.width = this.width;
+				sensor.height = this.height + 32;
+			}
+			
+			else
+			{
+				sensor.x = this.x - 16;
+				sensor.y = this.y;
+				sensor.width = this.width + 32;
+				sensor.height = this.height;
+			}
+			
 			for each (var point:FlxPoint in gates)
 			{
 				map.setTile(point.x, point.y, 0);
