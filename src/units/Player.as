@@ -104,7 +104,7 @@ package units
 			FlxControl.create(this, FlxControlHandler.MOVEMENT_ACCELERATES, FlxControlHandler.STOPPING_DECELERATES, 1, false);
 			FlxControl.player1.setWASDControl();
 			FlxControl.player1.setStandardSpeed(200);
-			FlxControl.player1.setMovementSpeed(500, 500, 150, 150);
+			FlxControl.player1.setMovementSpeed(600, 600, 150, 150);
 			FlxControl.player1.setGravity(0, GameData.g_const);
 			
 			lifeBar = new FlxBar(10, 10, FlxBar.FILL_LEFT_TO_RIGHT, 100, 10, this, "health", 0, 100);
@@ -207,7 +207,7 @@ package units
 			
 			else if (FlxG.keys.justReleased("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(500, 500, 150, 150);
+				FlxControl.player1.setMovementSpeed(600, 600, 150, 150);
 			}
 			
 			//Attack controls
