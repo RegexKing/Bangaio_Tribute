@@ -41,7 +41,7 @@ package units
 			
 			super.update();
 			
-			acceleration.y = 400;
+			acceleration.y = GameData.g_const;
 			
 			if (isTouching(FLOOR))
 			{

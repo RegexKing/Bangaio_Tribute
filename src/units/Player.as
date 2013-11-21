@@ -104,8 +104,8 @@ package units
 			FlxControl.create(this, FlxControlHandler.MOVEMENT_ACCELERATES, FlxControlHandler.STOPPING_DECELERATES, 1, false);
 			FlxControl.player1.setWASDControl();
 			FlxControl.player1.setStandardSpeed(200);
-			FlxControl.player1.setMovementSpeed(400, 400, 200, 300, 400);
-			FlxControl.player1.setGravity(0, 400);
+			FlxControl.player1.setMovementSpeed(500, 500, 150, 150);
+			FlxControl.player1.setGravity(0, GameData.g_const);
 			
 			lifeBar = new FlxBar(10, 10, FlxBar.FILL_LEFT_TO_RIGHT, 100, 10, this, "health", 0, 100);
 			lifeBar.createGradientBar([0x0], [0xffFF0000, 0xffFF9900, 0xffFFFF00, 0xffBDFF00,  0xff7EFF00, 0xff3FFF00, 0xff00FF00], 1, 0, true, 0xff000000);
@@ -197,7 +197,7 @@ package units
 			//boost controls
 			if (FlxG.keys.justPressed("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(500, 500, 300, 400, 500);
+				FlxControl.player1.setMovementSpeed(600, 600, 250, 250);
 			}
 			
 			else if (FlxG.keys.pressed("SHIFT"))
@@ -207,7 +207,7 @@ package units
 			
 			else if (FlxG.keys.justReleased("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(400, 400, 200, 300, 400);
+				FlxControl.player1.setMovementSpeed(500, 500, 150, 150);
 			}
 			
 			//Attack controls
@@ -381,7 +381,6 @@ package units
 					
 					gun.fireFromAngle(aim, true, bulletShells);
 		}
-		
 		
 		override public function hurt(_damageNumber:Number):void
 		{
