@@ -389,7 +389,7 @@ package units
 			
 			this.flicker(0.7);
 			FlxG.camera.shake(0.005, 0.35);
-				
+			
 			//sound effect
 		}
 		

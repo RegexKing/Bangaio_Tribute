@@ -170,41 +170,35 @@ package
 		}
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void
-		{
-			if ((bullet as FlxSprite).onScreen())
+		{		
+			if ((bullet as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
+				
+			if (!(bullet is E_Laser)) 
 			{
-				unit.hurt((bullet as Bullet).dealDamage());
+				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
+			}
 				
-				if (!(bullet is E_Laser)) 
-				{
-					(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
-				}
+			bullet.kill();
 				
-				bullet.kill();
-				
-				if (bullet is BounceBullet || bullet is HomingBullet)
-				{
-					GameUtil.shakeCam();
-				}
+			if (bullet is BounceBullet || bullet is HomingBullet)
+			{
+				GameUtil.shakeCam();
 			}
 		}
 		
 		public function damageImmoveableObject(unit:FlxObject, bullet:FlxObject):void
 		{
-			if ((bullet as FlxSprite).onScreen())
+			if ((bullet as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
+				
+			if (!(unit is BlueDiamond)) 
 			{
-				unit.hurt((bullet as Bullet).dealDamage());
+				bullet.kill();
+				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
+			}
 				
-				if (!(unit is BlueDiamond)) 
-				{
-					bullet.kill();
-					(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
-				}
-				
-				if (bullet is BounceBullet || bullet is HomingBullet)
-				{
-					GameUtil.shakeCam();
-				}
+			if (bullet is BounceBullet || bullet is HomingBullet)
+			{
+				GameUtil.shakeCam();
 			}
 		}
 		
