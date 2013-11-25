@@ -16,7 +16,6 @@ package units
 		
 		protected var pointDisplay:ScrollingText;
 		protected var points:uint = 0;
-		protected var scoreable:Boolean = true;
 		protected var enableExplosion:Boolean = true;
 		protected var bombType:String = null;
 		
@@ -42,8 +41,6 @@ package units
 			
 			var countedPoints:uint = addScore();
 			
-			if (scoreable)
-			{
 				var color:uint = 0;
 				
 				if (countedPoints >= 1000)
@@ -68,8 +65,6 @@ package units
 				pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
 				pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
 				pointDisplay.start();
-				
-			}
 			
 			if (enableExplosion && blueExplosions)
 			{
@@ -100,13 +95,6 @@ package units
 			{
 				(blueExplosions.recycle(BlueExplosion) as BlueExplosion).startAt(this.getMidpoint());
 			}
-		}
-		
-		override public function revive():void
-		{
-			super.revive();
-			
-			scoreable = true;
 		}
 		
 	}
