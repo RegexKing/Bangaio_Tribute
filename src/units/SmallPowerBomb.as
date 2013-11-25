@@ -20,8 +20,6 @@ package units
 			points = 50;
 			
 			loadGraphic(AssetsRegistry.smallPowerBombPNG);
-			
-			FlxG.camera.shake(0.05, 0.2);
 		}
 	}
 
