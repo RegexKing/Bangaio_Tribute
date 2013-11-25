@@ -79,7 +79,6 @@ package maps
 			}
 			
 			openDoor();
-			closeDoor();
 		}
 		
 		override public function update():void

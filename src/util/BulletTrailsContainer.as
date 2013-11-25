@@ -96,7 +96,16 @@ package util
 		override public function destroy():void
 		{
 			super.destroy();
-			trails = null;
+			
+			if (!trails)
+			{
+				for each (var lineQueue:Queue in trails)
+				{
+					lineQueue.destroy();
+				}
+				
+				trails = null;
+			}
 		}
 		
 		private function eraseLines():void

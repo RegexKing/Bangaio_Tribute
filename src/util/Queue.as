@@ -53,6 +53,11 @@ package util
        * Returns the data of the first queue element without removing it.
        * @return   Data of the first queue element.
        */
-      public function spy():Line {return (empty) ? null : q[0];}
+      public function spy():Line { return (empty) ? null : q[0]; }
+	  
+	  public function destroy():void
+	  {
+		  q.length = 0;
+	  }
    }
 }
