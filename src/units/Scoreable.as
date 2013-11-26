@@ -24,6 +24,8 @@ package units
 		private var isHurt:Boolean = false;
 		private var timer:Number = 0;
 		
+		private static var whiteFlash:ColorTransform = new ColorTransform();
+		
 		public function Scoreable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup = null) 
 		{
 			super();
@@ -64,7 +66,7 @@ package units
 			super.hurt(_damageNumber);
 			if (flashAble)
 			{
-				_colorTransform = new ColorTransform();
+				_colorTransform = whiteFlash;
 				_colorTransform.color = 0xffFFFFFF;
 				calcFrame();
 				
