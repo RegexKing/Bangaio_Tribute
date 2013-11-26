@@ -17,6 +17,7 @@ package items
 		public function Fruit() 
 		{
 			super(null, null);
+			scoreColor = 0xffFF3300;
 			
 			immovable = true;
 			enableExplosion = false;

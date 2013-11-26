@@ -18,6 +18,7 @@ package units
 		protected var points:uint = 0;
 		protected var enableExplosion:Boolean = true;
 		protected var bombType:String = null;
+		protected var scoreColor:uint = 0xff3399CC;
 		
 		public function Scoreable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup = null) 
 		{
@@ -40,31 +41,14 @@ package units
 			super.kill();
 			
 			var countedPoints:uint = addScore();
-			
-				var color:uint = 0;
 				
-				if (countedPoints >= 1000)
-				{
-					color = 0xff9900FF;
-				}
-				
-				else if (countedPoints >= 500)
-				{
-					color = 0xff3399CC;
-				}
-				
-				else 
-				{
-					color = 0xffFF3300;
-				}
-				
-				if (countedPoints < 500) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, color);
-				else if (countedPoints < 1000) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(16, color);
-				else pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(24, color);
-				pointDisplay.text = countedPoints + "pt";
-				pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
-				pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
-				pointDisplay.start();
+			if (countedPoints < 500) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(12, scoreColor);
+			else if (countedPoints < 1000) pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(16, scoreColor);
+			else pointDisplay = (textGroup.recycle(ScrollingText) as ScrollingText).setText(24, scoreColor);
+			pointDisplay.text = countedPoints + "pt";
+			pointDisplay.x = this.getMidpoint().x - (pointDisplay.width/2);
+			pointDisplay.y = this.getMidpoint().y - (pointDisplay.height/2);
+			pointDisplay.start();
 			
 			if (enableExplosion && blueExplosions)
 			{
