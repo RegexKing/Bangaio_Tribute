@@ -30,6 +30,7 @@ package units
 		public function Shooter(_enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String = "normal") 
 		{
 			super(_player, _textGroup, _blueExplosions);
+			flashAble = true;
 			
 			map = _map;
 			

@@ -2,6 +2,7 @@ package units
 {
 	import effects.BlueExplosion;
 	import effects.RedExplosion;
+	import flash.geom.ColorTransform;
 	import hud.ScrollingText;
 	import org.flixel.*;
 	/**
@@ -19,6 +20,9 @@ package units
 		protected var enableExplosion:Boolean = true;
 		protected var bombType:String = null;
 		protected var scoreColor:uint = 0xff3399CC;
+		protected var flashAble:Boolean = false;
+		private var isHurt:Boolean = false;
+		private var timer:Number = 0;
 		
 		public function Scoreable(_player:Player, _textGroup:FlxGroup, _blueExplosions:FlxGroup = null) 
 		{
@@ -36,9 +40,44 @@ package units
 			return points;
 		}
 		
-		override public function kill():void
+		override public function update():void
 		{
+			super.update();
+			
+			if (isHurt)
+			{
+				timer += FlxG.elapsed;
+				
+				if (timer >= 0.032)
+				{
+					_colorTransform = null;
+					calcFrame();
+					
+					isHurt = false;
+					timer = 0;
+				}
+			}
+		}
+		
+		override public function hurt(_damageNumber:Number):void
+		{
+			super.hurt(_damageNumber);
+			if (flashAble)
+			{
+				_colorTransform = new ColorTransform();
+				_colorTransform.color = 0xffFFFFFF;
+				calcFrame();
+				
+				isHurt = true;
+			}
+		}
+		
+		override public function kill():void
+		{	
+			_colorTransform = null;
+			
 			super.kill();
+			
 			
 			var countedPoints:uint = addScore();
 				
@@ -54,6 +93,8 @@ package units
 			{
 				explode();
 			}
+			
+			
 			
 		}
 		

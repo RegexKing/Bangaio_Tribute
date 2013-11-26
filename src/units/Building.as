@@ -20,7 +20,8 @@ package units
 		
 		public function Building(_player:Player, _blueExplosions:FlxGroup, _buildingType:String, _textGroup:FlxGroup, _oranges:FlxGroup, _bananas:FlxGroup, _pineapples:FlxGroup, _watermelons:FlxGroup, _upOrDown:uint = UP) 
 		{
-			super(_player,_textGroup, _blueExplosions);
+			super(_player, _textGroup, _blueExplosions);
+			flashAble = true;
 			
 			buildingType = _buildingType;
 			
@@ -78,6 +79,17 @@ package units
 			play("intact");
 		}
 		
+		override public function hurt(_damageNumber:Number):void
+		{
+			super.hurt(_damageNumber);
+			
+			if (health <= 0)
+			{
+				_colorTransform = null;
+				calcFrame();
+			}
+		}
+		
 		override public function kill():void
 		{
 			
@@ -100,12 +112,16 @@ package units
 			
 			super.kill();
 			super.revive();
+			
 			play("destroyed");
 			
 			active = false;
 			alive = false;
 			solid = false;
 			visible = true;
+			
+			_colorTransform = null;
+			calcFrame();
 			
 			//since kill is overwritten
 			(blueExplosions.recycle(BlueExplosion) as BlueExplosion).startAt(this.getMidpoint());
