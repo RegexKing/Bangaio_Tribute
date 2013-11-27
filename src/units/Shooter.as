@@ -52,6 +52,14 @@ package units
 			super.update();
 		}
 		
+		
+		override public function hurt(_damageNumber:Number):void
+		{
+			super.hurt(_damageNumber);
+			
+			FlxG.play(AssetsRegistry.objectHurt_MP3);
+		}
+		
 		override public function kill():void
 		{
 			super.kill();

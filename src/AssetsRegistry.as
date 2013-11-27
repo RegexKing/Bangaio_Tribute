@@ -83,6 +83,11 @@ package
 		[Embed(source = "../assets/sounds/bounceGun.mp3")] public static var BOUNCEGUN_MP3:Class;
 		[Embed(source = "../assets/sounds/noAmmo.mp3")] public static var NOAMMO_MP3:Class;
 		[Embed(source = "../assets/sounds/switchWeapon.mp3")] public static var SWITCHWEAPON_MP3:Class;
+		[Embed(source = "../assets/sounds/lifeUp.mp3")] public static var lifeUp_MP3:Class;
+		[Embed(source = "../assets/sounds/fullLife.mp3")] public static var fullLife_MP3:Class;
+		[Embed(source = "../assets/sounds/objectHurt.mp3")] public static var objectHurt_MP3:Class;
+		[Embed(source = "../assets/sounds/targetExplosion.mp3")] public static var targetExplosion_MP3:Class;
+		
 		
 		
 		//-- Fonts --//

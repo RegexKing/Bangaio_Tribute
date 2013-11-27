@@ -3,7 +3,7 @@ package units
 	import effects.BlueExplosion;
 	import hud.ScrollingText;
 	import items.Fruit;
-	import org.flixel.FlxGroup;
+	import org.flixel.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -87,6 +87,13 @@ package units
 			{
 				_colorTransform = null;
 				calcFrame();
+			}
+			
+			if (buildingType != "car") FlxG.play(AssetsRegistry.objectHurt_MP3);
+			
+			else
+			{
+				//play car sounds
 			}
 		}
 		

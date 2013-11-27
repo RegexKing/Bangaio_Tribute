@@ -104,8 +104,10 @@ package units
 			FlxControl.create(this, FlxControlHandler.MOVEMENT_ACCELERATES, FlxControlHandler.STOPPING_DECELERATES, 1, false);
 			FlxControl.player1.setWASDControl();
 			FlxControl.player1.setStandardSpeed(200);
-			FlxControl.player1.setMovementSpeed(600, 600, 150, 150);
+			FlxControl.player1.setMovementSpeed(800, 800, 200, 200);
 			FlxControl.player1.setGravity(0, GameData.g_const);
+			
+			
 			
 			lifeBar = new FlxBar(10, 10, FlxBar.FILL_LEFT_TO_RIGHT, 100, 10, this, "health", 0, 100);
 			lifeBar.createGradientBar([0x0], [0xffFF0000, 0xffFF9900, 0xffFFFF00, 0xffBDFF00,  0xff7EFF00, 0xff3FFF00, 0xff00FF00], 1, 0, true, 0xff000000);
@@ -197,7 +199,7 @@ package units
 			//boost controls
 			if (FlxG.keys.justPressed("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(600, 600, 250, 250);
+				FlxControl.player1.setMovementSpeed(1000, 1000, 250, 250);
 			}
 			
 			else if (FlxG.keys.pressed("SHIFT"))
@@ -207,7 +209,7 @@ package units
 			
 			else if (FlxG.keys.justReleased("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(600, 600, 150, 150);
+				FlxControl.player1.setMovementSpeed(800, 800, 200, 200);
 			}
 			
 			//Attack controls
@@ -323,8 +325,35 @@ package units
 				play ("up");
 			else
 				play("straight");
+			
+			//ground controls
+			if (!FlxG.keys.pressed("SHIFT"))
+			{
+				if (justTouched(FLOOR))
+				{
+					acceleration.x = 0;
+				}
 				
-			if (isTouching(FLOOR)) velocity.y = 0;
+				if (isTouching(FLOOR))
+				{
+					velocity.y = 0;
+					
+					if (FlxG.keys.A)
+					{
+						velocity.x = -150;
+					}
+					
+					else if (FlxG.keys.D)
+					{
+						velocity.x = 150;
+					}
+					
+					else
+					{
+						velocity.x = 0;
+					}
+				}
+			}
 		}
 		
 		private function fireGun(gun:FlxWeaponExt):void

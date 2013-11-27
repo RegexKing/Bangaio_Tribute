@@ -8,7 +8,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BigBomb extends Scoreable implements Inertia
+	public class BigBomb extends Targetable implements Inertia
 	{
 		private var oranges:FlxGroup;
 		

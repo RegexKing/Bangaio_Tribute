@@ -1,6 +1,6 @@
 package items 
 {
-	import org.flixel.FlxSprite;
+	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	import units.Player;
 	/**
@@ -21,6 +21,7 @@ package items
 		public function pickUp(_player:Player):void
 		{
 			_player.fillHealth();
+			FlxG.play(AssetsRegistry.fullLife_MP3);
 			
 			kill();
 		}

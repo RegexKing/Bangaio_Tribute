@@ -277,6 +277,16 @@ package maps
 				targets.push(bigBomb);
 			}
 			
+			else if (id == 16)
+			{
+				
+			}
+			
+			else if (id == 17)
+			{
+				
+			}
+			
 			else if (id == 18)
 			{
 				var brownBlock:BrownBlock = new BrownBlock(X, Y, player, blueExplosions, textGroup, oranges);
@@ -660,12 +670,7 @@ package maps
 					
 			else if (id == 63)
 			{
-				var redRobot:RedRobot = new RedRobot(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples);
-				redRobot.x = X;
-				redRobot.y = Y;
-						
-				enemies.add(redRobot);
-				targets.push(redRobot);
+				
 			}
 			
 			else if (id == 63)
@@ -751,6 +756,151 @@ package maps
 			else if (id == 79)
 			{
 				
+			}
+			
+			else if (id == 80)
+			{
+				
+			}
+			
+			else if (id == 81)
+			{
+				
+			}
+			
+			else if (id == 82)
+			{
+				
+			}
+			
+			else if (id == 83)
+			{
+				
+			}
+			
+			else if (id == 84)
+			{
+				
+			}
+			
+			else if (id == 85)
+			{
+				
+			}
+			
+			else if (id == 86)
+			{
+				
+			}
+			
+			else if (id == 87)
+			{
+				
+			}
+			
+			else if (id == 88)
+			{
+				
+			}
+			
+			else if (id == 89)
+			{
+				
+			}
+			
+			else if (id == 90)
+			{
+				
+			}
+			
+			else if (id == 91)
+			{
+				var redRobot:RedRobot = new RedRobot(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples);
+				redRobot.x = X;
+				redRobot.y = Y;
+						
+				enemies.add(redRobot);
+				targets.push(redRobot);
+			}
+			
+			else if (id == 92)
+			{
+				
+			}
+			
+			else if (id == 93)
+			{
+				
+			}
+			
+			else if (id == 94)
+			{
+				
+			}
+			
+			else if (id == 95)
+			{
+				
+			}
+			
+			else if (id == 96)
+			{
+				
+			}
+			
+			else if (id == 97)
+			{
+				
+			}
+			
+			else if (id == 98)
+			{
+				
+			}
+			
+			else if (id == 99)
+			{
+				
+			}
+			
+			else if (id == 100)
+			{
+				
+			}
+			
+			else if (id == 101)
+			{
+				
+			}
+			
+			else if (id == 102)
+			{
+				
+			}
+			
+			else if (id == 103)
+			{
+				
+			}
+			
+			else if (id == 104)
+			{
+				
+			}
+			
+			else if (id == 105)
+			{
+				
+			}
+			
+			else if (id == 106)
+			{
+				
+			}
+			
+			else
+			{
+				throw new Error("unit ID is out of range");
 			}
 		}
 		

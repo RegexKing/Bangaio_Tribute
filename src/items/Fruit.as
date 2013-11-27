@@ -41,31 +41,31 @@ package items
 				if (_fruitType == "orange")
 				{
 					loadRotatedGraphic(AssetsRegistry.orangePNG, 1);
-					chargeAmt = 3;
+					chargeAmt = 1;
 				}
 				
 				else if (_fruitType == "apple")
 				{
 					loadRotatedGraphic(AssetsRegistry.applePNG, 1);
-					chargeAmt = 5;
+					chargeAmt = 2;
 				}
 				
 				else if (_fruitType == "banana")
 				{
 					loadRotatedGraphic(AssetsRegistry.bananaPNG, 1);
-					chargeAmt = 10;
+					chargeAmt = 4;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
 					loadRotatedGraphic(AssetsRegistry.pineapplePNG, 1);
-					chargeAmt = 20;
+					chargeAmt = 8;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
 					loadRotatedGraphic(AssetsRegistry.watermelonPNG, 1);
-					chargeAmt = 50;
+					chargeAmt = 16;
 				}
 			}
 		}
@@ -83,31 +83,31 @@ package items
 				if (_fruitType == "orange")
 				{
 					loadRotatedGraphic(AssetsRegistry.orangePNG, 1);
-					chargeAmt = 3;
+					chargeAmt = 1;
 				}
 				
 				else if (_fruitType == "apple")
 				{
 					loadRotatedGraphic(AssetsRegistry.applePNG, 1);
-					chargeAmt = 5;
+					chargeAmt = 2;
 				}
 				
 				else if (_fruitType == "banana")
 				{
 					loadRotatedGraphic(AssetsRegistry.bananaPNG, 1);
-					chargeAmt = 10;
+					chargeAmt = 4;
 				}
 				
 				else if (_fruitType == "pineapple")
 				{
 					loadRotatedGraphic(AssetsRegistry.pineapplePNG, 1);
-					chargeAmt = 20;
+					chargeAmt = 8;
 				}
 				
 				else if (_fruitType == "watermelon")
 				{
 					loadRotatedGraphic(AssetsRegistry.watermelonPNG, 1);
-					chargeAmt = 50;
+					chargeAmt = 16;
 				}
 			}
 			

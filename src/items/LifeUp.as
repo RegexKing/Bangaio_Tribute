@@ -38,6 +38,7 @@ package items
 		public function pickUp(_player:Player):void
 		{
 			_player.incHealth();
+			FlxG.play(AssetsRegistry.lifeUp_MP3);
 			
 			kill();
 		}
