@@ -41,18 +41,15 @@ package maps
 			
 			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 60, false);
 			addAnimation("open", [9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 60, false);
+			addAnimation("openInit", [0], 60, false);
 			
-			if (orientation == LEFT)
+			if (orientation == LEFT || orientation == RIGHT)
 			{
 				
 				for (var i:int = 0; i < this.height/16; i++)
 				{
 					gates.push(new FlxPoint((this.x / 16) + 1, (this.y / 16) + i));
 				}
-			}
-			
-			else if (orientation == RIGHT)
-			{
 				
 				for (var j:int = 0; j < this.height/16; j++)
 				{
@@ -60,17 +57,13 @@ package maps
 				}
 			}
 			
-			else if (orientation == CEILING)
+			else
 			{
 				
 				for (var k:int = 0; k < this.width/16; k++)
 				{
 					gates.push(new FlxPoint((this.x / 16) + k, (this.y / 16) + 1));
 				}
-			}
-			
-			else if (orientation == FLOOR)
-			{
 				
 				for (var l:int = 0; l < this.width/16; l++)
 				{
@@ -79,6 +72,7 @@ package maps
 			}
 			
 			openDoor();
+			play("openInit");
 		}
 		
 		override public function update():void
@@ -132,16 +126,9 @@ package maps
 		
 		override public function destroy():void
 		{
-			gates.length = 0;
-			if (gates) 
-			{
-				for each (var point:FlxPoint in gates)
-				{
-					point = null;
-				}
-				
-				gates = null;
-			}
+			gates.length = 0;	
+			gates = null;
+			
 			if (sensor) sensor = null;
 			
 			super.destroy();	

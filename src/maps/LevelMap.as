@@ -448,12 +448,14 @@ package maps
 			
 			else if (id == 35)
 			{
-				
+				var doorBv:BlueDoor = new BlueDoor(X, Y, this, "vert");
+				doors.add(doorBv);
 			}
 			
 			else if (id == 36)
-			{
-				
+			{	
+				var doorBh:BlueDoor = new BlueDoor(X, Y, this, "hori");
+				doors.add(doorBh);
 			}
 			
 			else if (id == 37)
@@ -894,6 +896,11 @@ package maps
 			}
 			
 			else if (id == 106)
+			{
+				
+			}
+			
+			else if (id == 107)
 			{
 				
 			}
