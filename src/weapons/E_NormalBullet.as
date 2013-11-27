@@ -11,14 +11,16 @@ package weapons
 		{
 			super();
 			
-			loadRotatedGraphic(AssetsRegistry.bouncePNG, 100);
+			loadRotatedGraphic(AssetsRegistry.e_normalBulletPNG, 60);
 			
-			offset.x = 8;
+			offset.x = 2;
 			width = 16;
-			offset.y = 8;
+			offset.y = 2;
 			height = 16;
 			
 			trailColor = 0xffFF0000;
+			
+			angularVelocity = 200;
 		}
 		
 		override public function update():void
