@@ -199,7 +199,7 @@ package units
 			//boost controls
 			if (FlxG.keys.justPressed("SHIFT"))
 			{
-				FlxControl.player1.setMovementSpeed(1000, 1000, 250, 250);
+				FlxControl.player1.setMovementSpeed(1000, 1000, 280, 280);
 			}
 			
 			else if (FlxG.keys.pressed("SHIFT"))

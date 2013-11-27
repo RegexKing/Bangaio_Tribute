@@ -14,6 +14,8 @@ package units
 			
 			loadGraphic(AssetsRegistry.indestructableBlockPNG);
 			immovable = true;
+			
+			maxVelocity.y = 280;
 		}
 		
 		override public function update():void

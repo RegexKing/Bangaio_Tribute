@@ -18,6 +18,8 @@ package units
 			health = 10;
 			points = 100;
 			
+			maxVelocity.y = 280;
+			
 		}
 		
 		override public function update():void

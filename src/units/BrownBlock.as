@@ -25,6 +25,8 @@ package units
 			points = 100;
 			
 			loadGraphic(AssetsRegistry.brownBoxPNG);
+			
+			maxVelocity.y = 280;
 		}
 		
 		override public function update():void

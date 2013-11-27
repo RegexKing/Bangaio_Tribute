@@ -147,6 +147,8 @@ package
 			add(hudGroup);
 			
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			
+			zoomCamera();
 		}
 		
 		override public function update():void
@@ -165,8 +167,9 @@ package
 			FlxG.overlap(player, items, pickupItem);
 			FlxG.overlap(enemyObjects, playerBullets, damageObject);
 			FlxG.overlap(player, enemyBullets, damageObject);
-			FlxG.overlap(bulletDamageableObstacles, bullets, damageImmoveableObject);
 			FlxG.overlap(explosionVictims, explosionAreas, explodeObject);
+			FlxG.overlap(bulletDamageableObstacles, bullets, damageImmoveableObject);
+			
 		}
 		
 		public function damageObject(unit:FlxObject, bullet:FlxObject):void

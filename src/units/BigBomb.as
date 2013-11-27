@@ -1,7 +1,7 @@
 package units 
 {
 	import items.Fruit;
-	import org.flixel.FlxGroup;
+	import org.flixel.*;
 	import org.flixel.FlxSprite;
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	/**
@@ -27,6 +27,8 @@ package units
 			points = 100;
 			
 			loadGraphic(AssetsRegistry.bigBombPNG);
+			
+			maxVelocity.y = 280;
 		}
 		
 		override public function update():void
@@ -42,6 +44,7 @@ package units
 				this.y = tempY;
 				velocity.y = 0;
 			}
+			
 		}
 		
 		override public function kill():void
