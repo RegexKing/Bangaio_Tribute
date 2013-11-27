@@ -346,26 +346,25 @@ package org.flixel
 		 * and checking if the object is moving along a path or not.
 		 */
 		override public function preUpdate():void
-		{
-			
-			_ACTIVECOUNT++;
-			
-			if(_flickerTimer > 0)
-			{
-				_flickerTimer -= FlxG.elapsed;
-				if(_flickerTimer <= 0)
-				{
-					_flickerTimer = 0;
-					_flicker = false;
-				}
-			}
-			
-			last.x = x;
-			last.y = y;
-			
-			if((path != null) && (pathSpeed != 0) && (path.nodes[_pathNodeIndex] != null))
-				updatePathMotion();
-		}
+                {
+                        _ACTIVECOUNT++;
+                        
+                        if(_flickerTimer > 0)
+                        {
+                                _flickerTimer -= FlxG.elapsed;
+                                if(_flickerTimer <= 0)
+                                {
+                                        _flickerTimer = 0;
+                                        _flicker = false;
+                                }
+                        }
+                        
+                        last.x = x;
+                        last.y = y;
+                        
+                        if((path != null) && (pathSpeed != 0) && (path.nodes[_pathNodeIndex] != null))
+                                updatePathMotion();
+                }
 		
 		/**
 		 * Post-update is called right after <code>update()</code> on each object in the game loop.
@@ -704,11 +703,16 @@ package org.flixel
 			{
 				var results:Boolean = false;
 				var i:uint = 0;
-				var members:Array = (ObjectOrGroup as FlxGroup).members;
+				var group:FlxGroup = ObjectOrGroup as FlxGroup; 
+				var members:Array = group.members;
+				var length:uint = group.length;
 				while(i < length)
 				{
-					if(overlaps(members[i++],InScreenSpace,Camera))
+					var basic:FlxBasic = members[i++] as FlxBasic;
+					if (basic != null && basic.exists && overlaps(basic,InScreenSpace,Camera))
+					{
 						results = true;
+					}
 				}
 				return results;
 			}
@@ -753,13 +757,17 @@ package org.flixel
 			if(ObjectOrGroup is FlxGroup)
 			{
 				var results:Boolean = false;
-				var basic:FlxBasic;
 				var i:uint = 0;
-				var members:Array = (ObjectOrGroup as FlxGroup).members;
+				var group:FlxGroup = ObjectOrGroup as FlxGroup; 
+				var members:Array = group.members;
+				var length:uint = group.length;
 				while(i < length)
 				{
-					if(overlapsAt(X,Y,members[i++],InScreenSpace,Camera))
+					var basic:FlxBasic = members[i++] as FlxBasic;
+					if(basic != null && basic.exists && overlapsAt(X,Y,basic,InScreenSpace,Camera))
+					{
 						results = true;
+					}
 				}
 				return results;
 			}

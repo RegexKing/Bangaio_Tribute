@@ -1,5 +1,6 @@
 package org.flixel
 {
+	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
@@ -715,46 +716,47 @@ package org.flixel
 		 * @return	The <code>BitmapData</code> we just created.
 		 */
 		static public function addBitmap(Graphic:Class, Reverse:Boolean=false, Unique:Boolean=false, Key:String=null):BitmapData
-		{
-			var needReverse:Boolean = false;
-			if(Key == null)
-			{
-				Key = String(Graphic)+(Reverse?"_REVERSE_":"");
-				if(Unique && checkBitmapCache(Key))
-				{
-					var inc:uint = 0;
-					var ukey:String;
-					do
-					{
-						ukey = Key + inc++;
-					} while(checkBitmapCache(ukey));
-					Key = ukey;
-				}
-			}
-			
-			//If there is no data for this key, generate the requested graphic
-			if(!checkBitmapCache(Key))
-			{
-				_cache[Key] = (new Graphic).bitmapData;
-				if(Reverse)
-					needReverse = true;
-			}
-			var pixels:BitmapData = _cache[Key];
-			if(!needReverse && Reverse && (pixels.width == (new Graphic).bitmapData.width))
-				needReverse = true;
-			if(needReverse)
-			{
-				var newPixels:BitmapData = new BitmapData(pixels.width<<1,pixels.height,true,0x00000000);
-				newPixels.draw(pixels);
-				var mtx:Matrix = new Matrix();
-				mtx.scale(-1,1);
-				mtx.translate(newPixels.width,0);
-				newPixels.draw(pixels,mtx);
-				pixels = newPixels;
-				_cache[Key] = pixels;
-			}
-			return pixels;
-		}
+                {
+                        if(Key == null)
+                        {
+                                Key = String(Graphic)+(Reverse?"_REVERSE_":"");
+                                if(Unique && checkBitmapCache(Key))
+                                {
+                                        var inc:uint = 0;
+                                        var ukey:String;
+                                        do
+                                        {
+                                                ukey = Key + inc++;
+                                        } while(checkBitmapCache(ukey));
+                                        Key = ukey;
+                                }
+                        }
+                        //If there is no data for this key, generate the requested graphic
+                        if(!checkBitmapCache(Key))
+                        {
+                                var bitmap:Bitmap = new Graphic() as Bitmap;
+                                if(bitmap == null)
+                                {
+                                        FlxG.log("Error: " + FlxU.getClassName(Graphic) + " must extend flash.display.Bitmap.");
+                                        return FlxG.addBitmap(FlxSprite.ImgDefault, Reverse);
+                                }
+                                
+                                var pixels:BitmapData = bitmap.bitmapData;
+                                if(Reverse)
+                                {
+                                        var newPixels:BitmapData = new BitmapData(pixels.width<<1,pixels.height,true,0x00000000);
+                                        newPixels.draw(pixels);
+                                        var mtx:Matrix = new Matrix();
+                                        mtx.scale(-1,1);
+                                        mtx.translate(newPixels.width,0);
+                                        newPixels.draw(pixels, mtx);
+                                        pixels.dispose();
+                                        pixels = newPixels;        
+                                }
+                                _cache[Key] = pixels;
+                        }
+                        return _cache[Key];
+                }
 		
 		/**
 		 * Dumps the cache's image references.
