@@ -21,33 +21,44 @@ package maps
 		//Green boxes and small solid blocks
 		public var playerBulletImpassable:FlxGroup;
 		
-		private var enemyBullets:FlxGroup;
-		private var bulletTrails:BulletTrailsContainer;
+		public var enemyBullets:FlxGroup;
+		public var bulletTrails:BulletTrailsContainer;
 		private var itemsGroup:FlxGroup
-		private var player:Player;
-		private var textGroup:FlxGroup;
+		public var player:Player;
+		public var textGroup:FlxGroup;
 		
-		private var enemies:FlxGroup;
-		private var collideableUnits:FlxGroup;
+		public var enemies:FlxGroup;
+		public var collideableUnits:FlxGroup;
 		private var immovableObstacles:FlxGroup;
 		private var immovableObstaclesB:FlxGroup;
-		private var bulletDamageableObstacles:FlxGroup;
+		public var bulletDamageableObstacles:FlxGroup;
 		
 		//recycleable flxgroups
-		private var oranges:FlxGroup;
-		private var apples:FlxGroup;
-		private var bananas:FlxGroup;
-		private var pineapples:FlxGroup;
-		private var watermelons:FlxGroup;
+		public var oranges:FlxGroup;
+		public var apples:FlxGroup;
+		public var bananas:FlxGroup;
+		public var pineapples:FlxGroup;
+		public var watermelons:FlxGroup;
+		public var lifeUps:FlxGroup;
+		public var blueExplosions:FlxGroup;
+		public var smallExplosionAreas:FlxGroup;
+		public var mediumExplosionAreas:FlxGroup;
+		public var largeExplosionAreas:FlxGroup;
+		private var redRobots:FlxGroup;
+		private var blueRobots:FlxGroup;
+		private var blackRobots:FlxGroup;
+		private var yellowRobots:FlxGroup;
+		private var nTurrets:FlxGroup;
+		private var hTurrets:FlxGroup;
+		private var nFlaks:FlxGroup;
+		private var hFlaks:FlxGroup;
+		private var brownBlocks:FlxGroup;
 		private var lifeUpCrates:FlxGroup;
-		private var lifeUps:FlxGroup;
-		private var blueExplosions:FlxGroup;
-		private var smallExplosionAreas:FlxGroup;
-		private var mediumExplosionAreas:FlxGroup;
-		private var largeExplosionAreas:FlxGroup;
+		private var bigBombs:FlxGroup;
 		
 		private var spriteMap:String;
-		private var targets:Array;
+		
+		public var targets:Array;
 		
 		public function LevelMap(_level:uint = 1) 
 		{
@@ -66,8 +77,19 @@ package maps
 		
 		override public function destroy():void
 		{	
-			super.destroy();
+			redRobots.destroy();
+			blueRobots.destroy();
+			blackRobots.destroy();
+			yellowRobots.destroy();
+			nTurrets.destroy();
+			hTurrets.destroy();
+			nFlaks.destroy();
+			hFlaks.destroy();
+			brownBlocks.destroy();
+			lifeUpCrates.destroy();
+			bigBombs.destroy();
 			
+			super.destroy();
 		}
 		
 		public function InitializeLevel(_bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _player:Player, _enemies:FlxGroup, 
@@ -97,8 +119,18 @@ package maps
 			bananas = new FlxGroup();
 			pineapples = new FlxGroup();
 			watermelons = new FlxGroup();
-			lifeUpCrates = new FlxGroup();
 			lifeUps = new FlxGroup();
+			redRobots = new FlxGroup();
+			blueRobots = new FlxGroup();
+			blackRobots = new FlxGroup();
+			yellowRobots = new FlxGroup();
+			nTurrets = new FlxGroup();
+			hTurrets = new FlxGroup();
+			nFlaks = new FlxGroup();
+			hFlaks = new FlxGroup();
+			brownBlocks = new FlxGroup();
+			lifeUpCrates = new FlxGroup();
+			bigBombs = new FlxGroup();
 			
 			//explosion animations
 			blueExplosions = new FlxGroup();
@@ -270,11 +302,7 @@ package maps
 			
 			else if (id == 15)
 			{
-				var bigBomb:BigBomb = new BigBomb(X, Y, player, mediumExplosionAreas, textGroup, oranges);
-				
-				collideableUnits.add(bigBomb);
-				bulletDamageableObstacles.add(bigBomb);
-				targets.push(bigBomb);
+				(bigBombs.recycle(BigBomb) as BigBomb).setPos(X, Y, player, mediumExplosionAreas, textGroup, oranges, collideableUnits, bulletDamageableObstacles, targets);
 			}
 			
 			else if (id == 16)
@@ -289,11 +317,7 @@ package maps
 			
 			else if (id == 18)
 			{
-				var brownBlock:BrownBlock = new BrownBlock(X, Y, player, blueExplosions, textGroup, oranges);
-				
-				collideableUnits.add(brownBlock);
-				bulletDamageableObstacles.add(brownBlock);
-				targets.push(brownBlock);
+				(brownBlocks.recycle(BrownBlock) as BrownBlock).setPos(X, Y, player, blueExplosions, textGroup, oranges, collideableUnits, bulletDamageableObstacles, targets);
 			}
 			
 			else if (id == 19)
@@ -632,7 +656,8 @@ package maps
 			
 			else if (id == 55)
 			{
-				
+				//ar gen:Generator = new Generator(X, Y, this, FLOOR, "RedRobot", redRobots, "normal");
+				var gen:Generator = new Generator(X, Y, this, FLOOR, "BrownBlock", brownBlocks);
 			}
 			
 			else if (id == 56)
@@ -817,12 +842,7 @@ package maps
 			
 			else if (id == 91)
 			{
-				var redRobot:RedRobot = new RedRobot(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples);
-				redRobot.x = X;
-				redRobot.y = Y;
-						
-				enemies.add(redRobot);
-				targets.push(redRobot);
+			
 			}
 			
 			else if (id == 92)
@@ -882,7 +902,7 @@ package maps
 			
 			else if (id == 103)
 			{
-				
+				(redRobots.recycle(RedRobot) as RedRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal");
 			}
 			
 			else if (id == 104)
@@ -892,7 +912,7 @@ package maps
 			
 			else if (id == 105)
 			{
-				
+				(blackRobots.recycle(BlackRobot) as BlackRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 106)
@@ -901,6 +921,66 @@ package maps
 			}
 			
 			else if (id == 107)
+			{
+				
+			}
+			
+			else if (id == 108)
+			{
+				
+			}
+			
+			else if (id == 109)
+			{
+				
+			}
+			
+			else if (id == 110)
+			{
+				
+			}
+			
+			else if (id == 111)
+			{
+				
+			}
+			
+			else if (id == 112)
+			{
+				
+			}
+			
+			else if (id == 113)
+			{
+				
+			}
+			
+			else if (id == 114)
+			{
+				
+			}
+			
+			else if (id == 115)
+			{
+				
+			}
+			
+			else if (id == 116)
+			{
+				
+			}
+			
+			else if (id == 117)
+			{
+				
+			}
+			
+			else if (id == 118)
+			{
+				
+			}
+			
+			else if (id == 119)
 			{
 				
 			}

@@ -1,7 +1,6 @@
 package items 
 {
 	import org.flixel.*;
-	import org.flixel.plugin.photonstorm.FlxDelay;
 	import units.Player;
 	import units.Scoreable;
 	/**

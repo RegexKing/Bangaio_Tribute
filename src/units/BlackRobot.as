@@ -11,21 +11,21 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class RedRobot extends Shooter implements Sentient
+	public class BlackRobot extends Shooter implements Sentient
 	{
 		private var moving:Boolean = false;
 		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
 		
-		private var apples:FlxGroup;
+		private var bananas:FlxGroup;
 		
 		
-		public function RedRobot() 
+		public function BlackRobot() 
 		{
 			super(null, null, null, null, null, null, null);
 			
-			health = 40;
-			points = 200;
+			health = 60;
+			points = 400;
 			speed = 150;
 			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);
@@ -35,13 +35,13 @@ package units
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
 			
-			shotDelay = new FlxDelay(3000);
+			shotDelay = new FlxDelay(2000);
 			shotDelay.callback = move;
 			shotDelay.start();
 			
 		}
 		
-		public function setPos(X:int, Y:int, _enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _enemies:FlxGroup, _targets:Array, _bulletType:String = "normal"):void
+		public function setPos(X:int, Y:int, _enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bananas:FlxGroup, _enemies:FlxGroup, _targets:Array, _bulletType:String = "normal"):void
 		{
 			revive();
 			
@@ -58,7 +58,7 @@ package units
 				blueExplosions = _blueExplosions;
 				map = _map;
 				textGroup = _textGroup;
-				apples = _apples;
+				bananas = _bananas;
 				
 				_enemies.add(this);
 				_targets.push(this);
@@ -69,8 +69,8 @@ package units
 		{
 			super.revive();
 			
-			health = 40;
-			points = 200;
+			health = 60;
+			points = 400;
 			
 			aware = false;
 			moving = false;
@@ -168,7 +168,7 @@ package units
 		
 		override public function kill():void
 		{
-			(apples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "apple");
+			(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
 			
 			super.kill();
 			

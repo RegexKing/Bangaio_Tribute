@@ -148,7 +148,6 @@ package
 			
 			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
-			zoomCamera();
 		}
 		
 		override public function update():void

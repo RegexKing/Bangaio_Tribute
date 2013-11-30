@@ -7,6 +7,8 @@ package org.flixel
 	import org.flixel.plugin.photonstorm.FlxMath;
 	import units.Inertia;
 	import units.Player;
+	import units.Sentient;
+	import units.Shooter;
 	
 	import org.flixel.FlxBasic;
 	
@@ -1197,7 +1199,7 @@ package org.flixel
 					}
 				}
 				
-				else if(!obj2immovable || Object2 is Inertia)
+				else if(!obj2immovable || (Object2 is Inertia && !(Object1 is Sentient)))
 				{
 					Object2.y += overlap;
 					Object2.velocity.y = obj1v - obj2v*Object2.elasticity;

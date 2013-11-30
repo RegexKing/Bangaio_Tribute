@@ -1,7 +1,6 @@
 package units 
 {
 	import org.flixel.*;
-	import org.flixel.plugin.photonstorm.FlxDelay;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -33,9 +32,10 @@ package units
 			flashAble = true;
 			
 			map = _map;
-			
-			
-			// Guns
+		}
+		
+		protected function setupGun(_enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _bulletType:String):void
+		{
 			if (_bulletType == "normal") gun = new FlxWeaponExt(E_NormalBullet, "gun", _bulletTrails, this, player);
 			else if (_bulletType == "homing") gun = new FlxWeaponExt(E_HomingBullet, "gun", _bulletTrails, this, player);
 			else if (_bulletType == "laser") gun = new FlxWeaponExt(E_Laser, "gun", _bulletTrails, this, player);
@@ -44,7 +44,6 @@ package units
 			gun.setBulletBounds(FlxG.worldBounds);
 			
 			_enemyBullets.add(gun.group);
-			
 		}
 		
 		override public function update():void
@@ -69,7 +68,7 @@ package units
 		override public function revive():void
 		{
 			super.revive();
-			gun.group.revive();
+			if (gun) gun.group.revive();
 			alert = false;
 		}
 		

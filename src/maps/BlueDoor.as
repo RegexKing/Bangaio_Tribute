@@ -39,28 +39,28 @@ package maps
 			if (orientation == "vert")
 			{
 				
-				for (var i:int = 0; i < this.height/16; i++)
+				for (var i:int = 0; i < this.height/LevelMap.TILE_SIZE; i++)
 				{
-					gates.push(new FlxPoint((this.x / 16) + 1, (this.y / 16) + i));
+					gates.push(new FlxPoint((this.x / LevelMap.TILE_SIZE) + 1, (this.y / LevelMap.TILE_SIZE) + i));
 				}
 				
-				for (var j:int = 0; j < this.height/16; j++)
+				for (var j:int = 0; j < this.height/LevelMap.TILE_SIZE; j++)
 				{
-					gates.push(new FlxPoint(this.x / 16, (this.y / 16) + j));
+					gates.push(new FlxPoint(this.x / LevelMap.TILE_SIZE, (this.y / LevelMap.TILE_SIZE) + j));
 				}
 			}
 			
 			else
 			{
 				
-				for (var k:int = 0; k < this.width/16; k++)
+				for (var k:int = 0; k < this.width/LevelMap.TILE_SIZE; k++)
 				{
-					gates.push(new FlxPoint((this.x / 16) + k, (this.y / 16) + 1));
+					gates.push(new FlxPoint((this.x / LevelMap.TILE_SIZE) + k, (this.y / LevelMap.TILE_SIZE) + 1));
 				}
 				
-				for (var l:int = 0; l < this.width/16; l++)
+				for (var l:int = 0; l < this.width/LevelMap.TILE_SIZE; l++)
 				{
-					gates.push(new FlxPoint((this.x / 16) + l, this.y / 16));
+					gates.push(new FlxPoint((this.x / LevelMap.TILE_SIZE) + l, this.y / LevelMap.TILE_SIZE));
 				}
 			}
 			

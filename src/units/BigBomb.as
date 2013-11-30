@@ -3,7 +3,6 @@ package units
 	import items.Fruit;
 	import org.flixel.*;
 	import org.flixel.FlxSprite;
-	import org.flixel.plugin.photonstorm.FlxDelay;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -12,14 +11,10 @@ package units
 	{
 		private var oranges:FlxGroup;
 		
-		public function BigBomb(X:int, Y:int, _player:Player, _mediumAreaExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup) 
+		public function BigBomb() 
 		{
-			super(_player, _textGroup, _mediumAreaExplosions);
+			super(null, null, null);
 			immovable = true;
-			x = X;
-			y = Y;
-			
-			oranges = _oranges;
 
 			bombType = "mediumRed";
 			
@@ -29,6 +24,36 @@ package units
 			loadGraphic(AssetsRegistry.bigBombPNG);
 			
 			maxVelocity.y = 280;
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
+			
+			health = 10;
+			points = 100;
+			
+			velocity.y = 0;
+		}
+		
+		public function setPos(X:int, Y:int, _player:Player, _mediumAreaExplosions:FlxGroup, _textGroup:FlxGroup, _oranges:FlxGroup, _collideableUnits:FlxGroup, _bulletDamageableObjects:FlxGroup, _targets:Array):void
+		{
+			revive();
+			
+			x = X;
+			y = Y;
+			
+			if (!textGroup)
+			{
+				player = _player;
+				blueExplosions = _mediumAreaExplosions;
+				textGroup = _textGroup;
+				oranges = _oranges;
+				
+				_collideableUnits.add(this);
+				_bulletDamageableObjects.add(this);
+				_targets.push(this);
+			}
 		}
 		
 		override public function update():void

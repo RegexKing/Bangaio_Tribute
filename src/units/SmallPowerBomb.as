@@ -1,7 +1,6 @@
 package units 
 {
 	import org.flixel.*;
-	import org.flixel.plugin.photonstorm.FlxDelay;
 	/**
 	 * ...
 	 * @author Frank Fazio

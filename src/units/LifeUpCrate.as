@@ -59,6 +59,16 @@ package units
 			}
 		}
 		
+		override public function revive():void
+		{
+			super.revive();
+			
+			health = 10;
+			points = 100;
+			
+			velocity.y = 0;
+		}
+		
 		override public function kill():void
 		{
 			super.kill();

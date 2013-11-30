@@ -14,7 +14,7 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Player extends FlxSprite
+	public class Player extends FlxSprite implements Sentient
 	{	
 		
 		private const BOUNCE:uint = 0;
