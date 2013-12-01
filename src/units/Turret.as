@@ -14,11 +14,10 @@ package units
 		
 		private var apples:FlxGroup;
 		
-		public function Turret(_enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _bulletType:String = "normal", _orientation:uint = FLOOR) 
+		public function Turret() 
 		{
-			super(_enemyBullets, _player,  _blueExplosions, _map, _bulletTrails, _textGroup, _bulletType);
+			super(null, null, null, null, null, null, null);
 			
-			apples = _apples;
 			
 			this.immovable = true;
 			
@@ -27,9 +26,30 @@ package units
 			
 			loadGraphic(AssetsRegistry.turretPNG);
 			
-			setupGun(_enemyBullets, _bulletTrails, "normal");
-			gun.setBulletSpeed(250);
-			gun.setFireRate(1000);
+		}
+		
+		public function setPos(X:int, Y:int, _enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _apples:FlxGroup, _enemies:FlxGroup, _targets:Array, _bulletType:String = "normal", _orientation:uint = FLOOR):void
+		{
+			revive();
+			
+			this.x = X;
+			this.y = Y;
+			
+			if (!textGroup)
+			{
+				player = _player;
+				blueExplosions = _blueExplosions;
+				map = _map;
+				textGroup = _textGroup;
+				apples = _apples;
+				
+				_enemies.add(this);
+				_targets.push(this);
+				
+				setupGun(_enemyBullets, _bulletTrails, _bulletType);
+				gun.setBulletSpeed(250);
+				gun.setFireRate(1000);
+			}
 			
 			if (_orientation == FLOOR)
 			{
@@ -49,7 +69,14 @@ package units
 			{
 				angle = 90;
 			}
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
 			
+			health = 40;
+			points = 100;
 		}
 		
 		override public function update():void

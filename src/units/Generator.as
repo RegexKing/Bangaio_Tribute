@@ -74,8 +74,7 @@ package units
 				sensor.y = this.y;
 			}
 			
-			map.collideableUnits.add(this);
-			map.bulletDamageableObstacles.add(this);
+			map.enemies.add(this);
 			map.targets.push(this);
 		}
 		
@@ -138,6 +137,34 @@ package units
 				(pulledSprite as YellowRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.bananas, map.enemies, map.targets, bulletType);
 			}
 			
+			else if (unitType == "N_Turret")
+			{
+				pulledSprite = recycleGroup.recycle(Turret);
+				
+				(pulledSprite as Turret).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, "normal", orientation);
+			}
+			
+			else if (unitType == "H_Turret")
+			{
+				pulledSprite = recycleGroup.recycle(Turret);
+				
+				(pulledSprite as Turret).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, "homing", orientation);
+			}
+			
+			else if (unitType == "N_Flak")
+			{
+				pulledSprite = recycleGroup.recycle(Flak);
+				
+				(pulledSprite as Flak).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, bulletType, map.pineapples, map.enemies, map.targets);
+			}
+			
+			else if (unitType == "H_Flak")
+			{
+				pulledSprite = recycleGroup.recycle(Flak);
+				
+				(pulledSprite as Flak).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, bulletType, map.pineapples, map.enemies, map.targets);
+			}
+			
 			else if (unitType == "BrownBlock")
 			{
 				pulledSprite = recycleGroup.recycle(BrownBlock);
@@ -152,6 +179,12 @@ package units
 				(pulledSprite as BigBomb).setPos(sensor.x, sensor.y, map.player, map.mediumExplosionAreas, map.textGroup, map.oranges, map.collideableUnits, map.bulletDamageableObstacles, map.targets);
 			}
 			
+			else if (unitType == "LifeUpCrate")
+			{
+				pulledSprite = recycleGroup.recycle(LifeUpCrate);
+				
+				(pulledSprite as LifeUpCrate).setPos(sensor.x, sensor.y, map.player, map.blueExplosions, map.textGroup, map.bulletDamageableObstacles, map.collideableUnits, map.targets, map.lifeUps);
+			}
 			
 			if (orientation == FLOOR)
 			{

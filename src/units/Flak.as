@@ -14,20 +14,16 @@ package units
 	import weapons.*; 
 	 
 	public class Flak extends Shooter
-	{
-		private var timer:Number = 0;
-		
+	{	
 		private var pineapples:FlxGroup;
 		
 		//timer vars
 		private var spawnRate:Number = 3000;
 		private var nextSpawn:Number = 0;
 		
-		public function Flak(_enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String, _pineapples:FlxGroup) 
+		public function Flak() 
 		{
-			super(_enemyBullets, _player, _blueExplosions, _map, _bulletTrails, _textGroup, _bulletType);
-			
-			pineapples = _pineapples;
+			super(null, null, null, null, null, null, null);
 			
 			this.immovable = true;
 			
@@ -35,11 +31,31 @@ package units
 			points = 500;
 			
 			loadGraphic(AssetsRegistry.flakPNG);
+		}
+		
+		public function setPos(X:int, Y:int, _enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String, _pineapples:FlxGroup, _enemies:FlxGroup, _targets:Array):void
+		{
+			revive();
 			
-			setupGun(_enemyBullets, _bulletTrails, "normal");
-			gun.setBulletSpeed(250);
-			gun.setFireRate(0);
-			gun.setBulletOffset(0, 0);
+			this.x = X;
+			this.y = Y;
+			
+			if (!textGroup)
+			{
+				player = _player;
+				blueExplosions = _blueExplosions
+				map = _map;
+				textGroup = _textGroup;
+				pineapples = _pineapples;
+				
+				_enemies.add(this);
+				_targets.push(this);
+				
+				setupGun(_enemyBullets, _bulletTrails, _bulletType);
+				gun.setBulletSpeed(250);
+				gun.setFireRate(0);
+				gun.setBulletOffset(0, 0);
+			}
 		}
 		
 		override public function update():void
@@ -82,8 +98,6 @@ package units
 			(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "pineapple");
 
 			super.kill();
-			
-			timer = 0;
 		}
 		
 	}

@@ -15,7 +15,6 @@ package maps
 		public static const TILE_SIZE:int = 16;
 		
 		public var doors:FlxGroup;
-		
 		public var blueBoxes:FlxGroup;
 		
 		//Green boxes and small solid blocks
@@ -484,102 +483,52 @@ package maps
 			
 			else if (id == 37)
 			{
-				var turretnl:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "normal", LEFT);
-				turretnl.x = X;
-				turretnl.y = Y;
-				
-				enemies.add(turretnl);
-				targets.push(turretnl);
+				(nTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal", LEFT);
 			}
 			
 			else if (id == 38)
 			{
-				var turretnr:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "normal", RIGHT);
-				turretnr.x = X;
-				turretnr.y = Y;
-				
-				enemies.add(turretnr);
-				targets.push(turretnr);
+				(nTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal", RIGHT);
 			}
 			
 			else if (id == 39)
 			{
-				var turretnc:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "normal", CEILING);
-				turretnc.x = X;
-				turretnc.y = Y;
-				
-				enemies.add(turretnc);
-				targets.push(turretnc);
+				(nTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal", CEILING);
 			}
 			
 			else if (id == 40)
 			{
-				var turretnf:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "normal", FLOOR);
-				turretnf.x = X;
-				turretnf.y = Y;
-				
-				enemies.add(turretnf);
-				targets.push(turretnf);
+				(nTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal", FLOOR);
 			}
 			
 			else if (id == 41)
 			{
-				var turrethl:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "homing", LEFT);
-				turrethl.x = X;
-				turrethl.y = Y;
-				
-				enemies.add(turrethl);
-				targets.push(turrethl);
+				(hTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "homing", LEFT);
 			}
 			
 			else if (id == 42)
 			{
-				var turrethr:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "homing", RIGHT);
-				turrethr.x = X;
-				turrethr.y = Y;
-				
-				enemies.add(turrethr);
-				targets.push(turrethr);
+				(hTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "homing", RIGHT);
 			}
 			
 			else if (id == 43)
 			{
-				var turrethc:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "homing", CEILING);
-				turrethc.x = X;
-				turrethc.y = Y;
-				
-				enemies.add(turrethc);
-				targets.push(turrethc);
+				(hTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "homing", CEILING);
 			}
 			
 			else if (id == 44)
 			{
-				var turrethf:Turret = new Turret(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, "homing", FLOOR);
-				turrethf.x = X;
-				turrethf.y = Y;
-				
-				enemies.add(turrethf);
-				targets.push(turrethf);
+				(hTurrets.recycle(Turret) as Turret).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "homing", FLOOR);
 			}
 			
 			else if (id == 45)
 			{
-				var flak:Flak = new Flak(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, "normal", pineapples);
-				flak.x = X;
-				flak.y = Y;
-				
-				enemies.add(flak);
-				targets.push(flak);
+				(nFlaks.recycle(Flak) as Flak).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, "normal", pineapples, enemies, targets);
 			}
 			
 			else if (id == 46)
 			{
-				var flakh:Flak = new Flak(enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, "homing", pineapples);
-				flakh.x = X;
-				flakh.y = Y;
-				
-				enemies.add(flakh);
-				targets.push(flakh);
+				(hFlaks.recycle(Flak) as Flak).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, "homing", pineapples, enemies, targets);
 			}
 			
 			else if (id == 47)
@@ -656,267 +605,262 @@ package maps
 			
 			else if (id == 55)
 			{
-				var gen:Generator = new Generator(X, Y, this, CEILING, "RedRobot", redRobots, "normal");
+				var gen_redRobot_L:Generator = new Generator(X, Y, this, LEFT, "RedRobot", redRobots, "normal");
 			}
 			
 			else if (id == 56)
 			{
-				
+				var gen_redRobot_R:Generator = new Generator(X, Y, this, RIGHT, "RedRobot", redRobots, "normal");
 			}
 			
 			else if (id == 57)
 			{
-				
+				var gen_redRobot_C:Generator = new Generator(X, Y, this, CEILING, "RedRobot", redRobots, "normal");
 			}
 			
 			else if (id == 58)
 			{
-				
+				var gen_redRobot_F:Generator = new Generator(X, Y, this, FLOOR, "RedRobot", redRobots, "normal");
 			}
 			
 			else if (id == 59)
 			{
-				
+				var gen_blueRobot_L:Generator = new Generator(X, Y, this, LEFT, "BlueRobot", blueRobots, "normal");
 			}
 			
 			else if (id == 60)
 			{
-				
+				var gen_blueRobot_R:Generator = new Generator(X, Y, this, RIGHT, "BlueRobot", blueRobots, "normal");
 			}
 			
 			else if (id == 61)
 			{
-				
+				var gen_blueRobot_C:Generator = new Generator(X, Y, this, CEILING, "BlueRobot", blueRobots, "normal");
 			}
 			
 			else if (id == 62)
 			{
-				
+				var gen_blueRobot_F:Generator = new Generator(X, Y, this, FLOOR, "BlueRobot", blueRobots, "normal");
 			}
 					
 			else if (id == 63)
 			{
-				
-			}
-			
-			else if (id == 63)
-			{
-				
+				var gen_blackRobot_L:Generator = new Generator(X, Y, this, LEFT, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 64)
 			{
-				
+				var gen_blackRobot_R:Generator = new Generator(X, Y, this, RIGHT, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 65)
 			{
-				
+				var gen_blackRobot_C:Generator = new Generator(X, Y, this, CEILING, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 66)
 			{
-				
+				var gen_blackRobot_F:Generator = new Generator(X, Y, this, FLOOR, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 67)
 			{
-				
+				var gen_yellowRobot_L:Generator = new Generator(X, Y, this, LEFT, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 68)
 			{
-				
+				var gen_yellowRobot_R:Generator = new Generator(X, Y, this, RIGHT, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 69)
 			{
-				
+				var gen_yellowRobot_C:Generator = new Generator(X, Y, this, CEILING, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 70)
 			{
-				
+				var gen_yellowRobot_F:Generator = new Generator(X, Y, this, FLOOR, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 71)
 			{
-				
+				var gen_brownBlock_L:Generator = new Generator(X, Y, this, LEFT, "BrownBlock", brownBlocks);
 			}
 			
 			else if (id == 72)
 			{
-				
+				var gen_brownBlock_R:Generator = new Generator(X, Y, this, RIGHT, "BrownBlock", brownBlocks);
 			}
 			
 			else if (id == 73)
 			{
-				
+				var gen_brownBlock_C:Generator = new Generator(X, Y, this, CEILING, "BrownBlock", brownBlocks);
 			}
 			
 			else if (id == 74)
 			{
-				
+				var gen_brownBlock_F:Generator = new Generator(X, Y, this, FLOOR, "BrownBlock", brownBlocks);
 			}
 			
 			else if (id == 75)
 			{
-				
+				var gen_bomb_L:Generator = new Generator(X, Y, this, LEFT, "BigBomb", bigBombs);
 			}
 			
 			else if (id == 76)
 			{
-				
+				var gen_bomb_R:Generator = new Generator(X, Y, this, RIGHT, "BigBomb", bigBombs);
 			}
 			
 			else if (id == 77)
 			{
-				
+				var gen_bomb_C:Generator = new Generator(X, Y, this, CEILING, "BigBomb", bigBombs);
 			}
 			
 			else if (id == 78)
 			{
-				
+				var gen_bomb_F:Generator = new Generator(X, Y, this, FLOOR, "BigBomb", bigBombs);
 			}
 			
 			else if (id == 79)
 			{
-				
+				var gen_crate_L:Generator = new Generator(X, Y, this, LEFT, "LifeUpCrate", lifeUpCrates);
 			}
 			
 			else if (id == 80)
 			{
-				
+				var gen_crate_R:Generator = new Generator(X, Y, this, RIGHT, "LifeUpCrate", lifeUpCrates);
 			}
 			
 			else if (id == 81)
 			{
-				
+				var gen_crate_C:Generator = new Generator(X, Y, this, CEILING, "LifeUpCrate", lifeUpCrates);
 			}
 			
 			else if (id == 82)
 			{
-				
+				var gen_crate_F:Generator = new Generator(X, Y, this, FLOOR, "LifeUpCrate", lifeUpCrates);
 			}
 			
 			else if (id == 83)
 			{
-				
+				var gen_nTurret_L:Generator = new Generator(X, Y, this, LEFT, "N_Turret", nTurrets, "normal");
 			}
 			
 			else if (id == 84)
 			{
-				
+				var gen_nTurret_R:Generator = new Generator(X, Y, this, RIGHT, "N_Turret", nTurrets, "normal");
 			}
 			
 			else if (id == 85)
 			{
-				
+				var gen_nTurret_C:Generator = new Generator(X, Y, this, CEILING, "N_Turret", nTurrets, "normal");
 			}
 			
 			else if (id == 86)
 			{
-				
+				var gen_nTurret_F:Generator = new Generator(X, Y, this, FLOOR, "N_Turret", nTurrets, "normal");
 			}
 			
 			else if (id == 87)
 			{
-				
+				var gen_hTurret_L:Generator = new Generator(X, Y, this, LEFT, "H_Turret", hTurrets, "homing");
 			}
 			
 			else if (id == 88)
 			{
-				
+				var gen_hTurret_R:Generator = new Generator(X, Y, this, RIGHT, "H_Turret", hTurrets, "homing");
 			}
 			
 			else if (id == 89)
 			{
-				
+				var gen_hTurret_C:Generator = new Generator(X, Y, this, CEILING, "H_Turret", hTurrets, "homing");
 			}
 			
 			else if (id == 90)
 			{
-				
+				var gen_hTurret_F:Generator = new Generator(X, Y, this, FLOOR, "H_Turret", hTurrets, "homing");
 			}
 			
 			else if (id == 91)
 			{
-			
+				var gen_nFlak_L:Generator = new Generator(X, Y, this, LEFT, "N_Flak", nFlaks, "normal");
 			}
 			
 			else if (id == 92)
 			{
-				
+				var gen_nFlak_R:Generator = new Generator(X, Y, this, RIGHT, "N_Flak", nFlaks, "normal");
 			}
 			
 			else if (id == 93)
 			{
-				
+				var gen_nFlak_C:Generator = new Generator(X, Y, this, CEILING, "N_Flak", nFlaks, "normal");
 			}
 			
 			else if (id == 94)
 			{
-				
+				var gen_nFlak_F:Generator = new Generator(X, Y, this, FLOOR, "N_Flak", nFlaks, "normal");
 			}
 			
 			else if (id == 95)
 			{
-				
+				var gen_hFlak_L:Generator = new Generator(X, Y, this, LEFT, "H_Flak", hFlaks, "homing");
 			}
 			
 			else if (id == 96)
 			{
-				
+				var gen_hFlak_R:Generator = new Generator(X, Y, this, RIGHT, "H_Flak", hFlaks, "homing");
 			}
 			
 			else if (id == 97)
 			{
-				
+				var gen_hFlak_C:Generator = new Generator(X, Y, this, CEILING, "H_Flak", hFlaks, "homing");
 			}
 			
 			else if (id == 98)
 			{
-				
+				var gen_hFlak_F:Generator = new Generator(X, Y, this, FLOOR, "H_Flak", hFlaks, "homing");
 			}
 			
 			else if (id == 99)
 			{
-				
+				(redRobots.recycle(RedRobot) as RedRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal");
 			}
 			
 			else if (id == 100)
 			{
-				
+				(blueRobots.recycle(BlueRobot) as BlueRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 101)
 			{
-				
+				(blackRobots.recycle(BlackRobot) as BlackRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 102)
 			{
-				
+				(yellowRobots.recycle(YellowRobot) as YellowRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 103)
 			{
-				(redRobots.recycle(RedRobot) as RedRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, apples, enemies, targets, "normal");
+				
 			}
 			
 			else if (id == 104)
 			{
-				(blueRobots.recycle(BlueRobot) as BlueRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
+				
 			}
 			
 			else if (id == 105)
 			{
-				(blackRobots.recycle(BlackRobot) as BlackRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
+				
 			}
 			
 			else if (id == 106)
 			{
-				(blueRobots.recycle(YellowRobot) as YellowRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
+				
 			}
 			
 			else if (id == 107)
@@ -965,21 +909,6 @@ package maps
 			}
 			
 			else if (id == 116)
-			{
-				
-			}
-			
-			else if (id == 117)
-			{
-				
-			}
-			
-			else if (id == 118)
-			{
-				
-			}
-			
-			else if (id == 119)
 			{
 				
 			}
