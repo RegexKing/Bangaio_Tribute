@@ -27,8 +27,9 @@ package
 		[Embed(source = "../assets/sprites/blue.png")] public static var bluePNG:Class;
 		[Embed(source = "../assets/sprites/turret.png")] public static var turretPNG:Class;
 		[Embed(source = "../assets/sprites/flak.png")] public static var flakPNG:Class;
-		
-		
+		[Embed(source = "../assets/sprites/laserTurret.png")] public static var laserTurretPNG:Class;
+		[Embed(source = "../assets/sprites/generator.png")] public static var generatorPNG:Class;
+		[Embed(source = "../assets/sprites/generatorSide.png")] public static var generatorSidePNG:Class;
 		
 		
 		//obstacles

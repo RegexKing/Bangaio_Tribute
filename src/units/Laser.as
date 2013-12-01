@@ -23,8 +23,9 @@ package units
 			health = 10;
 			points = 100;
 			
-			makeGraphic(16, 16);
+			loadRotatedGraphic(AssetsRegistry.laserTurretPNG, 8);
 			
+			setupGun(_enemyBullets, _bulletTrails, "laser");
 			gun.setBulletSpeed(500);
 			gun.setFireRate(200);
 			

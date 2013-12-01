@@ -177,12 +177,9 @@ package
 		{		
 			if ((bullet as FlxSprite).onScreen()) unit.hurt((bullet as Bullet).dealDamage());
 				
-			if (!(bullet is E_Laser)) 
-			{
-				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
-			}
+			(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 			
-			if (unit is Bullet && !(bullet is E_Laser))
+			if (unit is Bullet)
 			{
 				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(unit.getMidpoint(), "small");
 			}

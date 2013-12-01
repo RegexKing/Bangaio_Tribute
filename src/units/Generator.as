@@ -42,9 +42,10 @@ package units
 			
 			sensor = new FlxObject(0, 0, 48, 48);
 			
+			
 			if (orientation == FLOOR)
-			{
-				makeGraphic(48, 16);
+			{	
+				loadGraphic(AssetsRegistry.generatorPNG);
 				
 				sensor.x = this.x;
 				sensor.y = this.y - sensor.height;
@@ -52,7 +53,9 @@ package units
 			
 			else if (orientation == CEILING)
 			{
-				makeGraphic(48, 16);
+				loadGraphic(AssetsRegistry.generatorPNG);
+				
+				angle = 180;
 				
 				sensor.x = this.x;
 				sensor.y = this.y + this.height;
@@ -60,7 +63,10 @@ package units
 			
 			else if (orientation == LEFT)
 			{
-				makeGraphic(16, 48);
+				
+				loadGraphic(AssetsRegistry.generatorSidePNG, false, true);
+				
+				facing = LEFT;
 				
 				sensor.x = this.x - sensor.width;
 				sensor.y = this.y;
@@ -68,7 +74,7 @@ package units
 			
 			else
 			{
-				makeGraphic(16, 48);
+				loadGraphic(AssetsRegistry.generatorSidePNG);
 				
 				sensor.x = this.x + this.width;
 				sensor.y = this.y;
