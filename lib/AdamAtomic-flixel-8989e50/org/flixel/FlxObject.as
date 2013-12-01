@@ -975,6 +975,15 @@ package org.flixel
 		public function hurt(Damage:Number):void
 		{
 			health = health - Damage;
+			
+			if(health <= 0)
+				kill();
+		}
+		
+		public function explosionHurt(Damage:Number):void
+		{
+			health = health - Damage;
+			
 			if(health <= 0)
 				kill();
 		}

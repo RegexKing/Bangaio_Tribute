@@ -1,9 +1,11 @@
 package units 
 {
+	import hud.CountdownTimer;
 	import items.Fruit;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
+	import org.flixel.plugin.photonstorm.FlxMath;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import util.BulletTrailsContainer;
 	import weapons.*;
@@ -13,16 +15,15 @@ package units
 	 */
 	public class RedRobot extends Shooter implements Sentient
 	{
-		private var moving:Boolean = false;
-		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
-		
+		private var destination:FlxPoint;
 		private var apples:FlxGroup;
-		
 		
 		public function RedRobot() 
 		{
 			super(null, null, null, null, null, null, null);
+			
+			destination = new FlxPoint(0, 0);
 			
 			health = 40;
 			points = 200;
@@ -34,10 +35,6 @@ package units
 			addAnimation("straight", [3], 60);
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
-			
-			shotDelay = new FlxDelay(3000);
-			shotDelay.callback = move;
-			shotDelay.start();
 			
 		}
 		
@@ -63,6 +60,7 @@ package units
 				_enemies.add(this);
 				_targets.push(this);
 			}
+			
 		}
 		
 		override public function revive():void
@@ -73,9 +71,6 @@ package units
 			points = 200;
 			
 			aware = false;
-			moving = false;
-			
-			shotDelay.start();
 		}
 		
 		override public function update():void
@@ -100,9 +95,14 @@ package units
 			{
 				// find which way enemy should face
 				this.facing = GameUtil.findFacing(directionAngle);
+				
+				if (velocity.x == 0 && velocity.y == 0)
+				{
+					move();
+				}
 			}
 			
-			if (inSight && onScreen()) gun.fireFromAngle(aim);
+			gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
@@ -119,79 +119,51 @@ package units
 				play ("up");
 			else
 				play("straight");
-				
-			if (moving && this.pathSpeed == 0)
-			{
-				stopPathfinding();
-					
-				moving = false;
-			}	
+			
 			
 			if (isTouching(FLOOR)) velocity.y = 0;
 		}
 		
-		protected function move():void
-		{	
-			if (aware)
-			{
-				followPlayer();
-			}
-			
-			else if (!aware && onScreen() && inSight)
-			{
-				aware = true;
-				followPlayer();
-			}
-			
-			shotDelay.start();
-		}
-		
-		protected function followPlayer():void
+		private function move():void
 		{
 			
-			if (this.path != null)
-			{
-				this.path.destroy();
-			}
-					
-			this.path = map.findPath(this.getMidpoint(),  player.getMidpoint());
-			this.followPath(this.path, speed);
+			//var randAngle:Number = FlxMath.asRadians(Math.random() * 360);
+			//destination.x = player.x + Math.cos(randAngle) * 100;
+			//destination.y = player.y + Math.sin(randAngle) * 100;
+			destination.x = player.getMidpoint().x;
+			destination.y = player.getMidpoint().y;
+			
+			FlxVelocity.accelerateTowardsPoint(this, destination, 800, 200, 200);
+		}
+		
+		public function knockBack(source:FlxObject):void
+		{
+			if (this.getMidpoint().x < source.getMidpoint().x)
+				{
+					this.velocity.x = -(GameData.g_const)/2;
+				}
 				
-			moving = true;
-		}
-		
-		protected function stopPathfinding():void
-		{
-			this.stopFollowingPath(true);
-            this.velocity.x = this.velocity.y = 0;
+				else
+				{
+					this.velocity.x = GameData.g_const/2;
+				}
+				
+				if (this.getMidpoint().y < source.getMidpoint().y)
+				{
+					this.velocity.y = -(GameData.g_const)/2;
+				}
+				
+				else
+				{
+					this.velocity.y = GameData.g_const/2;
+				}
 		}
 		
 		override public function kill():void
-		{
-			(apples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "apple");
-			
+		{	
 			super.kill();
 			
-			stopPathfinding();
-			shotDelay.abort();
-			
-			aware = false;
-		}
-		
-		override public function destroy():void
-		{
-			if (this.path != null)
-			{
-				this.path.destroy();
-			}
-			
-			super.destroy();
-			
-			if (shotDelay)
-			{
-				shotDelay.abort();
-				shotDelay = null;
-			}
+			(apples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "apple");
 		}
 		
 	}

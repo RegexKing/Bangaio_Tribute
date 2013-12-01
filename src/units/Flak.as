@@ -5,6 +5,7 @@ package units
 	 * @author Frank Fazio
 	 */
 	
+	import hud.CountdownTimer;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
@@ -17,6 +18,10 @@ package units
 		private var timer:Number = 0;
 		
 		private var pineapples:FlxGroup;
+		
+		//timer vars
+		private var spawnRate:Number = 3000;
+		private var nextSpawn:Number = 0;
 		
 		public function Flak(_enemyBullets:FlxGroup, _player:Player,  _blueExplosions:FlxGroup, _map:LevelMap, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _bulletType:String, _pineapples:FlxGroup) 
 		{
@@ -31,6 +36,7 @@ package units
 			
 			loadGraphic(AssetsRegistry.flakPNG);
 			
+			setupGun(_enemyBullets, _bulletTrails, "normal");
 			gun.setBulletSpeed(250);
 			gun.setFireRate(0);
 			gun.setBulletOffset(0, 0);
@@ -53,15 +59,22 @@ package units
 				aim = GameUtil.findDirection(directionAngle);
 			}
 			
-			timer += FlxG.elapsed;
-			if (timer >= 3)
+			if (this.onScreen() && inSight && (CountdownTimer.getTimer() > nextSpawn))
 			{
-				if (inSight && onScreen())
-				{
-					gun.missleOverdrive(20);
-					timer = 0;
-				}
+				nextSpawn = CountdownTimer.getTimer() + spawnRate;
+				
+				gun.missleOverdrive(20);
 			}
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
+			
+			health = 160;
+			points = 500;
+			
+			nextSpawn = 0;
 		}
 		
 		override public function kill():void

@@ -1,9 +1,11 @@
 package units 
 {
+	import hud.CountdownTimer;
 	import items.Fruit;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
+	import org.flixel.plugin.photonstorm.FlxMath;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import util.BulletTrailsContainer;
 	import weapons.*;
@@ -11,21 +13,23 @@ package units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BlackRobot extends Shooter implements Sentient
+	public class YellowRobot extends Shooter implements Sentient
 	{
-		private var moving:Boolean = false;
-		private var shotDelay:FlxDelay;
 		private var aware:Boolean = false;
-		
 		private var bananas:FlxGroup;
 		
+		private var jumpDelay:FlxDelay;
+		private var jumping:Boolean = false;
 		
-		public function BlackRobot() 
+		public function YellowRobot() 
 		{
 			super(null, null, null, null, null, null, null);
 			
+			jumpDelay = new FlxDelay(1000);
+			jumpDelay.callback = jump;
+			
 			health = 80;
-			points = 400;
+			points = 500;
 			speed = 150;
 			
 			loadGraphic(AssetsRegistry.bluePNG, true, true, 35, 50);
@@ -35,9 +39,7 @@ package units
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
 			
-			shotDelay = new FlxDelay(2000);
-			shotDelay.callback = move;
-			shotDelay.start();
+			maxVelocity.x = 60;
 			
 		}
 		
@@ -63,6 +65,7 @@ package units
 				_enemies.add(this);
 				_targets.push(this);
 			}
+			
 		}
 		
 		override public function revive():void
@@ -70,12 +73,9 @@ package units
 			super.revive();
 			
 			health = 80;
-			points = 400;
+			points = 500;
 			
 			aware = false;
-			moving = false;
-			
-			shotDelay.start();
 		}
 		
 		override public function update():void
@@ -94,15 +94,18 @@ package units
 
 				// find where the enemy should aim
 				aim = GameUtil.findDirection(directionAngle);
+				
+				gun.fireFromAngle(aim);
 			}
 			
 			if (alert)
 			{
 				// find which way enemy should face
 				this.facing = GameUtil.findFacing(directionAngle);
+					
+				move();
 			}
 			
-			if (inSight && onScreen()) gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
@@ -119,102 +122,63 @@ package units
 				play ("up");
 			else
 				play("straight");
-				
-			if (moving && this.pathSpeed == 0)
-			{
-				stopPathfinding();
-					
-				moving = false;
-			}	
 			
-			if (isTouching(FLOOR)) velocity.y = 0;
+		}
+		
+		private function move():void
+		{
+			
+			if (justTouched(FLOOR))
+			{
+				
+				if (!jumping)
+				{
+					jumping = true;
+					jumpDelay.start();
+					
+					velocity.x = velocity.y = acceleration.x = 0;
+				}
+			}
+			
+			else if (!isTouching(FLOOR))
+			{	
+				acceleration.y = GameData.g_const;
+			}
+		}
+		
+		private function jump():void
+		{
+			jumping = false;
+			
+			if (this.getMidpoint().x < player.getMidpoint().x) acceleration.x = 100;
+			else acceleration.x = -100;
+			
+			acceleration.y -= 20000;
 		}
 		
 		public function knockBack(source:FlxObject):void
 		{
-			if (this.getMidpoint().x < source.getMidpoint().x)
-				{
-					this.velocity.x = -(GameData.g_const)/2;
-				}
 				
-				else
-				{
-					this.velocity.x = GameData.g_const/2;
-				}
-				
-				if (this.getMidpoint().y < source.getMidpoint().y)
-				{
-					this.velocity.y = -(GameData.g_const)/2;
-				}
-				
-				else
-				{
-					this.velocity.y = GameData.g_const/2;
-				}
-		}
-		
-		protected function move():void
-		{	
-			if (aware)
-			{
-				followPlayer();
-			}
-			
-			else if (!aware && onScreen() && inSight)
-			{
-				aware = true;
-				followPlayer();
-			}
-			
-			shotDelay.start();
-		}
-		
-		protected function followPlayer():void
-		{
-			
-			if (this.path != null)
-			{
-				this.path.destroy();
-			}
-					
-			this.path = map.findPath(this.getMidpoint(),  player.getMidpoint());
-			this.followPath(this.path, speed);
-				
-			moving = true;
-		}
-		
-		protected function stopPathfinding():void
-		{
-			this.stopFollowingPath(true);
-            this.velocity.x = this.velocity.y = 0;
 		}
 		
 		override public function kill():void
-		{
-			(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
-			
+		{	
 			super.kill();
 			
-			stopPathfinding();
-			shotDelay.abort();
+			jumpDelay.abort();
 			
-			aware = false;
+			(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
 		}
 		
 		override public function destroy():void
 		{
-			if (this.path != null)
+			if (jumpDelay)
 			{
-				this.path.destroy();
+				jumpDelay.abort();
+				jumpDelay = null;
 			}
 			
 			super.destroy();
-			
-			if (shotDelay)
-			{
-				shotDelay.abort();
-				shotDelay = null;
-			}
 		}
 		
 	}

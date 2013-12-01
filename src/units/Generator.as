@@ -21,7 +21,6 @@ package units
 		
 		//timer vars
 		private var spawnRate:Number = 2000;
-		private var lastSpawn:Number = 0;
 		private var nextSpawn:Number = 0;
 		
 		public function Generator(X:int, Y:int, _map:LevelMap, _orientation:uint, _unitType:String, _recycleGroup:FlxGroup, _bulletType:String = null) 
@@ -41,14 +40,38 @@ package units
 			this.x = X;
 			this.y = Y;
 			
-			sensor = new FlxObject(0, 0, 64, 64);
+			sensor = new FlxObject(0, 0, 48, 48);
 			
-			if (orientation == FLOOR || orientation == CEILING)
+			if (orientation == FLOOR)
 			{
-				makeGraphic(64, 16);
+				makeGraphic(48, 16);
+				
+				sensor.x = this.x;
+				sensor.y = this.y - sensor.height;
+			}
+			
+			else if (orientation == CEILING)
+			{
+				makeGraphic(48, 16);
 				
 				sensor.x = this.x;
 				sensor.y = this.y + this.height;
+			}
+			
+			else if (orientation == LEFT)
+			{
+				makeGraphic(16, 48);
+				
+				sensor.x = this.x - sensor.width;
+				sensor.y = this.y;
+			}
+			
+			else
+			{
+				makeGraphic(16, 48);
+				
+				sensor.x = this.x + this.width;
+				sensor.y = this.y;
 			}
 			
 			map.collideableUnits.add(this);
@@ -62,24 +85,10 @@ package units
 			
 			if (this.onScreen() && (CountdownTimer.getTimer() > nextSpawn))
 			{
-				lastSpawn = CountdownTimer.getTimer();
 				nextSpawn = CountdownTimer.getTimer() + spawnRate;
 				
 				spawn();
 			}
-			
-		}
-		
-		override public function preUpdate():void
-		{
-			super.preUpdate();
-			
-		}
-		
-		override public function postUpdate():void 
-		{
-			super.postUpdate();
-			
 			
 		}
 		
@@ -89,8 +98,6 @@ package units
 			{
 				if (unit.alive && unit.overlaps(sensor))
 				{
-					FlxG.log(this);
-					
 					return;
 				}
 			}
@@ -101,22 +108,74 @@ package units
 			}
 			
 			
+			var pulledSprite:FlxBasic;
+			
 			if (unitType == "RedRobot")
 			{
+				pulledSprite = recycleGroup.recycle(RedRobot);
 			
-				(recycleGroup.recycle(RedRobot) as RedRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, bulletType);
+				(pulledSprite as RedRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, bulletType);
+			}
+			
+			else if (unitType == "BlueRobot")
+			{
+				pulledSprite = recycleGroup.recycle(BlueRobot);
+			
+				(pulledSprite as BlueRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.bananas, map.enemies, map.targets, bulletType);
+			}
+			
+			else if (unitType == "BlackRobot")
+			{
+				pulledSprite = recycleGroup.recycle(BlackRobot);
+			
+				(pulledSprite as BlackRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, bulletType);
+			}
+			
+			else if (unitType == "YellowRobot")
+			{
+				pulledSprite = recycleGroup.recycle(YellowRobot);
+			
+				(pulledSprite as YellowRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.bananas, map.enemies, map.targets, bulletType);
 			}
 			
 			else if (unitType == "BrownBlock")
 			{
-				(recycleGroup.recycle(BrownBlock) as BrownBlock).setPos(sensor.x, sensor.y, map.player, map.blueExplosions, map.textGroup, map.oranges, map.collideableUnits, map.bulletDamageableObstacles, map.targets);
+				pulledSprite = recycleGroup.recycle(BrownBlock);
+				
+				(pulledSprite as BrownBlock).setPos(sensor.x, sensor.y, map.player, map.blueExplosions, map.textGroup, map.oranges, map.collideableUnits, map.bulletDamageableObstacles, map.targets);
 			}
 			
 			else if (unitType == "BigBomb")
 			{
-				(recycleGroup.recycle(BigBomb) as BigBomb).setPos(sensor.x, sensor.y, map.player, map.mediumExplosionAreas, map.textGroup, map.oranges, map.collideableUnits, map.bulletDamageableObstacles, map.targets);
+				pulledSprite = recycleGroup.recycle(BigBomb);
+				
+				(pulledSprite as BigBomb).setPos(sensor.x, sensor.y, map.player, map.mediumExplosionAreas, map.textGroup, map.oranges, map.collideableUnits, map.bulletDamageableObstacles, map.targets);
 			}
 			
+			
+			if (orientation == FLOOR)
+			{
+				(pulledSprite as FlxObject).x = sensor.getMidpoint().x - ((pulledSprite as FlxObject).width / 2);
+				(pulledSprite as FlxObject).y += this.y - ((pulledSprite as FlxObject).y + (pulledSprite as FlxObject).height);
+			}
+			
+			else if (orientation == CEILING)
+			{
+				(pulledSprite as FlxObject).x = sensor.getMidpoint().x - ((pulledSprite as FlxObject).width / 2);
+			}
+			
+			else if (orientation == LEFT)
+			{
+				(pulledSprite as FlxObject).y = sensor.getMidpoint().y - ((pulledSprite as FlxObject).height / 2);
+				(pulledSprite as FlxObject).x += this.x - ((pulledSprite as FlxObject).x + (pulledSprite as FlxObject).width);
+			}
+			
+			else
+			{
+				(pulledSprite as FlxObject).y = sensor.getMidpoint().y - ((pulledSprite as FlxObject).height / 2);
+			}
+			
+			pulledSprite = null;
 		}
 		
 		override public function kill():void

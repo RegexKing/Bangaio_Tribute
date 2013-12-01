@@ -656,8 +656,7 @@ package maps
 			
 			else if (id == 55)
 			{
-				//ar gen:Generator = new Generator(X, Y, this, FLOOR, "RedRobot", redRobots, "normal");
-				var gen:Generator = new Generator(X, Y, this, FLOOR, "BrownBlock", brownBlocks);
+				var gen:Generator = new Generator(X, Y, this, CEILING, "RedRobot", redRobots, "normal");
 			}
 			
 			else if (id == 56)
@@ -907,7 +906,7 @@ package maps
 			
 			else if (id == 104)
 			{
-				
+				(blueRobots.recycle(BlueRobot) as BlueRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 105)
@@ -917,7 +916,7 @@ package maps
 			
 			else if (id == 106)
 			{
-				
+				(blueRobots.recycle(YellowRobot) as YellowRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 107)

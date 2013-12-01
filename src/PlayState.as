@@ -1,5 +1,6 @@
 package  
 {	
+	import effects.BulletShell;
 	import effects.RedExplosion;
 	import hud.CountdownTimer;
 	import maps.LevelMap;
@@ -11,6 +12,7 @@ package
 	import units.Building;
 	import units.Inertia;
 	import units.Player;
+	import units.Sentient;
 	import util.BulletTrailsContainer;
 	import items.Item;
 	import util.ZoomCamera;
@@ -146,7 +148,7 @@ package
 			add(explosions);
 			add(hudGroup);
 			
-			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
 		}
 		
@@ -179,8 +181,15 @@ package
 			{
 				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 			}
+			
+			if (unit is Bullet && !(bullet is E_Laser))
+			{
+				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(unit.getMidpoint(), "small");
+			}
 				
 			bullet.kill();
+			
+			if (unit is Sentient) (unit as Sentient).knockBack(bullet);
 				
 			if (bullet is BounceBullet || bullet is HomingBullet)
 			{
@@ -206,7 +215,9 @@ package
 		
 		public function explodeObject(unit:FlxObject, explosion:FlxObject):void
 		{
-			unit.hurt(1);
+			unit.explosionHurt(1);
+			
+			if (unit is Sentient) (unit as Sentient).knockBack(explosion);
 		}
 		
 		public function pickupItem(unit:FlxObject, item:FlxObject):void

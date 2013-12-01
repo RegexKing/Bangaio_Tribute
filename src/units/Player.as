@@ -411,6 +411,34 @@ package units
 					gun.fireFromAngle(aim, true, bulletShells);
 		}
 		
+		public function knockBack(source:FlxObject):void
+		{
+			
+			if (!FlxG.keys.pressed("SHIFT"))
+			{
+			
+				if (this.getMidpoint().x < source.getMidpoint().x)
+				{
+					this.velocity.x = -(GameData.g_const)/2;
+				}
+				
+				else
+				{
+					this.velocity.x = GameData.g_const/2;
+				}
+				
+				if (this.getMidpoint().y < source.getMidpoint().y)
+				{
+					this.velocity.y = -(GameData.g_const)/2;
+				}
+				
+				else
+				{
+					this.velocity.y = GameData.g_const/2;
+				}
+			}
+		}
+		
 		override public function hurt(_damageNumber:Number):void
 		{
 			super.hurt(_damageNumber);

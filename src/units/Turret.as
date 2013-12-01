@@ -27,6 +27,7 @@ package units
 			
 			loadGraphic(AssetsRegistry.turretPNG);
 			
+			setupGun(_enemyBullets, _bulletTrails, "normal");
 			gun.setBulletSpeed(250);
 			gun.setFireRate(1000);
 			

@@ -1,5 +1,6 @@
 package units 
 {
+	import org.flixel.FlxObject;
 	
 	/**
 	 * ...
@@ -7,7 +8,7 @@ package units
 	 */
 	public interface Sentient 
 	{
-		
+		function knockBack(source:FlxObject):void;
 	}
 	
 }
