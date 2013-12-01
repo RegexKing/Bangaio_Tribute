@@ -89,6 +89,8 @@ package units
 
 				// find where the enemy should aim
 				aim = GameUtil.findDirection(directionAngle);
+				
+				gun.fireFromAngle(aim);
 			}
 			
 			if (alert)
@@ -101,8 +103,6 @@ package units
 					move();
 				}
 			}
-			
-			gun.fireFromAngle(aim);
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
