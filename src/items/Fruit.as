@@ -121,6 +121,8 @@ package items
 			_player.overDriveHud.updateOverdriveHud();
 			
 			kill();
+			
+			FlxG.play(AssetsRegistry.fruitPickup_MP3);
 		}
 		
 		

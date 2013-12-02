@@ -20,6 +20,13 @@ package units
 			
 			loadGraphic(AssetsRegistry.smallPowerBombPNG);
 		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			FlxG.play(AssetsRegistry.powerBomb_MP3);
+		}
 	}
 
 }

@@ -90,8 +90,12 @@ package
 		[Embed(source = "../assets/sounds/fullLife.mp3")] public static var fullLife_MP3:Class;
 		[Embed(source = "../assets/sounds/objectHurt.mp3")] public static var objectHurt_MP3:Class;
 		[Embed(source = "../assets/sounds/targetExplosion.mp3")] public static var targetExplosion_MP3:Class;
-		
-		
+		[Embed(source = "../assets/sounds/fruitPickup.mp3")] public static var fruitPickup_MP3:Class;
+		[Embed(source = "../assets/sounds/bomb.mp3")] public static var bomb_MP3:Class;
+		[Embed(source = "../assets/sounds/powerBomb.mp3")] public static var powerBomb_MP3:Class;
+		[Embed(source = "../assets/sounds/tallBuilding.mp3")] public static var tallBuilding_MP3:Class;
+		[Embed(source = "../assets/sounds/wideBuilding.mp3")] public static var wideBuilding_MP3:Class;
+		[Embed(source = "../assets/sounds/blueDiamond.mp3")] public static var blueDiamond_MP3:Class;
 		
 		//-- Fonts --//
 		

@@ -1,6 +1,6 @@
 package units 
 {
-	import org.flixel.FlxGroup;
+	import org.flixel.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -18,6 +18,13 @@ package units
 			health = 10;
 			
 			loadGraphic(AssetsRegistry.blueDiamondPNG);
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			FlxG.play(AssetsRegistry.blueDiamond_MP3);
 		}
 		
 	}

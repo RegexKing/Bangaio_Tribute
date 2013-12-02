@@ -352,7 +352,7 @@ package units
 					{
 						velocity.x = 0;
 					}
-				}
+				}	
 			}
 		}
 		

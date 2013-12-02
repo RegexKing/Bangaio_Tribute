@@ -107,10 +107,13 @@ package units
 			else if (buildingType == "wideBuilding")
 			{
 				(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
+				
+				FlxG.play(AssetsRegistry.wideBuilding_MP3);
 			}
 			else if (buildingType == "tallBuilding")
 			{
 				(pineapples.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "pineapple");
+				FlxG.play(AssetsRegistry.tallBuilding_MP3);
 			}
 			else if (buildingType == "car")
 			{

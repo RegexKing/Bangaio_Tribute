@@ -1,7 +1,7 @@
 package units 
 {
 	import org.flixel.FlxGroup;
-	import org.flixel.FlxSprite;
+	import org.flixel.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -20,6 +20,13 @@ package units
 			points = 20;
 			
 			loadGraphic(AssetsRegistry.smallBombPNG);
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			FlxG.play(AssetsRegistry.bomb_MP3);
 		}
 	}
 
