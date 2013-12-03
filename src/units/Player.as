@@ -352,6 +352,11 @@ package units
 					{
 						velocity.x = 0;
 					}
+					
+					if (FlxG.keys.justPressed("W"))
+					{
+						FlxG.play(AssetsRegistry.jump_MP3);
+					}
 				}	
 			}
 		}
