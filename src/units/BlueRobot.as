@@ -21,6 +21,8 @@ package units
 		private var jumpDelay:FlxDelay;
 		private var jumping:Boolean = false;
 		
+		protected var jumpSpeed:int = 14000;
+		
 		public function BlueRobot() 
 		{
 			super(null, null, null, null, null, null, null);
@@ -39,7 +41,7 @@ package units
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
 			
-			maxVelocity.x = 60;
+			maxVelocity.x = 100;
 			
 		}
 		
@@ -103,8 +105,9 @@ package units
 				// find which way enemy should face
 				this.facing = GameUtil.findFacing(directionAngle);
 					
-				move();
 			}
+			
+			move();
 			
 			// plays the animation for where the enemy is aiming
 			// up-right, up-left
@@ -139,7 +142,13 @@ package units
 				}
 			}
 			
-			else if (!isTouching(FLOOR))
+			else if (isTouching(FLOOR))
+			{
+				if (this.getMidpoint().x < player.getMidpoint().x) velocity.x = maxVelocity.x;
+				else velocity.x = -(maxVelocity.x);
+			}
+			
+			else
 			{	
 				acceleration.y = GameData.g_const;
 			}
@@ -149,10 +158,10 @@ package units
 		{
 			jumping = false;
 			
-			if (this.getMidpoint().x < player.getMidpoint().x) acceleration.x = 100;
-			else acceleration.x = -100;
+			if (this.getMidpoint().x < player.getMidpoint().x) acceleration.x = 50;
+			else acceleration.x = -50;
 			
-			acceleration.y -= 14000;
+			acceleration.y -= jumpSpeed;
 		}
 		
 		public function knockBack(source:FlxObject):void
