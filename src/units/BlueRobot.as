@@ -158,8 +158,8 @@ package units
 		{
 			jumping = false;
 			
-			if (this.getMidpoint().x < player.getMidpoint().x) acceleration.x = 50;
-			else acceleration.x = -50;
+			if (this.getMidpoint().x < player.getMidpoint().x) acceleration.x = maxVelocity.x;
+			else acceleration.x = -(maxVelocity.x);
 			
 			acceleration.y -= jumpSpeed;
 		}
