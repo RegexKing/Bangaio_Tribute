@@ -39,28 +39,28 @@ package units
 				health = 20;
 				points = 100;
 				
-				loadGraphic(AssetsRegistry.housePNG, true, false, 32, 32);
+				loadGraphic(AssetsRegistry.housePNG, true, false, 30, 30);
 			}
 			else if (_buildingType == "wideBuilding")
 			{
 				health = 50;
 				points = 200;
 				
-				loadGraphic(AssetsRegistry.wideBuildingPNG, true, false, 64, 32);
+				loadGraphic(AssetsRegistry.wideBuildingPNG, true, false, 60, 30);
 			}
 			else if (_buildingType == "tallBuilding")
 			{
 				health = 160;
 				points = 300;
 				
-				loadGraphic(AssetsRegistry.tallBuildingPNG, true, false, 48, 64);
+				loadGraphic(AssetsRegistry.tallBuildingPNG, true, false, 45, 60);
 			}
 			else if (_buildingType == "car")
 			{
 				health = 160;
 				points = 500;
 				
-				loadGraphic(AssetsRegistry.carPNG, true, false, 32, 16);
+				loadGraphic(AssetsRegistry.carPNG, true, false, 30, 15);
 			}
 			
 			if (_upOrDown == UP)

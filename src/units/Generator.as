@@ -40,7 +40,7 @@ package units
 			this.x = X;
 			this.y = Y;
 			
-			sensor = new FlxObject(0, 0, 48, 48);
+			sensor = new FlxObject(0, 0, 45, 45);
 			
 			
 			if (orientation == FLOOR)
@@ -214,7 +214,7 @@ package units
 				(pulledSprite as FlxObject).y = sensor.getMidpoint().y - ((pulledSprite as FlxObject).height / 2);
 			}
 			
-			pulledSprite = null;
+			pulledSprite = null; //cleanup
 		}
 		
 		override public function kill():void

@@ -43,8 +43,6 @@ package units
 			
 			gun.setBulletBounds(FlxG.worldBounds);
 			
-			gun.setBulletOffset(0, this.height / 2);
-			
 			_enemyBullets.add(gun.group);
 		}
 		

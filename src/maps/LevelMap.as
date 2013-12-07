@@ -12,7 +12,7 @@ package maps
 	 
 	public class LevelMap extends FlxTilemapExt
 	{
-		public static const TILE_SIZE:int = 16;
+		public static const TILE_SIZE:int = 15;
 		
 		public var doors:FlxGroup;
 		public var blueBoxes:FlxGroup;
@@ -63,13 +63,13 @@ package maps
 		{
 			if (_level == 1)  
 			{
-				this.loadMap(new AssetsRegistry.level_1CSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
+				this.loadMap(new AssetsRegistry.level_1CSV, AssetsRegistry.tilesPNG, 15, 15, OFF, 0, 1, 2);
 				spriteMap = new AssetsRegistry.level_1_SpritesCSV;
 			}
 			
 			else if (_level == 2)  
 			{
-				this.loadMap(new AssetsRegistry.level_2CSV, AssetsRegistry.tilesPNG, 16, 16, OFF, 0, 1, 2);
+				this.loadMap(new AssetsRegistry.level_2CSV, AssetsRegistry.tilesPNG, 15, 15, OFF, 0, 1, 2);
 				spriteMap = new AssetsRegistry.level_2_SpritesCSV;
 			}
 		}

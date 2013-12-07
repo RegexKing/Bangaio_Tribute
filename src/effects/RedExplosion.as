@@ -25,19 +25,19 @@ package effects
 				
 				if (_explosionType == "small")
 				{
-					loadGraphic(AssetsRegistry.redExplosionPNG, true, false, 32, 32);
+					loadGraphic(AssetsRegistry.redExplosionPNG, true, false, 30, 30);
 					addAnimation("explode", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 24, false);
 				}
 				
 				else if (_explosionType == "medium")
 				{
-					loadGraphic(AssetsRegistry.mediumRedExplosionPNG, true, false, 64, 64);
+					loadGraphic(AssetsRegistry.mediumRedExplosionPNG, true, false, 60, 60);
 					addAnimation("explode", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 24, false);
 				}
 				
 				else if (_explosionType == "large")
 				{
-					loadGraphic(AssetsRegistry.largeRedExplosionPNG, true, false, 128, 128);
+					loadGraphic(AssetsRegistry.largeRedExplosionPNG, true, false, 120, 120);
 					addAnimation("explode", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 24, false);
 				}
 			}

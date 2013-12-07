@@ -14,7 +14,7 @@ package effects
 		{
 			super();
 			
-			loadGraphic(AssetsRegistry.blueExplosionPNG, true, false, 32, 32);
+			loadGraphic(AssetsRegistry.blueExplosionPNG, true, false, 30, 30);
 			addAnimation("explode", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 24, false);
 		}
 		

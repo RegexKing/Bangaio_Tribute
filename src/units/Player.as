@@ -75,10 +75,10 @@ package units
 			addAnimation("upward", [4], 60);
 			addAnimation("up", [5], 60);
 			
-			offset.x = 3;
-			offset.y = 3;
-			width = 32;
-			height = 48;
+			offset.x = 4;
+			offset.y = 4;
+			width = 31;
+			height = 45;
 			
 			gibs = new FlxEmitter(0, 0, 30);
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 30, 64, true, 0);

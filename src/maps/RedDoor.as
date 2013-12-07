@@ -32,11 +32,11 @@ package maps
 			
 			if (orientation == LEFT || orientation == RIGHT)
 			{
-				loadGraphic(AssetsRegistry.redDoorVertPNG, true, false, 32, 128);
+				loadGraphic(AssetsRegistry.redDoorVertPNG, true, false, 30, 120);
 			}
 			else
 			{
-				loadGraphic(AssetsRegistry.redDoorHoriPNG, true, false, 128, 32);
+				loadGraphic(AssetsRegistry.redDoorHoriPNG, true, false, 120, 30);
 			}
 			
 			addAnimation("close", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 60, false);
