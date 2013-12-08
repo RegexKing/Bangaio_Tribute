@@ -92,6 +92,19 @@ package
 			return newArray;
 		}
 		
+		public static function findDistance(Object1:FlxSprite, Object2:FlxSprite):Number
+		{
+			var dist:Number;
+			var dx:Number;
+			var dy:Number;
+
+			dx = Object2.getMidpoint().x - Object1.getMidpoint().x;
+			dy = Object2.getMidpoint().y - Object1.getMidpoint().y;
+			dist = Math.sqrt(dx*dx + dy*dy);
+
+			return dist;
+		}
+		
 		static public function findAngleByVelocity(vX:Number, vY:Number):Number
 		{
 			return FlxMath.atan2(vY, vX) * 180 / Math.PI;

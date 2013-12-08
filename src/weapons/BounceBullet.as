@@ -13,7 +13,8 @@ package weapons
 	 */
 	public class BounceBullet extends BulletExt implements PlayerBullet
 	{
-		//private var target:FlxSprite;
+		private var isOverDrive:Boolean = false;
+		private var target:FlxSprite;
 		
 		// helper variable for slope collisions
 		public var parity:int = -1;
@@ -22,8 +23,8 @@ package weapons
 		{
 			super();
 			
-			width = 16;
-			height = 16;
+			width = 10;
+			height = 10;
 			
 			visible = false;
 			
@@ -33,7 +34,7 @@ package weapons
 		
 		override public function getBullet(_weapon:FlxWeaponExt, _aimAngle:int, _bulletTrails:BulletTrailsContainer, _player:Player = null):BulletExt
 		{
-			//target = _player.findClosestTarget();
+			if (FlxG.keys.justReleased("SPACE")) isOverDrive = true;
 			
 			return super.getBullet(_weapon, _aimAngle, _bulletTrails, _player);
 		}
@@ -44,20 +45,19 @@ package weapons
 			
 			if (justTouched(ANY))
 			{
-				/*
-				if (target != null && target.exists && player.bulletLOS(this, target))
+				if (isOverDrive)
 				{
-					var angleBetween:Number = FlxVelocity.angleBetween(this, target, true);
-					this.velocity = FlxVelocity.velocityFromAngle(angleBetween, 500);
+				   if (target != null && target.exists)
+				   {
+						var angleBetween:Number = FlxVelocity.angleBetween(this, target, true);
+						this.velocity = FlxVelocity.velocityFromAngle(angleBetween, 500);
+				   }
+							
+				   else
+				   {
+						target = player.findClosestTarget();
+				   }
 				}
-			
-				else
-				{
-					target = player.findClosestTarget();
-				}
-				*/
-				
-				this.angle = GameUtil.findAngleByVelocity(this.velocity.x, this.velocity.y);
 				
 				if (parity != -1)
 				{
@@ -73,6 +73,8 @@ package weapons
 		{
 			super.kill();
 			
+			target = null;
+			isOverDrive = false;
 			parity = -1;
 		}
 		

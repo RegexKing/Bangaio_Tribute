@@ -2,6 +2,7 @@ package
 {	
 	import effects.BulletShell;
 	import effects.RedExplosion;
+	import hud.BakuMeter;
 	import hud.CountdownTimer;
 	import maps.LevelMap;
 	import org.flixel.*;
@@ -48,6 +49,7 @@ package
 		private var map:LevelMap;
 		private var bulletTrails:BulletTrailsContainer;
 		private var player:Player;
+		private var bakuMeter:BakuMeter;
 		
 		private var starField:StarfieldFX;
 		private var bg:FlxSprite;
@@ -98,6 +100,8 @@ package
 			// setup map
 			map.InitializeLevel(bulletTrails, textGroup, player, enemies, enemyBullets, items, explosions, explosionAreas, 
 				collideableUnits, immovableObstacles, immovableObstaclesB,  bulletDamageableObstacles);
+				
+			bakuMeter = new BakuMeter(map, smallRedExplosions, explosionAreas);
 			
 			zoomCam = new ZoomCamera(0, 0, FlxG.width, FlxG.height);
 			FlxG.resetCameras(zoomCam);
@@ -131,6 +135,7 @@ package
 			hudGroup.add(new CountdownTimer());
 			hudGroup.add(player.score);
 			hudGroup.add(player.overDriveHud);
+			hudGroup.add(bakuMeter);
 			
 			explosions.add(explosionAreas);
 			explosions.add(smallRedExplosions);

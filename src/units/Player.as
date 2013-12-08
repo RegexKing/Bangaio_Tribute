@@ -41,8 +41,8 @@ package units
 		public var score:Score;
 		public var overDriveHud:Overdrive;
 		
-		//charges availible for missle overdrive. cant use if not at least 50
-		public var overdriveCharges:uint = 100;
+		//charges availible for missle overdrive. cant use if not at least 100
+		public var overdriveCharges:uint = Overdrive.MAX_VAL*2;
 		private var fruitMultiplier:uint = 1;
 		
 		public var aim:int = 0;
@@ -162,9 +162,9 @@ package units
 		{
 			overdriveCharges += _chargeAmt;
 			
-			if (overdriveCharges > 250)
+			if (overdriveCharges > Overdrive.MAX_VAL*5)
 			{
-				overdriveCharges = 250;
+				overdriveCharges = Overdrive.MAX_VAL*5;
 			}
 		}
 		
@@ -213,7 +213,7 @@ package units
 			}
 			
 			//Attack controls
-			if (FlxG.keys.justPressed("SPACE") && overdriveCharges >= 50)
+			if (FlxG.keys.justPressed("SPACE") && overdriveCharges >= Overdrive.MAX_VAL)
 			{
 				FlxControl.player1.enabled = false;
 				velocity.x = velocity.y = 0;
@@ -224,7 +224,7 @@ package units
 				overdriveCounter.y = this.y - overdriveCounter.height;
 			}
 			
-			else if (FlxG.keys.pressed("SPACE") && overdriveCharges >= 50)
+			else if (FlxG.keys.pressed("SPACE") && overdriveCharges >= Overdrive.MAX_VAL)
 			{		
 				overdriveTimer += FlxG.elapsed;
 					
@@ -236,9 +236,9 @@ package units
 					
 			}
 				
-			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= 50)
+			else if (FlxG.keys.justReleased("SPACE") && overdriveCharges >= Overdrive.MAX_VAL)
 			{
-				overdriveCharges -= 50;
+				overdriveCharges -= Overdrive.MAX_VAL;
 				
 				var bonusOverdrive:int = 0;
 				
@@ -504,10 +504,34 @@ package units
 			return closestTargets[Math.floor(Math.random() * closestTargets.length)];
 		}
 		
-		
-		public function bulletLOS(bullet:FlxSprite, target:FlxSprite):Boolean
+		public function findTarget(bullet:FlxSprite):FlxSprite
 		{
-			return map.ray(bullet.getMidpoint(), target.getMidpoint());
+			var chosenTarget:FlxSprite = null;
+			var minDistance:int = FlxG.width + FlxG.height;
+			
+			for each (var target:FlxSprite in targets)
+			{	
+				if (target != null && target.active && target.onScreen() && map.ray(bullet.getMidpoint(), target.getMidpoint()))
+				{
+					var distance:int = GameUtil.findDistance(bullet, target);
+					
+					if (minDistance > distance)
+					{
+						minDistance = distance;
+						chosenTarget = target;
+					}
+					
+					// TODO: play animation for selected target?
+				}
+				
+				else
+				{
+					//TODO: kill animation for selected target
+				}
+				
+			}
+			
+			return chosenTarget;
 		}
 		
 		override public function destroy():void

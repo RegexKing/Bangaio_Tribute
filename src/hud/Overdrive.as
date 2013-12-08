@@ -9,17 +9,19 @@ package hud
 	 */
 	public class Overdrive extends FlxGroup
 	{
+		public static const MAX_VAL:uint = 50;
+		
 		private var overDriveMeter:FlxBar;
 		private var charges:FlxText;
 		private var player:Player;
 		
 		public function Overdrive(_player:Player) 
 		{
-			super();
+			super(2);
 			
 			player = _player;
 			
-			overDriveMeter =  new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10, null, null, 0, 50);
+			overDriveMeter =  new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 200, 10, null, null, 0, MAX_VAL);
 			overDriveMeter.y = FlxG.height - overDriveMeter.height;
 			
 			charges = new FlxText(0, 0, 150);
@@ -38,8 +40,8 @@ package hud
 		
 		public function updateOverdriveHud():void
 		{
-			overDriveMeter.currentValue = player.overdriveCharges % 50;
-			charges.text = String(Math.floor(player.overdriveCharges / 50));
+			overDriveMeter.currentValue = player.overdriveCharges % MAX_VAL;
+			charges.text = String(Math.floor(player.overdriveCharges / MAX_VAL));
 		}
 		
 	}
