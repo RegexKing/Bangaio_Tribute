@@ -5,10 +5,12 @@ package org.flixel
 	import flash.geom.Point;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxMath;
+	import units.IndestructibleBlock;
 	import units.Inertia;
 	import units.Player;
 	import units.Sentient;
 	import units.Shooter;
+	import weapons.BulletExt;
 	
 	import org.flixel.FlxBasic;
 	
@@ -999,7 +1001,12 @@ package org.flixel
 		static public function separate(Object1:FlxObject, Object2:FlxObject):Boolean
 		{
 			var separatedX:Boolean = separateX(Object1,Object2);
-			var separatedY:Boolean = separateY(Object1,Object2);
+			var separatedY:Boolean;
+			if (Object1 is BulletExt && Object2 is IndestructibleBlock)
+				separatedY = separateBulletY(Object1, Object2);
+			else
+				separatedY = separateY(Object1,Object2);
+			
 			return separatedX || separatedY;
 		}
 		
@@ -1232,5 +1239,80 @@ package org.flixel
 			else
 				return false;
 		}
+		
+		/**
+                 * The Y-axis component of the object separation process.
+                 * 
+                 * @param        Object1         Any <code>FlxObject</code>.
+                 * @param        Object2                Any other <code>FlxObject</code>.
+                 * 
+                 * @return        Whether the objects in fact touched and were separated along the Y axis.
+                 */
+                static public function separateBulletY(Object1:FlxObject, Object2:FlxObject):Boolean
+                {          
+                        var obj1immovable:Boolean = Object1.immovable;
+                        var obj2immovable:Boolean = Object2.immovable;
+                        
+
+                        //First, get the two object deltas
+                        var overlap:Number = 0;
+                        var obj1delta:Number = Object1.y - Object1.last.y;
+                        var obj2delta:Number = Object2.y - Object2.last.y;
+                        if(obj1delta != obj2delta)
+                        {
+                                //Check if the Y hulls actually overlap
+                                var obj1deltaAbs:Number = (obj1delta > 0)?obj1delta:-obj1delta;
+                                var obj2deltaAbs:Number = (obj2delta > 0)?obj2delta:-obj2delta;
+                                var obj1rect:FlxRect = new FlxRect(Object1.x,Object1.y-((obj1delta > 0)?obj1delta:0),Object1.width,Object1.height+obj1deltaAbs);
+                                var obj2rect:FlxRect = new FlxRect(Object2.x,Object2.y-((obj2delta > 0)?obj2delta:0),Object2.width,Object2.height+obj2deltaAbs);
+                                if((obj1rect.x + obj1rect.width > obj2rect.x) && (obj1rect.x < obj2rect.x + obj2rect.width) && (obj1rect.y + obj1rect.height > obj2rect.y) && (obj1rect.y < obj2rect.y + obj2rect.height))
+                                {
+                                        var maxOverlap:Number = obj1deltaAbs + obj2deltaAbs + OVERLAP_BIAS;
+                                        
+                                        //If they did overlap (and can), figure out by how much and flip the corresponding flags
+                                        if(obj1delta > obj2delta)
+                                        {
+                                                overlap = Object1.y + Object1.height - Object2.y;
+                                                if((overlap > maxOverlap) || !(Object1.allowCollisions & DOWN) || !(Object2.allowCollisions & UP))
+                                                        overlap = 0;
+                                                else
+                                                {
+                                                        Object1.touching |= DOWN;
+                                                        //Object2.touching |= UP;
+                                                }
+                                        }
+                                        else if(obj1delta < obj2delta)
+                                        {
+                                                overlap = Object1.y - Object2.height - Object2.y;
+                                                if((-overlap > maxOverlap) || !(Object1.allowCollisions & UP) || !(Object2.allowCollisions & DOWN))
+                                                        overlap = 0;
+                                                else
+                                                {
+                                                        Object1.touching |= UP;
+                                                        //Object2.touching |= DOWN;
+                                                }
+                                        }
+                                }
+                        }
+                        
+                        //Then adjust their positions and velocities accordingly (if there was any overlap)
+                        if(overlap != 0)
+                        {
+                                var obj1v:Number = Object1.velocity.y;
+                                var obj2v:Number = Object2.velocity.y;
+                                
+                               
+                                        Object1.y = Object1.y - overlap;
+                                        Object1.velocity.y = obj2v - obj1v*Object1.elasticity;
+                                        //This is special case code that handles cases like horizontal moving platforms you can ride
+                                        if(Object2.active && Object2.moves && (obj1delta > obj2delta))
+                                                Object1.x += Object2.x - Object2.last.x;
+                                
+                              
+                                return true;
+                        }
+                        else
+                                return false;
+                }
 	}
 }

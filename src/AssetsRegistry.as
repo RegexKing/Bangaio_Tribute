@@ -15,7 +15,6 @@ package
 		[Embed(source = "../assets/sprites/largeRedExplosion.png")] public static var largeRedExplosionPNG:Class;
 		[Embed(source = "../assets/sprites/blueExplosion.png")] public static var blueExplosionPNG:Class;
 		
-		[Embed(source = "../assets/sprites/bounce.png")] public static var bouncePNG:Class;
 		[Embed(source = "../assets/sprites/missle.png")] public static var misslePNG:Class;
 		[Embed(source = "../assets/sprites/e_normalBullet.png")] public static var e_normalBulletPNG:Class;
 		[Embed(source = "../assets/sprites/e_homingBullet.png")] public static var e_homingBulletPNG:Class;

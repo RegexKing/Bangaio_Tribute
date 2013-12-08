@@ -11,7 +11,7 @@ package weapons
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BounceBullet extends BulletExt
+	public class BounceBullet extends BulletExt implements PlayerBullet
 	{
 		//private var target:FlxSprite;
 		
@@ -21,14 +21,9 @@ package weapons
 		public function BounceBullet()
 		{
 			super();
-
-			// Makes rendering rotations perform better, 200 rotations for 200 directions
-			loadRotatedGraphic(AssetsRegistry.bouncePNG, 1);
 			
-			offset.x =11;
-			width = 10;
-			offset.y = 10;
-			height = 11;
+			width = 16;
+			height = 16;
 			
 			visible = false;
 			

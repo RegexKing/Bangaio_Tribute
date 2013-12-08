@@ -31,6 +31,7 @@ package maps
 		private var immovableObstacles:FlxGroup;
 		private var immovableObstaclesB:FlxGroup;
 		public var bulletDamageableObstacles:FlxGroup;
+		public var indestructibleBlocks:FlxGroup;
 		
 		//recycleable flxgroups
 		public var oranges:FlxGroup;
@@ -87,6 +88,7 @@ package maps
 			brownBlocks.destroy();
 			lifeUpCrates.destroy();
 			bigBombs.destroy();
+			indestructibleBlocks.destroy();
 			
 			super.destroy();
 		}
@@ -110,6 +112,7 @@ package maps
 			blueBoxes = new FlxGroup();
 			playerBulletImpassable = new FlxGroup();
 			doors = new FlxGroup();
+			indestructibleBlocks = new FlxGroup();
 			
 			//recycleable groups//=====
 			//items
@@ -412,7 +415,7 @@ package maps
 				var indestructibleBlock:IndestructibleBlock = new IndestructibleBlock(X, Y);
 				
 				collideableUnits.add(indestructibleBlock);
-				bulletDamageableObstacles.add(indestructibleBlock);
+				indestructibleBlocks.add(indestructibleBlock);
 			}
 			
 			else if (id == 28)

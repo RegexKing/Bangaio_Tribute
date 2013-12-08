@@ -19,6 +19,7 @@ package
 	import weapons.BounceBullet;
 	import weapons.E_Laser;
 	import weapons.HomingBullet;
+	import weapons.PlayerBullet;
 	 
 	public class PlayState extends FlxState
 	{
@@ -161,6 +162,7 @@ package
 			
 			FlxG.collide(playerBullets, map.playerBulletImpassable);
 			FlxG.collide(playerBullets.members[1] as FlxGroup, map.blueBoxes); // bounce bullet bounce off
+			FlxG.collide(bullets, map.indestructibleBlocks);
 			FlxG.collide(collideableUnits, collideableUnits);
 			FlxG.collide(immovableObstacles, collideableUnits);
 			FlxG.collide(map, mapCollideable);
@@ -188,7 +190,7 @@ package
 			
 			if (unit is Sentient) (unit as Sentient).knockBack(bullet);
 				
-			if (bullet is BounceBullet || bullet is HomingBullet)
+			if (bullet is PlayerBullet && (bullet as FlxSprite).onScreen())
 			{
 				GameUtil.shakeCam();
 			}
@@ -204,7 +206,7 @@ package
 				(smallRedExplosions.recycle(RedExplosion) as RedExplosion).startAt(bullet.getMidpoint(), "small");
 			}
 				
-			if (bullet is BounceBullet || bullet is HomingBullet)
+			if (bullet is PlayerBullet && (bullet as FlxSprite).onScreen())
 			{
 				GameUtil.shakeCam();
 			}

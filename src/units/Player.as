@@ -77,7 +77,7 @@ package units
 			
 			offset.x = 4;
 			offset.y = 4;
-			width = 31;
+			width = 30;
 			height = 45;
 			
 			gibs = new FlxEmitter(0, 0, 30);
@@ -334,9 +334,10 @@ package units
 					acceleration.x = 0;
 				}
 				
-				if (isTouching(FLOOR))
+				if (isTouching(FLOOR) || isTouching(CEILING))
 				{
 					velocity.y = 0;
+					
 					
 					if (FlxG.keys.A)
 					{
@@ -353,9 +354,14 @@ package units
 						velocity.x = 0;
 					}
 					
-					if (FlxG.keys.justPressed("W"))
+					if (isTouching(FLOOR))
 					{
-						FlxG.play(AssetsRegistry.jump_MP3);
+						if (FlxG.keys.justPressed("W"))
+						{
+							FlxG.play(AssetsRegistry.jump_MP3);
+						}
+						
+						//TODO: add ground animations
 					}
 				}	
 			}

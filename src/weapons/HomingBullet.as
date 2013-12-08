@@ -11,7 +11,7 @@ package weapons
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class HomingBullet extends BulletExt
+	public class HomingBullet extends BulletExt implements PlayerBullet
 	{
 		
 		private var target:FlxSprite;
