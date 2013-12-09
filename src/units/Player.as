@@ -2,6 +2,7 @@ package units
 {
 	import effects.BulletShell;
 	import hud.*;
+	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import util.BulletTrailsContainer;
@@ -25,7 +26,7 @@ package units
 		private const OVERDRIVE_BONUS_MAX:int = 200;
 		
 		// Range for bonus to count
-		public const OVERDRIVE_RANGE:int = 100;
+		public const OVERDRIVE_RANGE:int = LevelMap.TILE_SIZE * 8;
 		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;
