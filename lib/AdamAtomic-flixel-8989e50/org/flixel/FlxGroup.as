@@ -1,5 +1,7 @@
 package org.flixel
 {
+	import org.flixel.plugin.photonstorm.FlxVelocity;
+	import units.Player;
 	import weapons.E_Laser;
 	/**
 	 * This is an organizational class that can update and render a bunch of <code>FlxBasic</code>s.
@@ -507,7 +509,7 @@ package org.flixel
 			return count;
 		}
 		
-		public function countOnScreen():int
+		public function countOnScreen(unit:Player):int
 		{
 			var count:int = -1;
 			var basic:FlxBasic;
@@ -519,7 +521,7 @@ package org.flixel
 				{
 					if(count < 0)
 						count = 0;
-  					if(basic.exists && !(basic is E_Laser) && (basic as FlxSprite).onScreen())
+  					if(basic.exists && FlxVelocity.distanceBetween(unit, basic as FlxSprite) <= unit.OVERDRIVE_RANGE && (basic as FlxSprite).onScreen())
 						count++;
 				}
 			}
@@ -538,7 +540,7 @@ package org.flixel
 				{
 					if(count < 0)
 						count = 0;
-  					if(basic.exists)
+  					if(basic.exists && (basic as FlxSprite).onScreen())
 						count++;
 				}
 			}

@@ -24,6 +24,9 @@ package units
 		// If changing this, change number of baked rotations for bullets
 		private const OVERDRIVE_BONUS_MAX:int = 200;
 		
+		// Range for bonus to count
+		public const OVERDRIVE_RANGE:int = 100;
+		
 		public var map:FlxTilemapExt;
 		private var zoomCamera:Function;
 		private var enemyBullets:FlxGroup;
@@ -231,8 +234,10 @@ package units
 				if (overdriveTimer >= 1.0) overdriveTimer = 1.0;
 				
 				overdriveCounter.text = String(Math.round(overdriveTimer / 0.01));
+				overdriveCounter.x = this.getMidpoint().x - (overdriveCounter.width/2);
+				overdriveCounter.y = this.y - overdriveCounter.height;
 					
-				//Play charging animations, num inc
+				//Play charging animations
 					
 			}
 				
@@ -244,7 +249,7 @@ package units
 				
 				for each (var bulletsGroup:FlxGroup in enemyBullets.members)
 				{
-					 bonusOverdrive += bulletsGroup.countOnScreen() * 2;
+					 bonusOverdrive += bulletsGroup.countOnScreen(this) * 2;
 				}
 				
 				if (bonusOverdrive > OVERDRIVE_BONUS_MAX) bonusOverdrive = OVERDRIVE_BONUS_MAX;
@@ -425,7 +430,7 @@ package units
 		public function knockBack(source:FlxObject):void
 		{
 			
-			if (!FlxG.keys.pressed("SHIFT"))
+			if (!FlxG.keys.pressed("SHIFT") && !FlxG.keys.pressed("SPACE"))
 			{
 			
 				if (this.getMidpoint().x < source.getMidpoint().x)
@@ -502,36 +507,6 @@ package units
 			
 			// get a random target close to player
 			return closestTargets[Math.floor(Math.random() * closestTargets.length)];
-		}
-		
-		public function findTarget(bullet:FlxSprite):FlxSprite
-		{
-			var chosenTarget:FlxSprite = null;
-			var minDistance:int = FlxG.width + FlxG.height;
-			
-			for each (var target:FlxSprite in targets)
-			{	
-				if (target != null && target.active && target.onScreen() && map.ray(bullet.getMidpoint(), target.getMidpoint()))
-				{
-					var distance:int = GameUtil.findDistance(bullet, target);
-					
-					if (minDistance > distance)
-					{
-						minDistance = distance;
-						chosenTarget = target;
-					}
-					
-					// TODO: play animation for selected target?
-				}
-				
-				else
-				{
-					//TODO: kill animation for selected target
-				}
-				
-			}
-			
-			return chosenTarget;
 		}
 		
 		override public function destroy():void

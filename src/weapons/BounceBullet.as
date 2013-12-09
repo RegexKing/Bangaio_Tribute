@@ -34,7 +34,11 @@ package weapons
 		
 		override public function getBullet(_weapon:FlxWeaponExt, _aimAngle:int, _bulletTrails:BulletTrailsContainer, _player:Player = null):BulletExt
 		{
-			if (FlxG.keys.justReleased("SPACE")) isOverDrive = true;
+			if (FlxG.keys.justReleased("SPACE"))
+			{
+				isOverDrive = true;
+				target = _player.findClosestTarget();
+			}
 			
 			return super.getBullet(_weapon, _aimAngle, _bulletTrails, _player);
 		}

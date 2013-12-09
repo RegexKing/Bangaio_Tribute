@@ -39,11 +39,11 @@ package hud
 			
 			var explosionNum:int = 0;
 			
-			explosionNum += smallRedExplosions.countOnScreen();
+			explosionNum += smallRedExplosions.countExplosions();
 			
 			for each (var group:FlxGroup in explosionAreas)
 			{
-				explosionNum += group.countOnScreen();
+				explosionNum += group.countExplosions();
 			}
 			
 			if (explosionNum < 0) explosionNum = 0;

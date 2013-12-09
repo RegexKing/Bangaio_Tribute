@@ -59,6 +59,11 @@ package weapons
 				target = player.findClosestTarget();
 			}
 		}
+		
+		override public function dealDamage():Number
+		{
+			return 12.5;
+		}
 	}
 
 }
