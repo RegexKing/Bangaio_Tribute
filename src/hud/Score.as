@@ -9,6 +9,7 @@ package hud
 	{
 		
 		private var scoreAmt:uint = 0;
+		private const FORMAT:String = "0000000";
 		
 		public function Score() 
 		{
@@ -17,7 +18,7 @@ package hud
 			scrollFactor.x = scrollFactor.y = 0;
 			
 			setFormat(null, 16, 0xffFFFFFF, "left", 0xff000000);
-			text = String("SCORE " + scoreAmt);
+			text = String("SCORE " + FORMAT);
 			
 			x = 10
 		}
@@ -25,7 +26,11 @@ package hud
 		public function increaseScore(_val:uint):void
 		{
 			scoreAmt += _val;
-			text = String("SCORE " + scoreAmt);
+			
+			var formattedScore:String = FORMAT;
+			formattedScore = formattedScore.substr(0, formattedScore.length - String(scoreAmt).length);
+			
+			text = String("SCORE " + formattedScore + scoreAmt);
 		}
 		
 		public function get score():uint
