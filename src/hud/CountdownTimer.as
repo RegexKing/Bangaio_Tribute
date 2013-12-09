@@ -20,7 +20,7 @@ package hud
 			scrollFactor.x = scrollFactor.y = 0;
 			
 			x = FlxG.width / 2 - this.width / 2;
-			y = this.height;
+			y = FlxG.height - this.height*2;
 			
 			setFormat(null, 16, 0xffFFFFFF, "center", 0xff000000);
 			text = FlxU.formatTime(timeLimit);

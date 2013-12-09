@@ -154,7 +154,7 @@ package
 			add(explosions);
 			add(hudGroup);
 			
-			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
 		}
 		

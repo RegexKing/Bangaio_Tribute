@@ -16,16 +16,16 @@ package hud
 			
 			scrollFactor.x = scrollFactor.y = 0;
 			
-			setFormat(null, 16, 0xffFFFFFF, "right", 0xff000000);
-			text = String(scoreAmt);
+			setFormat(null, 16, 0xffFFFFFF, "left", 0xff000000);
+			text = String("SCORE " + scoreAmt);
 			
-			x = FlxG.width - this.width;
+			x = 10
 		}
 		
 		public function increaseScore(_val:uint):void
 		{
 			scoreAmt += _val;
-			text = String(scoreAmt);
+			text = String("SCORE " + scoreAmt);
 		}
 		
 		public function get score():uint

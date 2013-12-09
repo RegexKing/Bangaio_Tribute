@@ -558,12 +558,16 @@ package org.flixel
 			{
 				meter.break100 = true;
 				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+				
+				return count;
 			}
 			
 			else if (totalCount >= meter.PRIZE_INTERVAL*2 && !meter.break200)
 			{
 				meter.break200 = true;
 				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+				
+				return count;
 			}
 			
 			else if (totalCount >= meter.PRIZE_INTERVAL*3 && !meter.break300)
@@ -571,12 +575,15 @@ package org.flixel
 				meter.break300 = true;
 				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
 				
+				return count;
 			}
 			
 			else if (totalCount >= meter.PRIZE_INTERVAL*4 && !meter.break400)
 			{
 				meter.break400 = true;
 				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+				
+				return count;
 			}
 			
 			else if (totalCount >= meter.PRIZE_INTERVAL*5 && !meter.break500)
@@ -584,6 +591,8 @@ package org.flixel
 				meter.break500 = true;
 				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
 				meter.activateInvinceable();
+				
+				return count;
 			}
 			
 			return count;

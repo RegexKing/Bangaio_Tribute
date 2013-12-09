@@ -116,6 +116,7 @@ package units
 			lifeBar.createGradientBar([0x0], [0xffFF0000, 0xffFF9900, 0xffFFFF00, 0xffBDFF00,  0xff7EFF00, 0xff3FFF00, 0xff00FF00], 1, 0, true, 0xff000000);
 			lifeBar.setCallbacks(null, null);
 			lifeBar.scrollFactor.x = lifeBar.scrollFactor.y = 0;
+			lifeBar.y += lifeBar.height;
 			
 			score = new Score();
 			overDriveHud = new Overdrive(this);

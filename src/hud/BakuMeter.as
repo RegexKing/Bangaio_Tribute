@@ -37,7 +37,7 @@ package hud
 			explosionCounter = new FlxText(0, 0, 150);
 			explosionCounter.setFormat(null, 16, 0xffFFFFFF, "center");
 			explosionCounter.x = FlxG.width / 2 - explosionCounter.width / 2;
-			explosionCounter.y = FlxG.height - explosionCounter.height*2;
+			explosionCounter.y = explosionCounter.height*2;
 			explosionCounter.scrollFactor.x = explosionCounter.scrollFactor.y = 0;
 			
 			add(explosionCounter);
@@ -68,6 +68,17 @@ package hud
 			}
 			
 			explosionCounter.text = String(explosionNum);
+			if (explosionNum < 100)
+			{
+				explosionCounter.size = 16;
+				explosionCounter.color = 0xffFFFFFF;
+			}
+			
+			else
+			{
+				explosionCounter.size = 22;
+				explosionCounter.color = 0xffFF0000;
+			}
 			
 			if (explosionNum > GameData.highestExplosion) GameData.highestExplosion = explosionNum;
 		}
