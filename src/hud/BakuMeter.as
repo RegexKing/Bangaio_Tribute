@@ -1,5 +1,6 @@
 package hud 
 {
+	import items.LifeUp;
 	import maps.LevelMap;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxMath;
@@ -15,6 +16,15 @@ package hud
 		private var explosionAreas:FlxGroup;
 		
 		private var explosionCounter:FlxText;
+		
+		//how many explosion is takes to recieve a prize
+		public const PRIZE_INTERVAL:int = 100;
+		
+		public var break100:Boolean = false;
+		public var break200:Boolean = false;
+		public var break300:Boolean = false;
+		public var break400:Boolean = false;
+		public var break500:Boolean = false;
 		
 		public function BakuMeter(_map:LevelMap, _smallRedExplosions:FlxGroup, _explosionAreas:FlxGroup) 
 		{
@@ -39,16 +49,37 @@ package hud
 			
 			var explosionNum:int = 0;
 			
-			explosionNum += smallRedExplosions.countExplosions();
+			explosionNum += smallRedExplosions.countExplosions(this);
 			
 			for each (var group:FlxGroup in explosionAreas)
 			{
-				explosionNum += group.countExplosions();
+				explosionNum += group.countExplosions(this, explosionNum);
 			}
 			
-			if (explosionNum < 0) explosionNum = 0;
+			if (explosionNum <= 0)
+			{
+				explosionNum = 0;
+				
+				break100 = false;
+				break200 = false;
+				break300 = false;
+				break400 = false;
+				break500 = false;
+			}
 			
 			explosionCounter.text = String(explosionNum);
+			
+			if (explosionNum > GameData.highestExplosion) GameData.highestExplosion = explosionNum;
+		}
+		
+		public function spawnLife(X:int, Y:int):void
+		{
+			(map.lifeUps.recycle(LifeUp) as LifeUp).setPos(X, Y);
+		}
+		
+		public function activateInvinceable():void
+		{
+			map.player.activateInvince();
 		}
 		
 	}

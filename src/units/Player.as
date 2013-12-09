@@ -141,6 +141,11 @@ package units
 			
 		}
 		
+		public function activateInvince():void
+		{
+			//TODO: do invincible stuffs
+		}
+		
 		public function incHealth():void
 		{
 			if (health < 100) health += 10;

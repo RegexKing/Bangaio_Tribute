@@ -12,5 +12,12 @@ package
 		public static var level:uint = 2;
 		
 		public static var clearedTime:Boolean = true;
+		public static var highestExplosion:uint = 0;
+		
+		public static function resetData():void
+		{
+			clearedTime = true;
+			highestExplosion = 0;
+		}
 	}
 }

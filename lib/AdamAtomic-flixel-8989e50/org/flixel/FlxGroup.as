@@ -1,5 +1,6 @@
 package org.flixel
 {
+	import hud.BakuMeter;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import units.Player;
 	import weapons.E_Laser;
@@ -528,8 +529,10 @@ package org.flixel
 			return count;
 		}
 		
-		public function countExplosions():int
+		public function countExplosions(meter:BakuMeter, initVal:int=0):int
 		{
+			var pulledExplosion:FlxBasic;
+			
 			var count:int = -1;
 			var basic:FlxBasic;
 			var i:uint = 0;
@@ -540,10 +543,49 @@ package org.flixel
 				{
 					if(count < 0)
 						count = 0;
-  					if(basic.exists && (basic as FlxSprite).onScreen())
+  					if (basic.exists && (basic as FlxSprite).onScreen())
 						count++;
+						
+					if ((count + initVal) % meter.PRIZE_INTERVAL == 0) pulledExplosion = basic;
 				}
 			}
+			
+			var totalCount:int = initVal + count;
+			
+			if (totalCount < meter.PRIZE_INTERVAL) return count;
+			
+			else if (totalCount >= meter.PRIZE_INTERVAL && !meter.break100)
+			{
+				meter.break100 = true;
+				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+			}
+			
+			else if (totalCount >= meter.PRIZE_INTERVAL*2 && !meter.break200)
+			{
+				meter.break200 = true;
+				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+			}
+			
+			else if (totalCount >= meter.PRIZE_INTERVAL*3 && !meter.break300)
+			{
+				meter.break300 = true;
+				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+				
+			}
+			
+			else if (totalCount >= meter.PRIZE_INTERVAL*4 && !meter.break400)
+			{
+				meter.break400 = true;
+				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+			}
+			
+			else if (totalCount >= meter.PRIZE_INTERVAL*5 && !meter.break500)
+			{
+				meter.break500 = true;
+				meter.spawnLife((pulledExplosion as FlxSprite).x, (pulledExplosion as FlxSprite).y);
+				meter.activateInvinceable();
+			}
+			
 			return count;
 		}
 		

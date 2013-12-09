@@ -19,7 +19,7 @@ package items
 		
 		public function pickUp(_player:Player):void
 		{
-			// TODO, call function from player to be temp invinceable
+			_player.activateInvince();
 			
 			kill();
 		}
