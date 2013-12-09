@@ -190,7 +190,13 @@ package maps
 		{
 			if (id == 0) return;
 			
-			else if (id == 1)
+			if (id > 0 && id <= 58)
+			{
+			
+			if (id > 0 && id <= 29)
+			{
+				
+			if (id == 1)
 			{
 				player.x = X;
 				player.y = Y;
@@ -437,8 +443,11 @@ package maps
 				immovableObstacles.add(greenBox);
 				playerBulletImpassable.add(greenBox);
 			}
+			}
 			
-			else if (id == 30)
+			else if (id > 29 && id <= 58)
+			{
+			if (id == 30)
 			{
 				var solidBlock:SolidBlock = new SolidBlock(this, player, blueExplosions, textGroup, X / TILE_SIZE, Y / TILE_SIZE);
 				solidBlock.x = X;
@@ -626,7 +635,15 @@ package maps
 				var gen_redRobot_F:Generator = new Generator(X, Y, this, FLOOR, "RedRobot", redRobots, "normal");
 			}
 			
-			else if (id == 59)
+			}
+			}
+			
+			else if (id > 58 && id <= 116)
+			{
+				
+			if (id > 58 && id <= 87)
+			{
+			if (id == 59)
 			{
 				var gen_blueRobot_L:Generator = new Generator(X, Y, this, LEFT, "BlueRobot", blueRobots, "normal");
 			}
@@ -770,8 +787,11 @@ package maps
 			{
 				var gen_hTurret_L:Generator = new Generator(X, Y, this, LEFT, "H_Turret", hTurrets, "homing");
 			}
+			}
 			
-			else if (id == 88)
+			else if (id > 87 && id <= 116)
+			{
+			if (id == 88)
 			{
 				var gen_hTurret_R:Generator = new Generator(X, Y, this, RIGHT, "H_Turret", hTurrets, "homing");
 			}
@@ -914,6 +934,8 @@ package maps
 			else if (id == 116)
 			{
 				
+			}
+			}
 			}
 			
 			else
