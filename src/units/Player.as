@@ -208,8 +208,6 @@ package units
 		override public function update():void
 		{	
 			super.update();
-			thrusterSound.update();
-			chargeSound.update();
 				
 			// toggle weapon type
 			if (FlxG.keys.justPressed("Q"))

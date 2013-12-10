@@ -78,19 +78,19 @@ package util
 			return newQueue;
 		}
 		
-		override public function update():void
+		override public function postUpdate():void
 		{
-			super.update();
-			
 			timer += FlxG.elapsed;
 			
-			if (timer >= 0.0161) // time it takes to erase lines
+			if (timer > 0.016) // time it takes to erase lines
 			{
 				eraseLines();
 				
 				timer = 0;
 				
 			}
+			
+			super.postUpdate();
 		}
 		
 		override public function destroy():void
