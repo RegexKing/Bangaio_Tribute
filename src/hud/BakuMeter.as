@@ -70,13 +70,13 @@ package hud
 			explosionCounter.text = String(explosionNum);
 			if (explosionNum < 100)
 			{
-				explosionCounter.size = 16;
+				if (explosionCounter.size != 16) explosionCounter.size--;
 				explosionCounter.color = 0xffFFFFFF;
 			}
 			
 			else
 			{
-				explosionCounter.size = 22;
+				if (explosionCounter.size != 24) explosionCounter.size++;
 				explosionCounter.color = 0xffFF0000;
 			}
 			

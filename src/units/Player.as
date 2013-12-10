@@ -290,7 +290,7 @@ package units
 					
 				FlxControl.player1.enabled = true;
 				
-				zoomCamera();
+				//zoomCamera();
 				
 				//play overdrive sound
 				FlxG.play(AssetsRegistry.MISSLEOVERDRIVE_MP3);
