@@ -45,6 +45,10 @@ package units
 		public var score:Score;
 		public var overDriveHud:Overdrive;
 		
+		//thruster sound Object
+		private var thrusterSound:FlxSound;
+		private var chargeSound:FlxSound;
+		
 		//charges availible for missle overdrive. cant use if not at least 100
 		public var overdriveCharges:uint = Overdrive.MAX_VAL*2;
 		private var fruitMultiplier:uint = 1;
@@ -83,6 +87,14 @@ package units
 			offset.y = 4;
 			width = 30;
 			height = 45;
+			
+			thrusterSound = new FlxSound();
+			thrusterSound.loadEmbedded(AssetsRegistry.thruster_MP3, true);
+			thrusterSound.survive = false;
+			
+			chargeSound = new FlxSound();
+			chargeSound.loadEmbedded(AssetsRegistry.overdriveCharge_MP3);
+			chargeSound.survive = false;
 			
 			gibs = new FlxEmitter(0, 0, 30);
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 30, 64, true, 0);
@@ -196,6 +208,8 @@ package units
 		override public function update():void
 		{	
 			super.update();
+			thrusterSound.update();
+			chargeSound.update();
 				
 			// toggle weapon type
 			if (FlxG.keys.justPressed("Q"))
@@ -210,6 +224,7 @@ package units
 			if (FlxG.keys.justPressed("SHIFT"))
 			{
 				FlxControl.player1.setMovementSpeed(1000, 1000, 280, 280);
+				thrusterSound.play();
 			}
 			
 			else if (FlxG.keys.pressed("SHIFT"))
@@ -220,6 +235,7 @@ package units
 			else if (FlxG.keys.justReleased("SHIFT"))
 			{
 				FlxControl.player1.setMovementSpeed(800, 800, 200, 200);
+				thrusterSound.pause();
 			}
 			
 			//Attack controls
@@ -232,6 +248,9 @@ package units
 				overdriveCounter = (textGroup.recycle(ScrollingText) as ScrollingText).setText(16, 0xffFFFFFF);
 				overdriveCounter.x = this.getMidpoint().x - (overdriveCounter.width/2);
 				overdriveCounter.y = this.y - overdriveCounter.height;
+				
+				chargeSound.play();
+				thrusterSound.pause();
 			}
 			
 			else if (FlxG.keys.pressed("SPACE") && overdriveCharges >= Overdrive.MAX_VAL)
@@ -290,10 +309,11 @@ package units
 					
 				FlxControl.player1.enabled = true;
 				
-				//zoomCamera();
+				zoomCamera();
 				
 				//play overdrive sound
 				FlxG.play(AssetsRegistry.MISSLEOVERDRIVE_MP3);
+				thrusterSound.resume();
 			}
 				
 			else if (FlxG.keys.justPressed("SPACE"))
@@ -479,6 +499,9 @@ package units
 			
 			super.kill();
 			
+			thrusterSound.stop();
+			chargeSound.stop();
+			
 			FlxG.camera.shake(0.01,0.35);
 			FlxG.camera.flash(0xffFF0000, 0.35);
 			
@@ -525,6 +548,9 @@ package units
 			closestTargets = null;
 			
 			zoomCamera = null;
+			
+			if (thrusterSound) thrusterSound.destroy();
+			if (chargeSound) chargeSound.destroy();
 			
 			super.destroy();
 			

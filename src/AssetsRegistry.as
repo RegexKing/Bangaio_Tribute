@@ -96,6 +96,8 @@ package
 		[Embed(source = "../assets/sounds/wideBuilding.mp3")] public static var wideBuilding_MP3:Class;
 		[Embed(source = "../assets/sounds/blueDiamond.mp3")] public static var blueDiamond_MP3:Class;
 		[Embed(source = "../assets/sounds/jump.mp3")] public static var jump_MP3:Class;
+		[Embed(source = "../assets/sounds/thruster.mp3")] public static var thruster_MP3:Class;
+				[Embed(source = "../assets/sounds/overdriveCharge.mp3")] public static var overdriveCharge_MP3:Class;
 		
 		//-- Fonts --//
 		
