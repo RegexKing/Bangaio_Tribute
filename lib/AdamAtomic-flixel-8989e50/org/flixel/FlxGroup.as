@@ -512,7 +512,7 @@ package org.flixel
 		
 		public function countOnScreen(unit:Player):int
 		{
-			var count:int = -1;
+			var count:int = 0;
 			var basic:FlxBasic;
 			var i:uint = 0;
 			while(i < length)
@@ -520,8 +520,6 @@ package org.flixel
 				basic = members[i++] as FlxBasic;
 				if(basic != null)
 				{
-					if(count < 0)
-						count = 0;
   					if(basic.exists && FlxVelocity.distanceBetween(unit, basic as FlxSprite) <= unit.OVERDRIVE_RANGE && (basic as FlxSprite).onScreen())
 						count++;
 				}
@@ -533,7 +531,7 @@ package org.flixel
 		{
 			var pulledExplosion:FlxBasic;
 			
-			var count:int = -1;
+			var count:int = 0;
 			var basic:FlxBasic;
 			var i:uint = 0;
 			while(i < length)
@@ -541,8 +539,6 @@ package org.flixel
 				basic = members[i++] as FlxBasic;
 				if(basic != null)
 				{
-					if(count < 0)
-						count = 0;
   					if (basic.exists && (basic as FlxSprite).onScreen())
 						count++;
 						

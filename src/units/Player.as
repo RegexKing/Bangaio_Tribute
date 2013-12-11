@@ -276,6 +276,8 @@ package units
 					 bonusOverdrive += bulletsGroup.countOnScreen(this) * 2;
 				}
 				
+				FlxG.log(bonusOverdrive);
+				
 				if (bonusOverdrive > OVERDRIVE_BONUS_MAX) bonusOverdrive = OVERDRIVE_BONUS_MAX;
 				
 				var overDriveAmt:int = (overdriveTimer / 0.01) + bonusOverdrive;

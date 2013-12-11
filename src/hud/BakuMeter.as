@@ -57,9 +57,7 @@ package hud
 			}
 			
 			if (explosionNum <= 0)
-			{
-				explosionNum = 0;
-				
+			{	
 				break100 = false;
 				break200 = false;
 				break300 = false;
