@@ -19,6 +19,7 @@ package units
 			apples = _apples;
 			
 			this.immovable = true;
+			alert = true;
 			
 			health = 10;
 			points = 100;

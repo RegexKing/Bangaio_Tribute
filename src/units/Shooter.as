@@ -49,6 +49,8 @@ package units
 		override public function update():void
 		{
 			super.update();
+			
+			if (gun && !alert) gun.resetFireTimer(2);
 		}
 		
 		

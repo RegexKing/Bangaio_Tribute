@@ -18,8 +18,8 @@ package units
 		private var pineapples:FlxGroup;
 		
 		//timer vars
-		private var spawnRate:Number = 3000;
-		private var nextSpawn:Number = 0;
+		private var fireRate:Number = 3000;
+		private var nextFire:Number = 0;
 		
 		public function Flak() 
 		{
@@ -75,9 +75,9 @@ package units
 				aim = GameUtil.findDirection(directionAngle);
 			}
 			
-			if (this.onScreen() && inSight && (CountdownTimer.getTimer() > nextSpawn))
+			if (this.onScreen() && inSight && (CountdownTimer.getTimer() > nextFire))
 			{
-				nextSpawn = CountdownTimer.getTimer() + spawnRate;
+				nextFire = CountdownTimer.getTimer() + fireRate;
 				
 				gun.missleOverdrive(20);
 			}
@@ -90,7 +90,7 @@ package units
 			health = 160;
 			points = 500;
 			
-			nextSpawn = 0;
+			nextFire = CountdownTimer.getTimer() + fireRate/2;
 		}
 		
 		override public function kill():void

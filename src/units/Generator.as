@@ -109,7 +109,7 @@ package units
 			
 			if (player.overlaps(sensor))
 			{
-				return
+				return;
 			}
 			
 			

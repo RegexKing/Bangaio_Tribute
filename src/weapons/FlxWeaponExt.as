@@ -75,7 +75,7 @@ package weapons
 			currentBullet.acceleration.y = 0;
 			
 			lastFired = CountdownTimer.getTimer();
-			nextFire = CountdownTimer.getTimer() + fireRate;
+			resetFireTimer();
 			
 			var launchX:int = positionOffset.x;
 			var launchY:int = positionOffset.y;
@@ -157,6 +157,11 @@ package weapons
 			
 			missleOverdrive(bulletSize - numDirections, numDirections * 2);
 			
+		}
+		
+		public function resetFireTimer(_fract:int = 1):void
+		{
+			nextFire = CountdownTimer.getTimer() + fireRate/_fract;
 		}
 		
 	}
