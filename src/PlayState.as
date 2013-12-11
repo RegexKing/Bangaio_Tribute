@@ -95,7 +95,7 @@ package
 			
 			createBackgroundObjects();
 			
-			player = new Player(map, zoomCamera, playerBullets, enemyBullets, bulletTrails, textGroup, particleEmitters);
+			player = new Player(map, playerBullets, enemyBullets, bulletTrails, textGroup, particleEmitters);
 			
 			// setup map
 			map.InitializeLevel(bulletTrails, textGroup, player, enemies, enemyBullets, items, explosions, explosionAreas, 
@@ -154,6 +154,7 @@ package
 			add(explosions);
 			add(hudGroup);
 			
+			zoomCam.zoom = 4;
 			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
 		}
@@ -247,11 +248,6 @@ package
 			if (zoomCam != null) zoomCam = null;
          }
 		 
-		 public function zoomCamera():void
-		{
-			zoomCam.zoom = 4;
-		}
-
 		private function createBackgroundObjects():void
 		{
 			starField = FlxSpecialFX.starfield();

@@ -7,7 +7,6 @@ package units
 	import org.flixel.plugin.photonstorm.*;
 	import util.BulletTrailsContainer;
 	import util.FlxTilemapExt;
-	import util.ZoomCamera;
 	import weapons.*;
 	
 	/**
@@ -29,7 +28,6 @@ package units
 		public const OVERDRIVE_RANGE:int = LevelMap.TILE_SIZE * 8;
 		
 		public var map:FlxTilemapExt;
-		private var zoomCamera:Function;
 		private var enemyBullets:FlxGroup;
 		private var textGroup:FlxGroup;
 		
@@ -63,12 +61,11 @@ package units
 		protected var bounceGun:FlxWeaponExt;
 		protected var homingGun:FlxWeaponExt;
 		
-		public function Player(_map:FlxTilemapExt, _zoomCamera:Function, _playerBullets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _particleEmitters:FlxGroup, _xPos:int=0, _yPos:int=0) 
+		public function Player(_map:FlxTilemapExt, _playerBullets:FlxGroup, _enemyBullets:FlxGroup, _bulletTrails:BulletTrailsContainer, _textGroup:FlxGroup, _particleEmitters:FlxGroup, _xPos:int=0, _yPos:int=0) 
 		{	
 			super(_xPos, _yPos);
 			
 			map = _map;
-			zoomCamera = _zoomCamera;
 			
 			enemyBullets = _enemyBullets;
 			textGroup = _textGroup;
@@ -276,8 +273,6 @@ package units
 					 bonusOverdrive += bulletsGroup.countOnScreen(this) * 2;
 				}
 				
-				FlxG.log(bonusOverdrive);
-				
 				if (bonusOverdrive > OVERDRIVE_BONUS_MAX) bonusOverdrive = OVERDRIVE_BONUS_MAX;
 				
 				var overDriveAmt:int = (overdriveTimer / 0.01) + bonusOverdrive;
@@ -308,8 +303,6 @@ package units
 				overDriveHud.updateOverdriveHud();
 					
 				FlxControl.player1.enabled = true;
-				
-				zoomCamera();
 				
 				//play overdrive sound
 				FlxG.play(AssetsRegistry.MISSLEOVERDRIVE_MP3);
@@ -546,8 +539,6 @@ package units
 			bounceGun = null;
 			homingGun = null;
 			closestTargets = null;
-			
-			zoomCamera = null;
 			
 			if (thrusterSound) thrusterSound.destroy();
 			if (chargeSound) chargeSound.destroy();
