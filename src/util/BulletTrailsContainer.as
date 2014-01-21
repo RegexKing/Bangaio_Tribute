@@ -78,7 +78,7 @@ package util
 			return newQueue;
 		}
 		
-		override public function postUpdate():void
+		override public function preUpdate():void
 		{
 			timer += FlxG.elapsed;
 			
@@ -90,7 +90,7 @@ package util
 				
 			}
 			
-			super.postUpdate();
+			super.preUpdate();
 		}
 		
 		override public function destroy():void

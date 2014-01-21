@@ -28,7 +28,8 @@ package units
 			
 			setupGun(_enemyBullets, _bulletTrails, "laser");
 			gun.setBulletSpeed(500);
-			gun.setFireRate(200);
+			gun.setFireRate(150);
+			gun.setBulletLifeSpan(500);
 			
 			if (_orientation == FLOOR)
 			{
