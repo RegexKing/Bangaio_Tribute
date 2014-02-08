@@ -97,7 +97,7 @@ package util
 		{
 			super.destroy();
 			
-			if (!trails)
+			if (trails)
 			{
 				for each (var lineQueue:Queue in trails)
 				{
