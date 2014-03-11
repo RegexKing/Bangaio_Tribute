@@ -155,7 +155,7 @@ package
 			add(hudGroup);
 			
 			zoomCam.zoom = 4;
-			//FlxG.playMusic(AssetsRegistry.BGM1_MP3);
+			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
 		}
 		

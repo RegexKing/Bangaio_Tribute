@@ -444,7 +444,8 @@ package units
 					// postion bullet shell
 					bulletShells.at(this);
 					
-					gun.fireFromAngle(aim, true, bulletShells);
+					gun.fireFromAngle(directionAngle, true, bulletShells);
+					
 		}
 		
 		public function knockBack(source:FlxObject):void

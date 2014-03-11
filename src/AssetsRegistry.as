@@ -78,7 +78,7 @@ package
 		//BGMS
 		
 		//539682_Omegeist
-		[Embed(source = "../assets/sounds/bgm1.mp3")] public static var BGM1_MP3:Class;
+		[Embed(source = "../assets/sounds/track1.mp3")] public static var BGM1_MP3:Class;
 		
 		//Sound effects
 		[Embed(source = "../assets/sounds/missleOverdrive.mp3")] public static var MISSLEOVERDRIVE_MP3:Class;
@@ -97,7 +97,7 @@ package
 		[Embed(source = "../assets/sounds/blueDiamond.mp3")] public static var blueDiamond_MP3:Class;
 		[Embed(source = "../assets/sounds/jump.mp3")] public static var jump_MP3:Class;
 		[Embed(source = "../assets/sounds/thruster.mp3")] public static var thruster_MP3:Class;
-				[Embed(source = "../assets/sounds/overdriveCharge.mp3")] public static var overdriveCharge_MP3:Class;
+		[Embed(source = "../assets/sounds/overdriveCharge.mp3")] public static var overdriveCharge_MP3:Class;
 		
 		//-- Fonts --//
 		
