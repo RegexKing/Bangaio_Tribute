@@ -56,7 +56,7 @@ package util
 			
           	(this.members[index] as FlxSprite).drawLine(newStartX, newStartY, newEndX, newEndY, trailColor);
 			
-			return new Line(newStartX, newStartY, newEndX, newEndY, index);
+			return Line.getLine(newStartX, newStartY, newEndX, newEndY, index);
 		}
 		
 		public function getLines():Queue
@@ -119,9 +119,8 @@ package util
 					if (line.index != -1)
 					{
 						(this.members[line.index] as FlxSprite).drawLine(line.startX, line.startY, line.endX, line.endY, 0x0, 4);
+						Line.dumpLine(line);
 					}
-					
-					line = null;
 				}
 				
 			}
