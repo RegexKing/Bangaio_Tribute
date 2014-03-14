@@ -16,9 +16,6 @@ package weapons
 		private var isOverDrive:Boolean = false;
 		private var target:FlxSprite;
 		
-		// helper variable for slope collisions
-		public var parity:int = -1;
-		
 		public function BounceBullet()
 		{
 			super();
@@ -62,12 +59,6 @@ package weapons
 						target = player.findClosestTarget();
 				   }
 				}
-				
-				if (parity != -1)
-				{
-					if (parity == 1) parity = 0;
-					else parity = 1;
-				}
 			}
 			
 			
@@ -79,7 +70,6 @@ package weapons
 			
 			target = null;
 			isOverDrive = false;
-			parity = -1;
 		}
 		
 	}
