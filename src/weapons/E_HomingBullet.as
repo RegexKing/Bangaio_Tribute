@@ -14,7 +14,7 @@ package weapons
 		{
 			super();
 			
-			loadRotatedGraphic(AssetsRegistry.e_homingBulletPNG, 100);
+			loadRotatedGraphic(AssetsRegistry.e_homingBulletPNG, 800);
 			
 			offset.x = 11;
 			width = 16;

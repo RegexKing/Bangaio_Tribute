@@ -421,7 +421,7 @@ package units
 					else if (aim == GameUtil.AIM_DOWN)
 					{
 						
-						gun.setBulletOffset(10, 50);
+						gun.setBulletOffset(10, 30);
 					}
 					//up
 					else if (aim == GameUtil.AIM_UP)

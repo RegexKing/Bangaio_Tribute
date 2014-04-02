@@ -17,8 +17,6 @@ package units
 	{
 		private var aware:Boolean = false;
 		private var bananas:FlxGroup;
-		
-		private var jumpDelay:FlxDelay;
 		private var jumping:Boolean = false;
 		
 		protected var jumpSpeed:int = 14000;
@@ -26,9 +24,6 @@ package units
 		public function BlueRobot() 
 		{
 			super(null, null, null, null, null, null, null);
-			
-			jumpDelay = new FlxDelay(1000);
-			jumpDelay.callback = jump;
 			
 			health = 40;
 			points = 500;
@@ -136,10 +131,14 @@ package units
 				if (!jumping)
 				{
 					jumping = true;
-					jumpDelay.start();
 					
 					velocity.x = velocity.y = acceleration.x = 0;
 				}
+			}
+			
+			else if (justTouched(WALL))
+			{
+				jump();
 			}
 			
 			else if (isTouching(FLOOR))
@@ -191,20 +190,7 @@ package units
 		{	
 			super.kill();
 			
-			jumpDelay.abort();
-			
 			(bananas.recycle(Fruit) as Fruit).setPosAt(this.getMidpoint(), player, textGroup, "banana");
-		}
-		
-		override public function destroy():void
-		{
-			if (jumpDelay)
-			{
-				jumpDelay.abort();
-				jumpDelay = null;
-			}
-			
-			super.destroy();
 		}
 		
 	}

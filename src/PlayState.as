@@ -154,7 +154,7 @@ package
 			add(explosions);
 			add(hudGroup);
 			
-			zoomCam.zoom = 4;
+			zoomCam.zoom = 8;
 			FlxG.playMusic(AssetsRegistry.BGM1_MP3);
 			
 		}
