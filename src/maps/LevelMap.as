@@ -46,8 +46,8 @@ package maps
 		public var largeExplosionAreas:FlxGroup;
 		private var redRobots:FlxGroup;
 		private var blueRobots:FlxGroup;
-		private var blackRobots:FlxGroup;
-		private var yellowRobots:FlxGroup;
+		//private var blackRobots:FlxGroup;
+		//private var yellowRobots:FlxGroup;
 		private var nTurrets:FlxGroup;
 		private var hTurrets:FlxGroup;
 		private var nFlaks:FlxGroup;
@@ -79,8 +79,8 @@ package maps
 		{	
 			redRobots.destroy();
 			blueRobots.destroy();
-			blackRobots.destroy();
-			yellowRobots.destroy();
+			//blackRobots.destroy();
+			//yellowRobots.destroy();
 			nTurrets.destroy();
 			hTurrets.destroy();
 			nFlaks.destroy();
@@ -124,8 +124,8 @@ package maps
 			lifeUps = new FlxGroup();
 			redRobots = new FlxGroup();
 			blueRobots = new FlxGroup();
-			blackRobots = new FlxGroup();
-			yellowRobots = new FlxGroup();
+			//blackRobots = new FlxGroup();
+			//yellowRobots = new FlxGroup();
 			nTurrets = new FlxGroup();
 			hTurrets = new FlxGroup();
 			nFlaks = new FlxGroup();
@@ -665,42 +665,42 @@ package maps
 					
 			else if (id == 63)
 			{
-				var gen_blackRobot_L:Generator = new Generator(X, Y, this, LEFT, "BlackRobot", blackRobots, "normal");
+				//var gen_blackRobot_L:Generator = new Generator(X, Y, this, LEFT, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 64)
 			{
-				var gen_blackRobot_R:Generator = new Generator(X, Y, this, RIGHT, "BlackRobot", blackRobots, "normal");
+				//var gen_blackRobot_R:Generator = new Generator(X, Y, this, RIGHT, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 65)
 			{
-				var gen_blackRobot_C:Generator = new Generator(X, Y, this, CEILING, "BlackRobot", blackRobots, "normal");
+				//var gen_blackRobot_C:Generator = new Generator(X, Y, this, CEILING, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 66)
 			{
-				var gen_blackRobot_F:Generator = new Generator(X, Y, this, FLOOR, "BlackRobot", blackRobots, "normal");
+				//var gen_blackRobot_F:Generator = new Generator(X, Y, this, FLOOR, "BlackRobot", blackRobots, "normal");
 			}
 			
 			else if (id == 67)
 			{
-				var gen_yellowRobot_L:Generator = new Generator(X, Y, this, LEFT, "YellowRobot", yellowRobots, "normal");
+				//var gen_yellowRobot_L:Generator = new Generator(X, Y, this, LEFT, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 68)
 			{
-				var gen_yellowRobot_R:Generator = new Generator(X, Y, this, RIGHT, "YellowRobot", yellowRobots, "normal");
+				//var gen_yellowRobot_R:Generator = new Generator(X, Y, this, RIGHT, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 69)
 			{
-				var gen_yellowRobot_C:Generator = new Generator(X, Y, this, CEILING, "YellowRobot", yellowRobots, "normal");
+				//var gen_yellowRobot_C:Generator = new Generator(X, Y, this, CEILING, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 70)
 			{
-				var gen_yellowRobot_F:Generator = new Generator(X, Y, this, FLOOR, "YellowRobot", yellowRobots, "normal");
+				//var gen_yellowRobot_F:Generator = new Generator(X, Y, this, FLOOR, "YellowRobot", yellowRobots, "normal");
 			}
 			
 			else if (id == 71)
@@ -858,12 +858,12 @@ package maps
 			
 			else if (id == 101)
 			{
-				(blackRobots.recycle(BlackRobot) as BlackRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
+				//(blackRobots.recycle(BlackRobot) as BlackRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 102)
 			{
-				(yellowRobots.recycle(YellowRobot) as YellowRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
+				//(yellowRobots.recycle(YellowRobot) as YellowRobot).setPos(X, Y, enemyBullets, player, blueExplosions, this, bulletTrails, textGroup, bananas, enemies, targets, "normal");
 			}
 			
 			else if (id == 103)

@@ -131,16 +131,16 @@ package units
 			
 			else if (unitType == "BlackRobot")
 			{
-				pulledSprite = recycleGroup.recycle(BlackRobot);
+				//pulledSprite = recycleGroup.recycle(BlackRobot);
 			
-				(pulledSprite as BlackRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, bulletType);
+				//(pulledSprite as BlackRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.apples, map.enemies, map.targets, bulletType);
 			}
 			
 			else if (unitType == "YellowRobot")
 			{
-				pulledSprite = recycleGroup.recycle(YellowRobot);
+				//pulledSprite = recycleGroup.recycle(YellowRobot);
 			
-				(pulledSprite as YellowRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.bananas, map.enemies, map.targets, bulletType);
+				//(pulledSprite as YellowRobot).setPos(sensor.x, sensor.y, map.enemyBullets, map.player, map.blueExplosions, map, map.bulletTrails, map.textGroup, map.bananas, map.enemies, map.targets, bulletType);
 			}
 			
 			else if (unitType == "N_Turret")

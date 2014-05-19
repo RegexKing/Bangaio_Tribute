@@ -39,7 +39,7 @@ package util
 			
 			else
 			{	
-				var extractedLine:Line = lineStack.shift();
+				var extractedLine:Line = lineStack.pop();
 				l--;
 				
 				extractedLine.startX = _startX;
@@ -47,7 +47,6 @@ package util
 				extractedLine.endX = _endX;
 				extractedLine.endY = _endY;
 				extractedLine.index = _index;
-				
 				
 				return extractedLine;
 			}
